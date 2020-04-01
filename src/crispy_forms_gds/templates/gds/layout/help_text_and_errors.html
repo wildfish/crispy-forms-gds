@@ -1,0 +1,13 @@
+{% if help_text_inline and not error_text_inline %}
+    {% include 'gds/layout/help_text.html' %}
+{% endif %}
+
+{% if not help_text_inline %}
+    {% include 'gds/layout/help_text.html' %}
+{% endif %}
+
+{% if error_text_inline %}
+    {% include 'gds/layout/field_errors.html' %}
+{% else %}
+    {% include 'gds/layout/field_errors_block.html' %}
+{% endif %}

@@ -1,0 +1,22 @@
+# Install the dependencies from setup.cfg
+-e .
+
+# Install all the dependencies needed for development. It's done this way
+# rather than using [options.extras_require] in setup.cfg to avoid them
+# being added in requires.txt when the package is built for distribution.
+# That's really intended for additional packages for the distribution and
+# development is not that. Is this being picky? Yes, but it exposes a
+# 'flaw' in the general mess that is setuptools.
+
+black
+flake8
+pytest
+pytest-black
+pytest-flake8
+pytest-cov
+sphinx
+sphinx-rtd-theme
+sphinx-autobuild
+tox
+twine
+wheel

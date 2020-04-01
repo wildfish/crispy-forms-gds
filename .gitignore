@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[co]
+*.egg*
+
+# Editor temp files
+*~
+
+# Ignore dot files except those required for the project
+.*
+!.gitignore
+!.gitkeep
+
+# Development artefacts
+build
+dist
+htmlcov
+
+# Documentation artefacts
+_build
