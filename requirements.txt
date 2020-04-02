@@ -8,8 +8,6 @@
 # development is not that. Is this being picky? Yes, but it exposes a
 # 'flaw' in the general mess that is setuptools.
 
-black
-flake8
 pytest
 pytest-black
 pytest-flake8
