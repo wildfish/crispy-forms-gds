@@ -15,3 +15,4 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Set of core templates for rendering forms.
 - Layout object for rendering submit buttons.
 - Tests for verifying text inputs are rendered correctly.
+- Django site for showing how the forms are used. 

@@ -79,6 +79,13 @@ GDS-specific styles without having to add the class names - though you can to th
 too. Check out the description for each element in the ``User Reference`` section
 of the docs.
 
+## Demo
+If you checkout the code from the repository, there is a Django site you can run
+to see the forms in action:
+```shell script
+make setup install-packages demo
+```
+
 ## Requires
 * Django >=2.2;
 * django-crispy-forms >= 1.9.x;

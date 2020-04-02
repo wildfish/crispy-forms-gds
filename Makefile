@@ -17,6 +17,7 @@ pip := ${venv_path}/bin/pip
 black := ${venv_path}/bin/black
 flake8 := ${venv_path}/bin/flake8
 pytest := ${venv_path}/bin/pytest
+django := ${venv_path}/bin/python demo/manage.py
 
 src_dir := src
 package_dir := ${src_dir}/${package_name}
@@ -59,6 +60,7 @@ help:
 	@echo "  clean             -- to clean everything"
 	@echo "  tests             -- to run all the lint checks and tests"
 	@echo "  release           -- to build the release and upload it to PyPI"
+	@echo "  demo              -- to run the Django demo site"
 	@echo ""
 	@echo "When running the release target you must give the version number"
 	@echo "e.g. make release VERSION=1.4.2"
@@ -175,3 +177,7 @@ upload-to-pypi: build-packages
 
 .PHONY: release
 release: update-package update-setup update-changelog update-repository build-packages upload-to-pypi
+
+.PHONY: demo
+demo:
+	${django} runserver
