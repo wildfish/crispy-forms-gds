@@ -1,6 +1,8 @@
 import io
 import os
 
+import django
+
 from django.conf import settings as django_settings
 from django.template import Context, Template
 
@@ -18,6 +20,7 @@ def configure_django(**kwargs):
     values = {k: getattr(settings, k) for k in dir(settings) if k.isupper()}
     values.update(kwargs)
     django_settings.configure(**values)
+    django.setup()
 
 
 def file_contents(path):
