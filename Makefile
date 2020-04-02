@@ -76,3 +76,5 @@ tests: install
 .PHONY: serve
 serve: install $(frontend)/dist
 	$(django) runserver
+
+-include *.mk

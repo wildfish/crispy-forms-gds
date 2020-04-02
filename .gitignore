@@ -17,5 +17,8 @@ dist
 htmlcov
 venv
 
+# Any local makefiles
+*.mk
+
 # Documentation artefacts
 _build
