@@ -18,7 +18,7 @@ specific classes added: ::
 
         name = forms.CharField(
             label=_("Name"),
-            widget=forms.TextInput(attrs={"width": 9}),
+            widget=forms.TextInput(),
             help_text=_("Your full name."),
             error_messages={
                 "required": _("Enter your name as it appears on your passport")
@@ -38,9 +38,3 @@ Then you render the form in true, crispy style: ::
     ...
 
 That's it.
-
-You may have noticed the ``width`` attribute on the ``TextInput`` widget. You
-can use this to set `appropriately sized text widths`_ on the field when the
-form is is rendered. Crispy-forms-gds makes it easy to set GDS-specific styles
-without having to add the class names - though you can to that too. Check out
-the description for each element in the ``User Reference`` section.

@@ -3,6 +3,7 @@
 .. _GOV.UK Design System: https://design-system.service.gov.uk/
 .. _Getting started: https://design-system.service.gov.uk/get-started/
 .. _production: https://design-system.service.gov.uk/get-started/production/
+.. _webpack config file: https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js
 
 .. _install-intro:
 
@@ -34,4 +35,6 @@ project. If not, the `install guide`_ is very simple.
 NOTE: The app does not include any GDS assets, you will have to install them
 in your projects. Details are provided on the `GOV.UK Design System`_ site.
 Follow the `Getting Started`_ guide and the installation instructions for a
-`production`_ install.
+`production`_ install. The demo site has a `webpack config file`_ which you might
+find useful.
+

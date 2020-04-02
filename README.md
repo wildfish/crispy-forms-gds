@@ -33,8 +33,11 @@ in your project. Details are provided on the
 site. Follow the [GOV.UK Design System](https://design-system.service.gov.uk/get-started/) 
 guide and the installation instructions for a
 [GOV.UK Design System](https://design-system.service.gov.uk/get-started/production/) install.
+The demo site has a 
+[webpack config](https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js) 
+file which you might find useful.
 
-## Use
+## Example
 To use the app just build a regular crispy form as before but the layout objects 
 are imported from `crispy_forms_gds`:
 
@@ -50,7 +53,7 @@ class TextInputForm(forms.Form):
 
     name = forms.CharField(
         label=_("Name"),
-        widget=forms.TextInput(attrs={"width": 9}),
+        widget=forms.TextInput(),
         help_text=_("Your full name."),
         error_messages={
             "required": _("Enter your name as it appears on your passport")
@@ -71,19 +74,12 @@ And render the form in your templates:
 ```
 That's it.
 
-You may have noticed the ``width`` attribute on the ``TextInput`` widget. You
-can use this to set 
-[appropriately sized text widths](https://design-system.service.gov.uk/components/text-input/#use-appropriately-sized-text-inputs)
-on the field when the form is is rendered. Crispy-forms-gds makes it easy to set 
-GDS-specific styles without having to add the class names - though you can to that 
-too. Check out the description for each element in the ``User Reference`` section
-of the docs.
-
 ## Demo
 If you checkout the code from the repository, there is a Django site you can run
-to see the forms in action:
+to see the forms in action. You will need to [install nvm](https://github.com/nvm-sh/nvm)
+for managing node versions first. After that build everything and run the demo with:
 ```shell script
-make setup install-packages demo
+make serve
 ```
 
 ## Requires
