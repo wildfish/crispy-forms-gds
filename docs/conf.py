@@ -21,8 +21,8 @@ from crispy_forms_gds import __version__ as crispy_forms_gds_version
 # -- Project information -----------------------------------------------------
 
 project = 'Crispy Forms GDS'
-copyright = '2020, Stuart MacKay'
-author = 'Stuart MacKay'
+copyright = '2020, Wildfish Ltd.'
+author = 'Rolo Mawlabaux'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
