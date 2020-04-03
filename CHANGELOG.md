@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.0.1] - 2020-04-03
 ### Added 
 - All the project files needed to generate the package documentation.
 - All the project files needed to release the package to PyPI.
