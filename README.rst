@@ -7,11 +7,21 @@
 .. _webpack config: https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js
 .. _install nvm: https://github.com/nvm-sh/nvm
 
-############
-Introduction
-############
-This is a `Django`_ application to add `django-crispy-forms`_ template pack
-and layout objects for the `GOV.UK Design System`_.
+################
+Crispy Forms GDS
+################
+
+.. image:: https://travis-ci.org/wildfish/crispy-forms-gds.svg?branch=master
+    :target: https://travis-ci.org/wildfish/crispy-forms-gds
+
+.. image:: https://badge.fury.io/py/crispy-forms-gds.svg
+    :target: https://pypi.python.org/pypi/crispy-forms-gds/
+
+.. image:: https://img.shields.io/pypi/pyversions/crispy-forms-gds.svg
+    :target: https://pypi.python.org/pypi/crispy-forms-gds/
+
+A `Django`_ application to add `django-crispy-forms`_ template pack and layout objects
+for the `GOV.UK Design System`_.
 
 *******
 Install
