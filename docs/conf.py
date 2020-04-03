@@ -4,9 +4,6 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-from crispy_forms_gds import __version__ as crispy_forms_gds_version
-
-
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -29,9 +26,9 @@ author = 'Rolo Mawlabaux'
 # built documents.
 #
 # The short X.Y version.
-version = crispy_forms_gds_version
+version = "0.0.1"
 # The full version, including alpha/beta/rc tags.
-release = crispy_forms_gds_version
+release = version
 
 # -- General configuration ---------------------------------------------------
 
