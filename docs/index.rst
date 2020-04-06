@@ -34,6 +34,6 @@ for the `GOV.UK Design System`_.
 
    developer/project.rst
 
-.. _CHANGELOG: https://github.com/django-crispy-forms/crispy-forms-gds/blob/master/CHANGELOG.md
+.. _CHANGELOG: https://github.com/wildfish/crispy-forms-gds/blob/master/CHANGELOG.md
 
 You can find a detailed history of the project in the `CHANGELOG`_ on GitHub.
