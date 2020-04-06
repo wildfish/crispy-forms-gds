@@ -4,10 +4,10 @@ from django.urls import reverse_lazy
 from .forms import TextInputForm
 
 
-class FormFieldView(FormView):
-    success_url = reverse_lazy("forms:index")
+class ComponentView(FormView):
+    success_url = reverse_lazy("components:index")
     form_classes = {"text-input": TextInputForm}
-    templates = {"text-input": "forms/text_input.html"}
+    templates = {"text-input": "components/text_input.html"}
 
     def get_template_names(self):
         field_name = self.kwargs.get("field", "text-input")

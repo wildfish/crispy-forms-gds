@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sitenav %}
+<nav class="demo-navigation govuk-clearfix">
+  <div class="govuk-width-container">
+    <ul class="demo-navigation__list">
+      <li class="demo-navigation__list-item demo-navigation__list-item--current">
+        <a class="govuk-link govuk-link--no-visited-state" href="{% url "components:index" %}" data-topnav="Components">
+          {% trans "Components" %}
+        </a>
+      </li>
+      <li class="demo-navigation__list-item">
+        <a class="govuk-link govuk-link--no-visited-state" href="{% url "patterns:index" %}" data-topnav="Patterns">
+          {% trans "Patterns" %}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+{% block sidebar %}
+  <nav>
+    <ul class="govuk-list">
+      <li>
+        <a href="{% url 'components:name' 'text-input' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Text input' %}
+        </a>
+      </li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-m">
+    {% trans "Crispy Forms - UK.GOV Design System" %}
+  </h1>
+  <div class="govuk-body">
+  </div>
+{% endblock %}
