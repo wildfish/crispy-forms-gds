@@ -11,18 +11,22 @@ This is a `Django`_ application to add a template pack to `django-crispy-forms`_
 for the `GOV.UK Design System`_.
 
 .. toctree::
-   :caption: User Guide
+   :caption: Get started
    :maxdepth: 1
 
-   install.rst
-   settings.rst
-   example.rst
+   start/install.rst
+   start/settings.rst
+   start/example.rst
 
 .. toctree::
-   :caption: User Reference
+   :caption: Components
    :maxdepth: 1
 
-   reference/text_input.rst
+   components/text_input.rst
+
+.. toctree::
+   :caption: Patterns
+   :maxdepth: 1
 
 .. toctree::
    :caption: Developer Guide

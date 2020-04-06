@@ -1,0 +1,15 @@
+{% extends "patterns/base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {% trans "Patterns" %}
+  </h1>
+  <div class="govuk-body">
+    {% blocktrans %}
+    Each of the <a href="https://design-system.service.gov.uk/patterns/">patterns</a>
+    listed on the GOV.UK Design System web site has an equivalent here, showing how the
+    pattern can be recreated using the crispy-forms and the crispy-forms-gds template pack.
+    {% endblocktrans %}
+  </div>
+{% endblock %}

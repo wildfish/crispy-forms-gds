@@ -1,4 +1,4 @@
-{% load static %}<!DOCTYPE html>
+{% load static i18n %}<!DOCTYPE html>
 <html lang="en" class="govuk-template">
 
 <head>
@@ -30,11 +30,9 @@
 
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
-  <header class="govuk-header " role="banner" data-module="govuk-header">
-    <div class="govuk-header__container govuk-width-container">
-      <div class="govuk-header__logo">
-      </div>
-      <div class="govuk-header__content">
+  <header class="govuk-header" role="banner" data-module="govuk-header">
+    <div class="govuk-header__container">
+      <div class="govuk-width-container">
         <a href="#" class="govuk-header__link govuk-header__link--service-name">
           Crispy Forms GDS
         </a>
@@ -42,20 +40,54 @@
     </div>
   </header>
 
+  <div class="govuk-phase-banner govuk-width-container" style="border-bottom: none">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        {% trans "Open" %}
+      </strong>
+      <span class="govuk-phase-banner__text">
+        {% blocktrans %}
+        This is an Open Source project – your
+        <a class="govuk-link" href="https://github.com/wildfish/crispy-forms-gds/issues">feedback</a>
+        will help us to improve it.
+        {% endblocktrans %}
+      </span>
+    </p>
+  </div>
+
+  {% block sitenav %}
+  <nav class="demo-navigation govuk-clearfix">
+    <div class="govuk-width-container">
+      <ul class="demo-navigation__list">
+        <li class="demo-navigation__list-item">
+          <a class="govuk-link govuk-link--no-visited-state" href="{% url "components:index" %}" data-topnav="Components">
+            {% trans "Components" %}
+          </a>
+        </li>
+        <li class="demo-navigation__list-item">
+          <a class="govuk-link govuk-link--no-visited-state" href="{% url "patterns:index" %}" data-topnav="Patterns">
+            {% trans "Patterns" %}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  {% endblock %}
+
   {% block main  %}
-    <div class="govuk-width-container ">
-      <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-width-container">
+      <main class="govuk-main-wrapper" id="main-content" role="main">
 
         <div class="govuk-grid-row">
           {% block alerts %}{% endblock %}
         </div>
 
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
+          <div class="govuk-grid-column-one-quarter">
             {% block sidebar %}
             {% endblock %}
           </div>
-          <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-grid-column-three-quarters">
             {% block content %}
             {% endblock %}
           </div>
@@ -65,11 +97,12 @@
   {% endblock %}
 
   <footer class="govuk-footer " role="contentinfo">
-    <div class="govuk-width-container ">
+    <div class="govuk-width-container">
       <div class="govuk-footer__meta">
         <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
-        </div>
-        <div class="govuk-footer__meta-item">
+          <div class="govuk-footer__meta-custom">
+            Built by <a href="https://wildfish.com" class="govuk-footer__link">Wildfish Ltd.</a>
+          </div>
         </div>
       </div>
     </div>

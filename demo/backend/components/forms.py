@@ -16,15 +16,6 @@ class TextInputForm(forms.Form):
         }
     )
 
-    age = forms.CharField(
-        label=_("Age"),
-        widget=forms.TextInput(attrs={"width": 4}),
-        help_text=_("How old are you?"),
-        error_messages={
-            "required": _("Enter your age on your last birthday")
-        }
-    )
-
     def __init__(self, *args, **kwargs):
         super(TextInputForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()

@@ -1,0 +1,26 @@
+{% extends "components/base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block content %}
+  <span class="govuk-caption-xl">
+    {% trans 'Components' %}
+  </span>
+  <h1 class="govuk-heading-l">
+    {% trans 'Text input' %}
+  </h1>
+
+  <div class="govuk-body">
+    {% crispy form %}
+  </div>
+
+  <h1 class="govuk-heading-m">
+    {% trans 'Additional Information' %}
+  </h1>
+
+  <p class="govuk-body">
+    {% blocktrans %}
+    Read the documentation for <a class="govuk-link" href="https://crispy-forms-gds.readthedocs.io/en/latest/reference/text_input.html">Text input</a>.
+    {% endblocktrans %}
+  </p>
+
+{% endblock %}
