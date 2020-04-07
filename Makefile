@@ -24,6 +24,7 @@ help:
 	@echo "  clean       to clean everything"
 	@echo "  venv        to create the virtualenv and install dependencies"
 	@echo "  dist        to build the package"
+	@echo "  docs        to build the HTML documentation"
 	@echo "  install     to install the package in the vitualenv"
 	@echo "  reinstall   to rebuild and reinstall the package in the vitualenv"
 	@echo "  tests    	 to run the lint checks and tests"
@@ -61,6 +62,10 @@ $(frontend)/node_modules:
 
 $(frontend)/dist: $(frontend)/node_modules
 	cd $(frontend) && $(nvm) use && npm run dev
+
+.PHONY: docs
+docs:
+	python setup.py build_sphinx
 
 .PHONY: install
 install: venv dist
