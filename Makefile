@@ -10,9 +10,10 @@ name = $(shell $(PYTHON) setup.py --name)
 full = $(shell $(PYTHON) setup.py --fullname)
 
 # Where everything lives
-pip := venv/bin/pip
+pip := venv/bin/pip3
 pytest := venv/bin/pytest
-django := venv/bin/python demo/manage.py
+python := venv/bin/python3
+django := venv/bin/python3 demo/manage.py
 frontend := demo/frontend
 nvm := sh ~/.nvm/nvm.sh
 
@@ -55,7 +56,7 @@ venv:
 	$(pip) install -r requirements.txt
 
 dist:
-	python setup.py sdist bdist_wheel
+	$(python) setup.py sdist bdist_wheel
 
 $(frontend)/node_modules:
 	cd $(frontend) && $(nvm) use && npm install
@@ -69,7 +70,7 @@ docs:
 
 .PHONY: install
 install: venv dist
-	pip install dist/$(full).tar.gz
+	$(pip) install dist/$(full).tar.gz
 
 .PHONY: reinstall
 reinstall: clean-dist install
@@ -80,6 +81,7 @@ tests: install
 
 .PHONY: serve
 serve: install $(frontend)/dist
+	$(django) migrate
 	$(django) runserver
 
 -include *.mk
