@@ -5,6 +5,7 @@ import django
 
 from django.conf import settings as django_settings
 from django.template import Context, Template
+from django.test.html import parse_html
 
 
 from . import settings
@@ -23,13 +24,13 @@ def configure_django(**kwargs):
     django.setup()
 
 
-def file_contents(path):
-    with io.open(path, "r", encoding="utf-8") as fp:
+def get_contents(*args):
+    with io.open(os.path.join(*args), "r", encoding="utf-8") as fp:
         return fp.read()
 
 
-def expected_results(*args):
-    return file_contents(os.path.join(TEST_DIR, "expected", *args))
+def parse_contents(*args):
+    return parse_html(get_contents(*args))
 
 
 def render_form(form, **kwargs):
@@ -43,3 +44,7 @@ def render_form(form, **kwargs):
         {% crispy form %}
     """
     return Template(tpl).render(context)
+
+
+def parse_form(form):
+    return parse_html(render_form(form))

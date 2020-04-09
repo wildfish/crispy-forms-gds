@@ -6,7 +6,7 @@
 
 include CHANGELOG.md
 
-draft src
+graft src
 
 recursive-exclude * .cache
 recursive-exclude * __pycache__
