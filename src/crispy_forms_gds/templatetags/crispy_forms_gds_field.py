@@ -160,10 +160,17 @@ class CrispyGDSFieldNode(template.Node):
                     css_class += " is-invalid"
 
             if template_pack == "gds" and not is_multivalue(field):
-                field_width = widget.attrs.get("width", None)
+                field_width = widget.attrs.pop("width", None)
+
+                for name, value in widget.attrs.items():
+                    if isinstance(value, bool):
+                        widget.attrs[name] = "true" if value else "false"
 
                 if field_width:
-                    css_class += " %s--width-%s" % (class_name, field_width)
+                    if isinstance(field_width, int):
+                        css_class += " %s--width-%d" % (class_name, field_width)
+                    elif isinstance(field_width, str):
+                        css_class += " govuk-!-width-%s" % field_width
 
                 if field.help_text:
                     widget.attrs["aria-describedby"] = "hint_%s" % field.auto_id

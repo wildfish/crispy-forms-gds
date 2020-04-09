@@ -11,9 +11,9 @@ class BaseForm(forms.Form):
 
 class TextInputForm(BaseForm):
 
-    field_name = forms.CharField(
-        label="Field label",
-        widget=forms.TextInput(attrs={"width": "4"}),
+    name = forms.CharField(
+        label="Name",
+        widget=forms.TextInput,
         help_text="Help text",
         error_messages={"required": "Required error message"},
     )
