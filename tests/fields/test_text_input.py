@@ -21,17 +21,3 @@ def test_validation_error_attributes():
     form = TextInputForm(data={"field_name": ""})
     assert not form.is_valid()
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
-
-
-def test_spellcheck_enabled():
-    """Verify enabling spellchecking with True."""
-    form = TextInputForm()
-    form.fields["name"].widget.attrs["spellcheck"] = True
-    assert parse_form(form) == parse_contents(RESULT_DIR, "spellcheck_enabled.html")
-
-
-def test_spellcheck_disabled():
-    """Verify disabling spellchecking with False."""
-    form = TextInputForm()
-    form.fields["name"].widget.attrs["spellcheck"] = False
-    assert parse_form(form) == parse_contents(RESULT_DIR, "spellcheck_disabled.html")
