@@ -23,38 +23,6 @@ def test_validation_error_attributes():
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
 
 
-def test_set_fixed_width_with_integer():
-    """Verify text fields can be set to be a fixed width using an integer."""
-    form = TextInputForm()
-    form.fields["name"].widget.attrs["width"] = 4
-    assert parse_form(form) == parse_contents(RESULT_DIR, "fixed_width.html")
-
-
-def test_set_relative_width():
-    """Verify text fields can be set to be a width relative to their parent."""
-    form = TextInputForm()
-    form.fields["name"].widget.attrs["width"] = "one-quarter"
-    assert parse_form(form) == parse_contents(RESULT_DIR, "relative_width.html")
-
-
-def test_set_unsupported_fixed_width():
-    """Verify new fixed width classes can be supported."""
-    form = TextInputForm()
-    form.fields["name"].widget.attrs["width"] = 25
-    assert parse_form(form) == parse_contents(
-        RESULT_DIR, "unsupported_fixed_width.html"
-    )
-
-
-def test_set_unsupported_relative_width():
-    """Verify new relative width classes can be supported."""
-    form = TextInputForm()
-    form.fields["name"].widget.attrs["width"] = "four-fifths"
-    assert parse_form(form) == parse_contents(
-        RESULT_DIR, "unsupported_relative_width.html"
-    )
-
-
 def test_spellcheck_enabled():
     """Verify enabling spellchecking with True."""
     form = TextInputForm()
