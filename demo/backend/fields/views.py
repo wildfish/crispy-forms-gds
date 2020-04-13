@@ -1,16 +1,18 @@
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
-from .forms import TextInputForm
+from .forms import TextInputForm, CheckboxesForm
 
 
-class ComponentView(FormView):
-    success_url = reverse_lazy("components:index")
+class FieldView(FormView):
+    success_url = reverse_lazy("fields:index")
     form_classes = {
+        "checkboxes": CheckboxesForm,
         "text-input": TextInputForm,
     }
     templates = {
-        "text-input": "components/text-input.html",
+        "checkboxes": "fields/checkboxes.html",
+        "text-input": "fields/text-input.html",
     }
 
     def get_template_names(self):
