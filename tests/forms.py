@@ -11,9 +11,10 @@ class BaseForm(forms.Form):
 
 class TextInputForm(BaseForm):
 
+    use_required_attribute = False
+
     name = forms.CharField(
         label="Name",
-        widget=forms.TextInput,
         help_text="Help text",
         error_messages={"required": "Required error message"},
     )

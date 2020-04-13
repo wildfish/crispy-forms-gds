@@ -184,12 +184,6 @@ class CrispyGDSFieldNode(template.Node):
                             idx,
                         )
 
-                # Force required to False but only for rendering so the error
-                # message for the field is shown instead of the browser pop-over.
-                # The field must still be submitted for the form to validate.
-
-                field.field.required = False
-
             widget.attrs["class"] = css_class
 
             # HTML5 required attribute
