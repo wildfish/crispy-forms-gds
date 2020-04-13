@@ -125,7 +125,7 @@ class CrispyGDSFieldNode(template.Node):
             attrs = [attrs] * len(widgets)
 
         converters = {
-            "textinput": "govuk-input",
+            "textinput": "textinput textInput",
             "fileinput": "fileinput fileUpload",
             "passwordinput": "textinput textInput",
         }
@@ -134,12 +134,17 @@ class CrispyGDSFieldNode(template.Node):
         for widget, attr in zip(widgets, attrs):
             class_name = widget.__class__.__name__.lower()
             class_name = converters.get(class_name, class_name)
-            css_class = widget.attrs.get("class", "")
-            if css_class:
-                if css_class.find(class_name) == -1:
-                    css_class += " %s" % class_name
+
+            if class_name:
+                css_class = class_name.split()
             else:
-                css_class = class_name
+                css_class = []
+
+            for attr_css_class in widget.attrs.get("class", "").split():
+                if attr_css_class not in css_class:
+                    css_class.append(attr_css_class)
+
+            css_class = " ".join(css_class)
 
             if (
                 template_pack == "bootstrap3"
@@ -159,36 +164,20 @@ class CrispyGDSFieldNode(template.Node):
                 if field.errors:
                     css_class += " is-invalid"
 
-            if template_pack == "gds" and not is_multivalue(field):
-                field_width = widget.attrs.pop("width", None)
+            if template_pack == "gds":
 
-                for name, value in widget.attrs.items():
-                    if isinstance(value, bool):
-                        widget.attrs[name] = "true" if value else "false"
+                if widget.__class__.__name__ == "TextInput":
 
-                if field_width:
-                    if isinstance(field_width, int):
-                        css_class += " %s--width-%d" % (class_name, field_width)
-                    elif isinstance(field_width, str):
-                        css_class += " govuk-!-width-%s" % field_width
+                    if field.help_text:
+                        widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
 
-                if field.help_text:
-                    widget.attrs["aria-describedby"] = "hint_%s" % field.auto_id
-
-                if field.errors:
-                    css_class += " %s--error" % class_name
-
-                    for idx, error in enumerate(field.errors, start=1):
-                        widget.attrs["aria-describedby"] += " %s_%d_error" % (
-                            field.auto_id,
-                            idx,
-                        )
-
-                # Force required to False but only for rendering so the error
-                # message for the field is shown instead of the browser pop-over.
-                # The field must still be submitted for the form to validate.
-
-                field.field.required = False
+                    if field.errors:
+                        css_class += " govuk-input--error"
+                        for idx, error in enumerate(field.errors, start=1):
+                            widget.attrs["aria-describedby"] += " %s_%d_error" % (
+                                field.auto_id,
+                                idx,
+                            )
 
             widget.attrs["class"] = css_class
 

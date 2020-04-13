@@ -22,3 +22,5 @@ TEMPLATES = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("gds",)
 
 CRISPY_TEMPLATE_PACK = "gds"
+
+CRISPY_CLASS_CONVERTERS = {"textinput": "govuk-input"}
