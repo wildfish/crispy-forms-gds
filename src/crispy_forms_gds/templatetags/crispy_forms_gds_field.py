@@ -162,7 +162,7 @@ class CrispyGDSFieldNode(template.Node):
             if template_pack == "gds" and not is_multivalue(field):
 
                 if field.help_text:
-                    widget.attrs["aria-describedby"] = "hint_%s" % field.auto_id
+                    widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
 
                 if field.errors:
                     css_class += " %s--error" % class_name
