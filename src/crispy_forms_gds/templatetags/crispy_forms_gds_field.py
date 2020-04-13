@@ -164,19 +164,20 @@ class CrispyGDSFieldNode(template.Node):
                 if field.errors:
                     css_class += " is-invalid"
 
-            if template_pack == "gds" and not is_multivalue(field):
+            if template_pack == "gds":
 
-                if field.help_text:
-                    widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
+                if widget.__class__.__name__ == "TextInput":
 
-                if field.errors:
-                    css_class += " %s--error" % class_name
+                    if field.help_text:
+                        widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
 
-                    for idx, error in enumerate(field.errors, start=1):
-                        widget.attrs["aria-describedby"] += " %s_%d_error" % (
-                            field.auto_id,
-                            idx,
-                        )
+                    if field.errors:
+                        css_class += " govuk-input--error"
+                        for idx, error in enumerate(field.errors, start=1):
+                            widget.attrs["aria-describedby"] += " %s_%d_error" % (
+                                field.auto_id,
+                                idx,
+                            )
 
             widget.attrs["class"] = css_class
 
