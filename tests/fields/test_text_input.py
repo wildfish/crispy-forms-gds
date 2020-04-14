@@ -18,6 +18,6 @@ def test_initial_attributes():
 
 def test_validation_error_attributes():
     """Verify all the gds error attributes are displayed."""
-    form = TextInputForm(data={"field_name": ""})
+    form = TextInputForm(data={"name": ""})
     assert not form.is_valid()
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")

@@ -1,5 +1,5 @@
 """
-Tests to verify text fields are rendered correctly.
+Tests to verify checkboxes are rendered correctly.
 
 """
 import os

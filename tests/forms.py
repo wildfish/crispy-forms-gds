@@ -1,22 +1,15 @@
 from django import forms
-from django.forms import CheckboxSelectMultiple, RadioSelect, Select, Textarea
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
+from crispy_forms.layout import Layout
 
 from crispy_forms_gds.layout import Button
-
-
-class BaseForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = kwargs.pop("helper", FormHelper())
 
 
 class ButtonsForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ButtonsForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
+        self.helper = kwargs.pop("helper", FormHelper())
         self.helper.layout = Layout(
             Button("primary", "Primary button", data_module="govuk-button"),
             Button(
@@ -41,45 +34,17 @@ class ButtonsForm(forms.Form):
         )
 
 
-class TextInputForm(BaseForm):
-
-    use_required_attribute = False
-
-    name = forms.CharField(
-        label="Name",
-        help_text="Help text",
-        error_messages={"required": "Required error message"},
-    )
-
-
-class TextareaForm(BaseForm):
-
-    use_required_attribute = False
-
-    name = forms.CharField(
-        label="Name",
-        widget=Textarea,
-        help_text="Help text",
-        error_messages={"required": "Required error message"},
-    )
-
-
 class CheckboxesForm(forms.Form):
 
     use_required_attribute = False
 
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
-        widget=CheckboxSelectMultiple,
+        widget=forms.CheckboxSelectMultiple,
         label="How would you like to be contacted?",
         help_text="Select all options that are relevant to you.",
         error_messages={"required": "Enter the ways to contact you"},
     )
-
-    def __init__(self, *args, **kwargs):
-        super(CheckboxesForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit("submit", "Submit"))
 
 
 class FileUploadForm(forms.Form):
@@ -101,16 +66,11 @@ class RadiosForm(forms.Form):
 
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
-        widget=RadioSelect,
+        widget=forms.RadioSelect,
         label="How would you like to be contacted?",
         help_text="Select the most convenient way to contact you.",
         error_messages={"required": "Enter the best way to contact you"},
     )
-
-    def __init__(self, *args, **kwargs):
-        super(RadiosForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit("submit", "Submit"))
 
 
 class SelectForm(forms.Form):
@@ -124,13 +84,31 @@ class SelectForm(forms.Form):
             ("phone", "Phone"),
             ("text", "Text message"),
         ),
-        widget=Select,
+        widget=forms.Select,
         label="How would you like to be contacted?",
         help_text="Select the most convenient way to contact you.",
         error_messages={"required": "Enter the best way to contact you"},
     )
 
-    def __init__(self, *args, **kwargs):
-        super(SelectForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit("submit", "Submit"))
+
+class TextInputForm(forms.Form):
+
+    use_required_attribute = False
+
+    name = forms.CharField(
+        label="Name",
+        help_text="Help text",
+        error_messages={"required": "Required error message"},
+    )
+
+
+class TextareaForm(forms.Form):
+
+    use_required_attribute = False
+
+    description = forms.CharField(
+        label="Description",
+        widget=forms.Textarea,
+        help_text="Help text",
+        error_messages={"required": "Required error message"},
+    )
