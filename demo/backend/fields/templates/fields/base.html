@@ -5,6 +5,12 @@
   <nav>
     <ul class="govuk-list">
       <li>
+        <a href="{% url 'fields:name' 'buttons' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Buttons' %}
+        </a>
+      </li>
+      <li>
         <a href="{% url 'fields:name' 'checkboxes' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'Checkboxes' %}

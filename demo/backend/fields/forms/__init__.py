@@ -1,3 +1,4 @@
+from .buttons import ButtonsForm
 from .checkboxes import CheckboxesForm
 from .file_upload import FileUploadForm
 from .radios import RadiosForm

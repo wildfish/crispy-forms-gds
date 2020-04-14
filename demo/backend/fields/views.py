@@ -2,6 +2,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
 from .forms import (
+    ButtonsForm,
     CheckboxesForm,
     FileUploadForm,
     RadiosForm,
@@ -14,6 +15,7 @@ from .forms import (
 class FieldView(FormView):
     success_url = reverse_lazy("fields:index")
     form_classes = {
+        "buttons": ButtonsForm,
         "checkboxes": CheckboxesForm,
         "file-upload": FileUploadForm,
         "radios": RadiosForm,
@@ -22,6 +24,7 @@ class FieldView(FormView):
         "textarea": TextareaForm,
     }
     templates = {
+        "buttons": "fields/buttons.html",
         "checkboxes": "fields/checkboxes.html",
         "file-upload": "fields/file-upload.html",
         "radios": "fields/radios.html",
