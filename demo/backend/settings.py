@@ -80,4 +80,5 @@ CRISPY_CLASS_CONVERTERS = {
     "select": "",
     "textinput": "",
     "textarea": "",
+    "clearablefileinput": "",
 }

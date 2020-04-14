@@ -11,6 +11,12 @@
         </a>
       </li>
       <li>
+        <a href="{% url 'fields:name' 'file-upload' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'File upload' %}
+        </a>
+      </li>
+      <li>
         <a href="{% url 'fields:name' 'radios' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'Radios' %}

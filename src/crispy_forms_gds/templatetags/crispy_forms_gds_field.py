@@ -179,6 +179,19 @@ class CrispyGDSFieldNode(template.Node):
                                 idx,
                             )
 
+                if widget.__class__.__name__ == "ClearableFileInput":
+
+                    if field.help_text:
+                        widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
+
+                    if field.errors:
+                        css_class += " govuk-file-upload--error"
+                        for idx, error in enumerate(field.errors, start=1):
+                            widget.attrs["aria-describedby"] += " %s_%d_error" % (
+                                field.auto_id,
+                                idx,
+                            )
+
             widget.attrs["class"] = css_class
 
             # HTML5 required attribute
