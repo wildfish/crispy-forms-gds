@@ -17,7 +17,7 @@
     {% endif %}
 
     {% if field|is_radioselect %}
-      {% include 'gds/layout/radioselect.html' %}
+      {% include 'gds/layout/radios.html' %}
     {% endif %}
 
     {% if not field|is_checkboxselectmultiple and not field|is_radioselect %}
