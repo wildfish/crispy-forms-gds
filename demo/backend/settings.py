@@ -76,4 +76,7 @@ CRISPY_TEMPLATE_PACK = "gds"
 
 # Map the names for the different widget classes to a CSS class that will
 # be added when the widget is rendered.
-CRISPY_CLASS_CONVERTERS = {"textinput": ""}
+CRISPY_CLASS_CONVERTERS = {
+    "textinput": "",
+    "textarea": "",
+}
