@@ -1,7 +1,8 @@
+from crispy_forms.layout import Submit
 from django import forms
 
 from crispy_forms.helper import FormHelper
-from django.forms import Textarea
+from django.forms import CheckboxSelectMultiple, Textarea
 
 
 class BaseForm(forms.Form):
@@ -31,3 +32,21 @@ class TextareaForm(BaseForm):
         help_text="Help text",
         error_messages={"required": "Required error message"},
     )
+
+
+class CheckboxesForm(forms.Form):
+
+    use_required_attribute = False
+
+    method = forms.ChoiceField(
+        choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
+        widget=CheckboxSelectMultiple,
+        label="How would you like to be contacted?",
+        help_text="Select all options that are relevant to you.",
+        error_messages={"required": "Enter the ways to contact you"},
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(CheckboxesForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit("submit", "Submit"))
