@@ -1,5 +1,5 @@
 """
-Tests to verify text fields are rendered correctly.
+Tests to verify file uploads are rendered correctly.
 
 """
 import os
@@ -18,6 +18,6 @@ def test_initial_attributes():
 
 def test_validation_error_attributes():
     """Verify all the gds error attributes are displayed."""
-    form = FileUploadForm(data={"field_name": ""})
+    form = FileUploadForm(data={})
     assert not form.is_valid()
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")

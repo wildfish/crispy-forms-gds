@@ -1,7 +1,3 @@
-from django.urls import path
-from django.views.generic import View
-
-
-urlpatterns = [
-    path("", View.as_view(), name="home"),
-]
+# A minimal Django setup requires urlpatterns to be defined but it
+# can happily be empty.
+urlpatterns = []
