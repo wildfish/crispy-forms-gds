@@ -1,9 +1,9 @@
-from crispy_forms.layout import Field, Layout
 from django import forms
-from django.forms import TextInput
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Field, Layout
+
 from crispy_forms_gds.layout import Submit
 
 
@@ -30,7 +30,7 @@ class TextInputForm(forms.Form):
     age = forms.IntegerField(
         label=_("Age"),
         help_text=_("How old are you?"),
-        widget=TextInput,
+        widget=forms.TextInput,
         error_messages={"required": _("Enter how old you were on your last birthday")},
     )
 
@@ -57,5 +57,5 @@ class TextInputForm(forms.Form):
                 pattern="[0-9]*",
                 inputmode="numeric",
             ),
-            Submit("submit", "Submit"),
+            Submit("submit", _("Submit")),
         )

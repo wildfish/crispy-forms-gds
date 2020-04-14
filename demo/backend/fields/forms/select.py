@@ -1,8 +1,9 @@
-from crispy_forms.layout import Field, Layout
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Field, Layout
+
 from crispy_forms_gds.layout import Submit
 
 
@@ -27,5 +28,5 @@ class SelectForm(forms.Form):
         super(SelectForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field("method", css_class="govuk-select"), Submit("submit", "Submit"),
+            Field("method", css_class="govuk-select"), Submit("submit", _("Submit")),
         )

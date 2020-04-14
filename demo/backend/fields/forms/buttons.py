@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Layout
@@ -19,26 +20,26 @@ class ButtonsForm(forms.Form):
             Field("name", css_class="govuk-input"),
             Button(
                 "primary",
-                "Primary button",
+                _("Primary button"),
                 css_class="govuk-button",
                 data_module="govuk-button",
             ),
             Button(
                 "secondary",
-                "Secondary button",
+                _("Secondary button"),
                 css_class="govuk-button--secondary",
                 data_module="govuk-button",
             ),
             Button(
                 "disabled",
-                "Disabled button",
+                _("Disabled button"),
                 disabled="disabled",
                 aria_disabled="true",
                 data_module="govuk-button",
             ),
             Button(
                 "warning",
-                "Warning button",
+                _("Warning button"),
                 css_class="govuk-button--warning",
                 data_module="govuk-button",
             ),
