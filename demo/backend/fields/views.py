@@ -1,7 +1,7 @@
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
-from .forms import CheckboxesForm, RadiosForm, TextareaForm, TextInputForm
+from .forms import CheckboxesForm, RadiosForm, SelectForm, TextareaForm, TextInputForm
 
 
 class FieldView(FormView):
@@ -9,12 +9,14 @@ class FieldView(FormView):
     form_classes = {
         "checkboxes": CheckboxesForm,
         "radios": RadiosForm,
+        "select": SelectForm,
         "text-input": TextInputForm,
         "textarea": TextareaForm,
     }
     templates = {
         "checkboxes": "fields/checkboxes.html",
         "radios": "fields/radios.html",
+        "select": "fields/select.html",
         "text-input": "fields/text-input.html",
         "textarea": "fields/textarea.html",
     }

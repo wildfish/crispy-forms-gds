@@ -17,6 +17,12 @@
         </a>
       </li>
       <li>
+        <a href="{% url 'fields:name' 'select' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Select' %}
+        </a>
+      </li>
+      <li>
         <a href="{% url 'fields:name' 'text-input' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'Text input' %}

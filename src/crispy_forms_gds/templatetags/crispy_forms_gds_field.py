@@ -166,7 +166,7 @@ class CrispyGDSFieldNode(template.Node):
 
             if template_pack == "gds":
 
-                if widget.__class__.__name__ in ["TextInput", "Textarea"]:
+                if widget.__class__.__name__ in ["Select", "TextInput", "Textarea"]:
 
                     if field.help_text:
                         widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
