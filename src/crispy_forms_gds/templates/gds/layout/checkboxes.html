@@ -1,0 +1,34 @@
+{% load l10n %}
+<fieldset class="govuk-fieldset"{% if field.help_text or field.errors %} aria-describedby="{% if field.help_text %}id_method_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"{% endif %}>
+
+  {% if field.label %}
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      {{ field.label|safe }}
+    </legend>
+  {% endif %}
+
+  {% include 'gds/layout/help_text_and_errors.html' %}
+
+  <div class="govuk-checkboxes{% if inline %}--inline{% endif %}">
+    {% for choice in field.field.choices %}
+      <div class="govuk-checkboxes__item">
+
+        <input
+          type="checkbox"
+          name="{{ field.html_name }}"
+          class="govuk-checkboxes__input"
+          id="id_{{ field.html_name }}_{{ forloop.counter }}"
+          value="{{ choice.0|unlocalize }}"
+          {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+            checked="checked"
+          {% endif %}
+        >
+
+        <label class="govuk-label govuk-checkboxes__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
+          {{ choice.1|unlocalize }}
+        </label>
+      </div>
+    {% endfor %}
+  </div>
+
+</fieldset>

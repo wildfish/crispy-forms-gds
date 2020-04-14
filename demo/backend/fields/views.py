@@ -1,16 +1,18 @@
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
-from .forms import TextareaForm, TextInputForm
+from .forms import CheckboxesForm, TextareaForm, TextInputForm
 
 
 class FieldView(FormView):
     success_url = reverse_lazy("fields:index")
     form_classes = {
+        "checkboxes": CheckboxesForm,
         "text-input": TextInputForm,
         "textarea": TextareaForm,
     }
     templates = {
+        "checkboxes": "fields/checkboxes.html",
         "text-input": "fields/text-input.html",
         "textarea": "fields/textarea.html",
     }
