@@ -2,7 +2,7 @@ from crispy_forms.layout import Submit
 from django import forms
 
 from crispy_forms.helper import FormHelper
-from django.forms import CheckboxSelectMultiple, Textarea
+from django.forms import CheckboxSelectMultiple, RadioSelect, Textarea
 
 
 class BaseForm(forms.Form):
@@ -48,5 +48,23 @@ class CheckboxesForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(CheckboxesForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit("submit", "Submit"))
+
+
+class RadiosForm(forms.Form):
+
+    use_required_attribute = False
+
+    method = forms.ChoiceField(
+        choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
+        widget=RadioSelect,
+        label="How would you like to be contacted?",
+        help_text="Select the most convenient way to contact you.",
+        error_messages={"required": "Enter the best way to contact you"},
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(RadiosForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit("submit", "Submit"))
