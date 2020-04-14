@@ -52,6 +52,19 @@ class CheckboxesForm(forms.Form):
         self.helper.add_input(Submit("submit", "Submit"))
 
 
+class FileUploadForm(forms.Form):
+
+    use_required_attribute = False
+
+    file = forms.FileField(
+        label="Upload a file",
+        help_text="Select the CSV file to upload.",
+        error_messages={
+            "required": "Select the CSV file you exported from the spreadsheet"
+        },
+    )
+
+
 class RadiosForm(forms.Form):
 
     use_required_attribute = False

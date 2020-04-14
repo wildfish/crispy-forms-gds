@@ -27,4 +27,5 @@ CRISPY_CLASS_CONVERTERS = {
     "select": "govuk-select",
     "textinput": "govuk-input",
     "textarea": "govuk-textarea",
+    "clearablefileinput": "govuk-file-upload",
 }
