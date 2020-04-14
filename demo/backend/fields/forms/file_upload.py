@@ -23,5 +23,6 @@ class FileUploadForm(forms.Form):
         super(FileUploadForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field("file", css_class="govuk-file-upload",), Submit("submit", "Submit"),
+            Field("file", css_class="govuk-file-upload",),
+            Submit("submit", _("Submit")),
         )
