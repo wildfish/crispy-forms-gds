@@ -1,0 +1,25 @@
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li><a href="#id_name">Non-field error</a></li>
+      <li><a href="#id_name">Required error message</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="govuk-body">
+  <form method="post">
+    <div id="div_id_name" class="govuk-form-group govuk-form-group--error">
+      <label for="id_name" class="govuk-label">
+        Name
+      </label>
+      <div id="id_name_hint" class="govuk-hint">Help text</div>
+      <span id="id_name_1_error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Required error message</span>
+      <input type="text" name="name" class="govuk-input govuk-input--error" aria-describedby="id_name_hint id_name_1_error" id="id_name">
+    </div>
+  </form>
+</div>

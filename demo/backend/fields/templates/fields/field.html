@@ -2,6 +2,11 @@
 {% load i18n crispy_forms_tags %}
 
 {% block content %}
+
+  {% if form.helper.form_show_errors and form.errors %}
+    {% include 'gds/layout/error_summary.html' %}
+  {% endif %}
+
   <span class="govuk-caption-xl">
     {% trans 'Fields' %}
   </span>

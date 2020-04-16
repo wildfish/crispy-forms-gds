@@ -1,16 +1,20 @@
 from django import forms
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
+from crispy_forms_gds.helper import FormHelper
+from crispy_forms_gds.layout import Layout, Button
 
-from crispy_forms_gds.layout import Button
+
+class BaseForm(forms.Form):
+    @property
+    def helper(self):
+        return FormHelper(self)
 
 
 class ButtonsForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(ButtonsForm, self).__init__(*args, **kwargs)
-        self.helper = kwargs.pop("helper", FormHelper())
-        self.helper.layout = Layout(
+    @property
+    def helper(self):
+        helper = FormHelper(self)
+        helper.layout = Layout(
             Button("primary", "Primary button", data_module="govuk-button"),
             Button(
                 "secondary",
@@ -32,11 +36,10 @@ class ButtonsForm(forms.Form):
                 data_module="govuk-button",
             ),
         )
+        return helper
 
 
-class CheckboxesForm(forms.Form):
-
-    use_required_attribute = False
+class CheckboxesForm(BaseForm):
 
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
@@ -47,9 +50,7 @@ class CheckboxesForm(forms.Form):
     )
 
 
-class FileUploadForm(forms.Form):
-
-    use_required_attribute = False
+class FileUploadForm(BaseForm):
 
     file = forms.FileField(
         label="Upload a file",
@@ -60,9 +61,7 @@ class FileUploadForm(forms.Form):
     )
 
 
-class RadiosForm(forms.Form):
-
-    use_required_attribute = False
+class RadiosForm(BaseForm):
 
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
@@ -73,9 +72,7 @@ class RadiosForm(forms.Form):
     )
 
 
-class SelectForm(forms.Form):
-
-    use_required_attribute = False
+class SelectForm(BaseForm):
 
     method = forms.ChoiceField(
         choices=(
@@ -91,9 +88,7 @@ class SelectForm(forms.Form):
     )
 
 
-class TextInputForm(forms.Form):
-
-    use_required_attribute = False
+class TextInputForm(BaseForm):
 
     name = forms.CharField(
         label="Name",
@@ -102,9 +97,7 @@ class TextInputForm(forms.Form):
     )
 
 
-class TextareaForm(forms.Form):
-
-    use_required_attribute = False
+class TextareaForm(BaseForm):
 
     description = forms.CharField(
         label="Description",

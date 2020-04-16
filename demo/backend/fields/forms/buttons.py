@@ -1,15 +1,11 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Field, Layout
-
-from crispy_forms_gds.layout import Button
+from crispy_forms_gds.helper import FormHelper
+from crispy_forms_gds.layout import Button, Field, Layout
 
 
 class ButtonsForm(forms.Form):
-
-    use_required_attribute = False
 
     name = forms.CharField(required=False)
 
