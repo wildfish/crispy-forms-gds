@@ -33,6 +33,13 @@ def parse_contents(*args):
     return parse_html(get_contents(*args))
 
 
+def render_template(template, **kwargs):
+    """
+    Render a Django Template
+    """
+    return Template(template).render(Context(kwargs))
+
+
 def render_form(form, **kwargs):
     """
     Render a form using a Django Template
