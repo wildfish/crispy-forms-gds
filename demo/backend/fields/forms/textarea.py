@@ -21,12 +21,6 @@ class TextareaForm(forms.Form):
         super(TextareaForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field(
-                "description",
-                css_class="govuk-textarea",
-                autocomplete="off",
-                spellcheck="true",
-                rows=3,
-            ),
+            Field("description", autocomplete="off", spellcheck="true", rows=3,),
             Submit("submit", _("Submit")),
         )

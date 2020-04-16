@@ -23,6 +23,4 @@ class SelectForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(SelectForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Field("method", css_class="govuk-select"), Submit("submit", _("Submit")),
-        )
+        self.helper.add_input(Submit("submit", _("Submit")))

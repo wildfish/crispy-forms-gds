@@ -125,9 +125,10 @@ class CrispyGDSFieldNode(template.Node):
             attrs = [attrs] * len(widgets)
 
         converters = {
-            "textinput": "textinput textInput",
-            "fileinput": "fileinput fileUpload",
-            "passwordinput": "textinput textInput",
+            "select": "govuk-select",
+            "textinput": "govuk-input",
+            "textarea": "govuk-textarea",
+            "clearablefileinput": "govuk-file-upload",
         }
         converters.update(getattr(settings, "CRISPY_CLASS_CONVERTERS", {}))
 
