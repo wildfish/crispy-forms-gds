@@ -5,16 +5,16 @@ from crispy_forms_gds.layout import Layout, Button
 
 
 class BaseForm(forms.Form):
-    @property
-    def helper(self):
-        return FormHelper(self)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
 
 
 class ButtonsForm(forms.Form):
-    @property
-    def helper(self):
-        helper = FormHelper(self)
-        helper.layout = Layout(
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
             Button("primary", "Primary button", data_module="govuk-button"),
             Button(
                 "secondary",
@@ -36,7 +36,6 @@ class ButtonsForm(forms.Form):
                 data_module="govuk-button",
             ),
         )
-        return helper
 
 
 class CheckboxesForm(BaseForm):

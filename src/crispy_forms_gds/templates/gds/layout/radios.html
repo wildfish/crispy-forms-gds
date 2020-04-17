@@ -2,8 +2,10 @@
 <fieldset class="govuk-fieldset"{% if field.help_text or field.errors %} aria-describedby="{% if field.help_text %}id_method_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"{% endif %}>
 
   {% if field.label %}
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <legend class="govuk-fieldset__legend{% if field_label_size %} govuk-fieldset__legend--{{ field_label_size }}{% endif %}">
+      {% if field_label_is_heading %}<h1 class="govuk-fieldset__heading">{% endif %}
       {{ field.label|safe }}
+      {% if field_label_is_heading %}</h1>{% endif %}
     </legend>
   {% endif %}
 

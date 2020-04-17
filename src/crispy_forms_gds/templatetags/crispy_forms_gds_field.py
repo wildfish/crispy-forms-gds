@@ -167,31 +167,33 @@ class CrispyGDSFieldNode(template.Node):
 
             if template_pack == "gds":
 
-                if widget.__class__.__name__ in ["Select", "TextInput", "Textarea"]:
+                # The ability to override input_type was added to avoid having to create
+                # new widgets. However, as a result, the browser validates the field and
+                # displays a red border with no feedback to the user. That is at odds with
+                # with the way the Design System reports errors. However this is being left
+                # in for now until the "conflict" is better understood - it might be useful
+                # to somebody at some point.
 
-                    if field.help_text:
-                        widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
+                if hasattr(widget, "input_type") and "input_type" in widget.attrs:
+                    widget.input_type = widget.attrs.pop("input_type")
 
-                    if field.errors:
+                if field.help_text:
+                    widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
+
+                if field.errors:
+
+                    widget_class_name = widget.__class__.__name__
+
+                    if widget_class_name in ["Select", "TextInput", "Textarea"]:
                         css_class += " govuk-input--error"
-                        for idx, error in enumerate(field.errors, start=1):
-                            widget.attrs["aria-describedby"] += " %s_%d_error" % (
-                                field.auto_id,
-                                idx,
-                            )
-
-                if widget.__class__.__name__ == "ClearableFileInput":
-
-                    if field.help_text:
-                        widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
-
-                    if field.errors:
+                    elif widget_class_name in ["FileInput", "ClearableFileInput"]:
                         css_class += " govuk-file-upload--error"
-                        for idx, error in enumerate(field.errors, start=1):
-                            widget.attrs["aria-describedby"] += " %s_%d_error" % (
-                                field.auto_id,
-                                idx,
-                            )
+
+                    for idx, error in enumerate(field.errors, start=1):
+                        widget.attrs["aria-describedby"] += " %s_%d_error" % (
+                            field.auto_id,
+                            idx,
+                        )
 
             widget.attrs["class"] = css_class
 
