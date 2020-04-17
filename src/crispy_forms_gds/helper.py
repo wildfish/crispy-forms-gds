@@ -17,14 +17,20 @@ class FormHelper(crispy_forms_helper.FormHelper):
             is displayed when a widget is rendered. The default is not to show
             the attribute as it triggers the browser to interfere with the way
             field errors are shown.
+
+        **field_label_size**: if not None, make labels bold and larger than the
+            default. Values can be 's', 'm', 'l' and 'xl'.
     """
 
     form_show_non_field_errors = False
     form_show_required_attribute = False
+    field_label_size = ""
 
     def render_layout(self, form, context, template_pack=TEMPLATE_PACK):
         """
         Returns safe html of the rendering of the layout
         """
         form.use_required_attribute = self.form_show_required_attribute
+        if self.field_label_size:
+            context["field_label_size"] = self.field_label_size
         return super().render_layout(form, context, template_pack=template_pack)

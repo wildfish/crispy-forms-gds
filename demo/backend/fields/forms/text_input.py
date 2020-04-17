@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Field, Layout, Submit
+from crispy_forms_gds.layout import Layout, Submit, Field
 
 
 class TextInputForm(forms.Form):
@@ -34,19 +34,18 @@ class TextInputForm(forms.Form):
         super(TextInputForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field("name", autocomplete="name", spellcheck="false",),
+            Field("name", autocomplete="name", spellcheck="false"),
             Field(
                 "email",
-                type="email",
-                css_class="govuk-!-width-one-half",
                 autocomplete="email",
                 spellcheck="false",
+                css_class="govuk-!-width-one-half",
             ),
             Field(
                 "age",
-                css_class="govuk-input--width-3",
                 pattern="[0-9]*",
                 inputmode="numeric",
+                css_class="govuk-input--width-3",
             ),
             Submit("submit", _("Submit")),
         )

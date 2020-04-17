@@ -23,17 +23,21 @@
     {% if not field|is_checkboxselectmultiple and not field|is_radioselect %}
 
       {% if field.label and not field|is_checkbox and form_show_labels %}
-        <label for="{{ field.id_for_label }}" class="govuk-label">
+        {% if field_label_is_heading %}<h1 class="govuk-label-wrapper">{% endif %}
+        <label for="{{ field.id_for_label }}" class="govuk-label{% if field_label_size %} govuk-label--{{ field_label_size }}{% endif %}">
           {{ field.label|safe }}
         </label>
+        {% if field_label_is_heading %}</h1>{% endif %}
       {% endif %}
 
       {% if field|is_checkbox and form_show_labels %}
         {% include 'gds/layout/help_text_and_errors.html' %}
-        <label for="{{ field.id_for_label }}" class="govuk-label">
+        {% if field_label_is_heading %}<h1 class="govuk-label-wrapper">{% endif %}
+        <label for="{{ field.id_for_label }}" class="govuk-label{% if field_label_size %} govuk-label--{{ field_label_size }}{% endif %}">
           {% crispy_gds_field field %}
           {{ field.label|safe }}
         </label>
+        {% if field_label_is_heading %}</h1>{% endif %}
       {% else %}
         {% include 'gds/layout/help_text_and_errors.html' %}
         {% crispy_gds_field field %}
