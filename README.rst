@@ -57,13 +57,13 @@ might find useful.
 *******
 Example
 *******
-To use the app just build a regular crispy form as before but the layout objects
-are imported from crispy_forms_gds: ::
+To use the template pack just build a regular crispy form as before but the
+layout objects are imported from crispy_forms_gds: ::
 
     from django import forms
     from django.utils.translation import ugettext_lazy as _
 
-    from crispy_forms.helper import FormHelper
+    from crispy_forms_gds.helper import FormHelper
     from crispy_forms_gds.layout import Submit
 
 
@@ -79,7 +79,7 @@ are imported from crispy_forms_gds: ::
         )
 
         def __init__(self, *args, **kwargs):
-            super(TextInputForm, self).__init__(*args, **kwargs)
+            super().__init__(*args, **kwargs)
             self.helper = FormHelper()
             self.helper.add_input(Submit("submit", _("Submit")))
 
@@ -91,6 +91,13 @@ And render the form in your templates: ::
     ...
 
 That's it.
+
+**********
+All in one
+**********
+The template pack supports all the basic components listed in the `GOV.UK Design System`_:
+
+.. image:: https://i.imgur.com/QYoUa8Al.png
 
 ****
 Demo
