@@ -44,3 +44,17 @@ def test_change_label_size():
         Field("description", context=dict(field_label_size="l"))
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")
+
+
+def test_no_label():
+    """Verify field is rendered correctly if no label is given."""
+    form = TextareaForm()
+    form.fields["description"].label = ""
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_label.html")
+
+
+def test_no_help_text():
+    """Verify field is rendered correctly if no help text is given."""
+    form = TextareaForm()
+    form.fields["description"].help_text = ""
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text.html")

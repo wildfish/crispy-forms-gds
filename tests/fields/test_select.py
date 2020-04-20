@@ -42,3 +42,17 @@ def test_change_label_size():
     form.helper = FormHelper()
     form.helper.layout = Layout(Field("method", context=dict(field_label_size="l")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")
+
+
+def test_no_label():
+    """Verify field is rendered correctly if no label is given."""
+    form = SelectForm()
+    form.fields["method"].label = ""
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_label.html")
+
+
+def test_no_help_text():
+    """Verify field is rendered correctly if no help text is given."""
+    form = SelectForm()
+    form.fields["method"].help_text = ""
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text.html")

@@ -42,3 +42,17 @@ def test_change_legend_size():
     form.helper = FormHelper()
     form.helper.layout = Layout(Field("method", context=dict(field_label_size="l")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "legend_size.html")
+
+
+def test_no_legend():
+    """Verify field is rendered correctly if no label is given."""
+    form = CheckboxesForm()
+    form.fields["method"].label = ""
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_legend.html")
+
+
+def test_no_help_text():
+    """Verify field is rendered correctly if no help text is given."""
+    form = CheckboxesForm()
+    form.fields["method"].help_text = ""
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text.html")
