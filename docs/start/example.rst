@@ -10,7 +10,7 @@ specific classes added: ::
     from django import forms
     from django.utils.translation import ugettext_lazy as _
 
-    from crispy_forms.helper import FormHelper
+    from crispy_forms_gds_helper import FormHelper
     from crispy_forms_gds.layout import Submit
 
 
@@ -18,7 +18,6 @@ specific classes added: ::
 
         name = forms.CharField(
             label=_("Name"),
-            widget=forms.TextInput(),
             help_text=_("Your full name."),
             error_messages={
                 "required": _("Enter your name as it appears on your passport")
@@ -26,7 +25,7 @@ specific classes added: ::
         )
 
         def __init__(self, *args, **kwargs):
-            super(TextInputForm, self).__init__(*args, **kwargs)
+            super().__init__(*args, **kwargs)
             self.helper = FormHelper()
             self.helper.add_input(Submit("submit", _("Submit")))
 
@@ -42,7 +41,7 @@ That's all you need to generate the following:
 .. image:: form.png
 
 The templates built into the template pack ensure that everything matches the
-layout recommended in the GDS guildeines (reformatted for readability): ::
+layout recommended in the GDS guidelines (reformatted for readability): ::
 
     <form method="post">
         <input type="hidden" name="csrfmiddlewaretoken" value="...">
