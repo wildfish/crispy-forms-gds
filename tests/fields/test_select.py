@@ -31,7 +31,7 @@ def test_show_label_as_heading():
     form = SelectForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
-        Field("method", extra_context=dict(field_label_is_heading=True))
+        Field("method", context=dict(field_label_is_heading=True))
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_heading.html")
 
@@ -40,7 +40,5 @@ def test_change_label_size():
     """Verify size of the field label can be changed from the default."""
     form = SelectForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("method", extra_context=dict(field_label_size="l"))
-    )
+    form.helper.layout = Layout(Field("method", context=dict(field_label_size="l")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")
