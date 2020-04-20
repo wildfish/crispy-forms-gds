@@ -34,3 +34,19 @@ override this setting: ::
 
     CRISPY_TEMPLATE_PACK = "gds"
 
+CRISPY_CLASS_CONVERTERS
+-----------------------
+Default: {}
+
+This setting is used to map different widgets to the CSS classes that are added to
+each input when it is displayed. It is primarily used for maintaining compatibility
+when switching between CSS frameworks. Since Design System sites are not going to
+mix frameworks this setting is not required unless you find the template pack is not
+keeping pace with Design System changes.
+
+CRISPY_FAIL_SILENTLY
+--------------------
+Default: True
+
+It's worthwhile setting this to `False` during development otherwise any errors that
+occur while rendering a template will simply disappear without trace.
