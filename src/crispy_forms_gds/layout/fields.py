@@ -39,6 +39,41 @@ class Field(crispy_forms_layout.LayoutObject):
 
     template = "%s/field.html"
 
+    @classmethod
+    def _create_field(cls, *fields, css_class=None, context=None, **kwargs):
+        if css_class:
+            kwargs["css_class"] = css_class
+        if context:
+            kwargs["context"] = context
+        return Field(*fields, **kwargs)
+
+    @classmethod
+    def fullname(cls, *fields, css_class=None, context=None, **kwargs):
+        """
+        Create a Field that can be used for a person's complete name.
+        """
+        attrs = {"autocomplete": "name", "spellcheck": "false"}
+        attrs.update(kwargs)
+        return cls._create_field(*fields, css_class=css_class, context=context, **attrs)
+
+    @classmethod
+    def email(cls, *fields, css_class=None, context=None, **kwargs):
+        """
+        Create a Field that can be used for an email address.
+        """
+        attrs = {"autocomplete": "email", "spellcheck": "false"}
+        attrs.update(kwargs)
+        return cls._create_field(*fields, css_class=css_class, context=context, **attrs)
+
+    @classmethod
+    def number(cls, *fields, css_class=None, context=None, **kwargs):
+        """
+        Create a Field that can be used for entering a number.
+        """
+        attrs = {"inputmode": "numeric", "pattern": "[0-9]*"}
+        attrs.update(kwargs)
+        return cls._create_field(*fields, css_class=css_class, context=context, **attrs)
+
     def __init__(self, *fields, css_class=None, context=None, **kwargs):
         self.fields = list(fields)
 
