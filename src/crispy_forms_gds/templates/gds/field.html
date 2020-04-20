@@ -3,13 +3,6 @@
 {% if field.is_hidden %}
   {{ field }}
 {% else %}
-  {% if field|is_checkbox %}
-    <div class="form-group">
-    {% if label_class %}
-      <div class="controls {% for offset in bootstrap_checkbox_offsets %}{{ offset }} {% endfor %}{{ field_class }}">
-    {% endif %}
-  {% endif %}
-
   <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" {% if not field|is_checkbox %}class="govuk-form-group {% if form_show_errors%}{% if field.errors %}govuk-form-group--error{% endif %}{% endif %}{% else %}class="checkbox{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
 
     {% if field|is_checkboxselectmultiple %}
@@ -44,11 +37,4 @@
       {% endif %}
     {% endif %}
   </{% if tag %}{{ tag }}{% else %}div{% endif %}>
-
-  {% if field|is_checkbox %}
-    {% if label_class %}
-      </div>
-    {% endif %}
-    </div>
-  {% endif %}
 {% endif %}
