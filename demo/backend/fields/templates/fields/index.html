@@ -1,14 +1,25 @@
 {% extends "fields/base.html" %}
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 
 {% block content %}
+  {% if form.helper.form_show_errors and form.errors %}
+    {% include 'gds/layout/error_summary.html' %}
+  {% endif %}
+
   <h1 class="govuk-heading-xl">
     {% trans "Fields" %}
   </h1>
-  <p class="govuk-body">
+
+  <p class="govuk-body govuk-!-margin-bottom-5">
     {% blocktrans %}
     Here you will find examples showing how different types of field are displayed
-    using the GOV.UK Design System.
+    using the GOV.UK Design System. Select a link from the sidebar to see each field
+    in more detail.
     {% endblocktrans %}
   </p>
+
+  <div class="govuk-body">
+    {% crispy form %}
+  </div>
+
 {% endblock %}
