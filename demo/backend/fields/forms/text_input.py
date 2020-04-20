@@ -34,18 +34,8 @@ class TextInputForm(forms.Form):
         super(TextInputForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field("name", autocomplete="name", spellcheck="false"),
-            Field(
-                "email",
-                autocomplete="email",
-                spellcheck="false",
-                css_class="govuk-!-width-one-half",
-            ),
-            Field(
-                "age",
-                pattern="[0-9]*",
-                inputmode="numeric",
-                css_class="govuk-input--width-3",
-            ),
+            Field.fullname("name"),
+            Field.email("email", css_class="govuk-!-width-one-half"),
+            Field.number("age", css_class="govuk-input--width-3"),
             Submit("submit", _("Submit")),
         )
