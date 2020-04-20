@@ -31,7 +31,7 @@ def test_show_label_as_heading():
     form = TextareaForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
-        Field("description", extra_context=dict(field_label_is_heading=True))
+        Field("description", context=dict(field_label_is_heading=True))
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_heading.html")
 
@@ -41,6 +41,6 @@ def test_change_label_size():
     form = TextareaForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
-        Field("description", extra_context=dict(field_label_size="l"))
+        Field("description", context=dict(field_label_size="l"))
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")

@@ -13,7 +13,7 @@ class Field(crispy_forms_layout.LayoutObject):
 
         css_class (str): the css classes that will be added to the widget.
 
-        extra_context (dict): the list of values that will be added to the template
+        context (dict): the list of values that will be added to the template
             context when the field is rendered.
 
         **kwargs (str): the list of attributes that will be added to the widget. Use '_'
@@ -32,14 +32,14 @@ class Field(crispy_forms_layout.LayoutObject):
 
     Examples::
 
-        Field('name', extra_context={'field_label_is_heading': True, 'field_label_size': 'xl'})
+        Field('name', context={'field_label_is_heading': True, 'field_label_size': 'xl'})
         Field('age', css_class="govuk-input-width-5", style="color: #333;")
 
     """
 
     template = "%s/field.html"
 
-    def __init__(self, *fields, css_class=None, extra_context=None, **kwargs):
+    def __init__(self, *fields, css_class=None, context=None, **kwargs):
         self.fields = list(fields)
 
         if not hasattr(self, "attrs"):
@@ -48,10 +48,10 @@ class Field(crispy_forms_layout.LayoutObject):
             # Make sure shared state is not edited.
             self.attrs = self.attrs.copy()
 
-        if not hasattr(self, "extra_context"):
-            self.extra_context = {}
+        if not hasattr(self, "context"):
+            self.context = {}
         else:
-            self.extra_context = self.extra_context.copy()
+            self.context = self.context.copy()
 
         if css_class:
             if "class" in self.attrs:
@@ -59,10 +59,10 @@ class Field(crispy_forms_layout.LayoutObject):
             else:
                 self.attrs["class"] = css_class
 
-        if extra_context:
-            self.extra_context.update(extra_context)
+        if context:
+            self.context.update(context)
 
-        self.extra_context["wrapper_class"] = kwargs.pop("wrapper_class", None)
+        self.context["wrapper_class"] = kwargs.pop("wrapper_class", None)
 
         self.template = kwargs.pop("template", self.template)
 
@@ -86,10 +86,7 @@ class Field(crispy_forms_layout.LayoutObject):
         if extra_context is None:
             extra_context = {}
 
-        extra_context.update(self.extra_context)
-
-        if hasattr(self, "wrapper_class"):
-            extra_context["wrapper_class"] = self.wrapper_class
+        extra_context.update(self.context)
 
         template = self.get_template_name(template_pack)
 
