@@ -4,13 +4,12 @@
 Example
 =======
 You use crispy-forms-gds just like a regular crispy form except you import
-the layout objects from ``crispy_forms_gds.layout`` since these have the GDS
-specific classes added: ::
+the various objects from ``crispy_forms_gds`` instead of crispy_forms: ::
 
     from django import forms
     from django.utils.translation import ugettext_lazy as _
 
-    from crispy_forms_gds_helper import FormHelper
+    from crispy_forms_gds.helper import FormHelper
     from crispy_forms_gds.layout import Submit
 
 
@@ -84,5 +83,3 @@ The ARIA attributes are also updated to make everything accessible: ::
         </div>
         ...
     </form>
-
-
