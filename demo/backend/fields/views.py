@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
 from .forms import (
+    CompleteForm,
     ButtonsForm,
     CheckboxesForm,
     FileUploadForm,
@@ -10,6 +11,12 @@ from .forms import (
     TextareaForm,
     TextInputForm,
 )
+
+
+class IndexView(FormView):
+    template_name = "fields/index.html"
+    success_url = reverse_lazy("fields:index")
+    form_class = CompleteForm
 
 
 class FieldView(FormView):

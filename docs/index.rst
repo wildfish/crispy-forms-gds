@@ -14,23 +14,21 @@ for the `GOV.UK Design System`_.
     :caption: Get started
     :maxdepth: 1
 
-    start/install.rst
-    start/settings.rst
-    start/example.rst
+    start/install
+    start/settings
+    start/example
 
 .. toctree::
     :caption: GDS Cookbook
     :maxdepth: 3
 
     cookbook/index
-    cookbook/components/index
-    cookbook/patterns/index
 
 .. toctree::
     :caption: Developer Guide
     :maxdepth: 1
 
-    developer/project.rst
+    developer/project
 
 .. _CHANGELOG: https://github.com/wildfish/crispy-forms-gds/blob/master/CHANGELOG.md
 
