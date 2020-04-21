@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block content %}
+  {% if form.helper.form_show_errors and form.errors %}
+    {% include 'gds/layout/error_summary.html' %}
+  {% endif %}
+
+  <h1 class="govuk-heading-xl">
+    {% trans "Cookbook" %}
+  </h1>
+
+  {% if form.fields %}
+    <div class="govuk-body">
+      {% crispy form %}
+    </div>
+  {% else %}
+    <p class="govuk-body govuk-!-margin-bottom-5">
+      {% blocktrans %}
+      All the example code in the Cookbook is fully functional. To see it work,
+      simply copy the code in it's entirety into <strong>demo/backend/cookbook/forms.py</strong>
+      and reload this page. Depending how you are running Django you might need
+      to restart the server.
+      {% endblocktrans %}
+    </p>
+  {% endif %}
+
+{% endblock %}
