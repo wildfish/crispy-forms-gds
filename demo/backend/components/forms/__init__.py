@@ -3,6 +3,7 @@ from .checkbox import CheckboxForm
 from .checkboxes import CheckboxesForm
 from .complete import CompleteForm
 from .details import DetailsForm
+from .fieldset import FieldsetForm
 from .file_upload import FileUploadForm
 from .inset import InsetForm
 from .panel import PanelForm
@@ -20,6 +21,7 @@ __all__ = [
     "CheckboxesForm",
     "CompleteForm",
     "DetailsForm",
+    "FieldsetForm",
     "FileUploadForm",
     "InsetForm",
     "PanelForm",
