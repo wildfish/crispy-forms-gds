@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sidebar %}
+  <nav>
+    <ul class="govuk-list">
+      <li>
+        <a href="{% url 'components:name' 'buttons' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Buttons' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'checkbox' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Checkbox' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'checkboxes' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Checkboxes' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'details' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Details' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'file-upload' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'File upload' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'inset' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Inset text' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'panel' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Panel' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'radios' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Radios' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'select' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Select' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'tag' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Tag' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'text-input' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Text input' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'textarea' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Textarea' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'components:name' 'warning' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Warning text' %}
+        </a>
+      </li>
+    </ul>
+  </nav>
+{% endblock %}
