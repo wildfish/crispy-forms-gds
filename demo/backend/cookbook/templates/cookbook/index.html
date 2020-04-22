@@ -10,7 +10,7 @@
     {% trans "Cookbook" %}
   </h1>
 
-  {% if form.fields %}
+  {% if form.helper.layout %}
     <div class="govuk-body">
       {% crispy form %}
     </div>

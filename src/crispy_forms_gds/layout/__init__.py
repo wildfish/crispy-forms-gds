@@ -1,10 +1,12 @@
-from .base import Layout, HTML, Div
+from .base import Layout, Div
 from .buttons import Submit, Button
+from .content import HTML, Colour
 from .containers import Fieldset
 from .fields import Field, Hidden, Size, Fixed, Fluid
 
 __all__ = [
     "Button",
+    "Colour",
     "Div",
     "Field",
     "Fixed",

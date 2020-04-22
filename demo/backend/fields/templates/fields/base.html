@@ -23,9 +23,27 @@
         </a>
       </li>
       <li>
+        <a href="{% url 'fields:name' 'details' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Details' %}
+        </a>
+      </li>
+      <li>
         <a href="{% url 'fields:name' 'file-upload' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'File upload' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'fields:name' 'inset' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Inset text' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'fields:name' 'panel' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Panel' %}
         </a>
       </li>
       <li>
@@ -41,6 +59,12 @@
         </a>
       </li>
       <li>
+        <a href="{% url 'fields:name' 'tag' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Tag' %}
+        </a>
+      </li>
+      <li>
         <a href="{% url 'fields:name' 'text-input' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'Text input' %}
@@ -50,6 +74,12 @@
         <a href="{% url 'fields:name' 'textarea' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'Textarea' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'fields:name' 'warning' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Warning text' %}
         </a>
       </li>
     </ul>

@@ -6,11 +6,16 @@ from .forms import (
     ButtonsForm,
     CheckboxForm,
     CheckboxesForm,
+    DetailsForm,
     FileUploadForm,
+    InsetForm,
+    PanelForm,
     RadiosForm,
     SelectForm,
+    TagForm,
     TextareaForm,
     TextInputForm,
+    WarningForm,
 )
 
 
@@ -28,21 +33,31 @@ class FieldView(FormView):
         "buttons": ButtonsForm,
         "checkbox": CheckboxForm,
         "checkboxes": CheckboxesForm,
+        "details": DetailsForm,
         "file-upload": FileUploadForm,
+        "inset": InsetForm,
+        "panel": PanelForm,
         "radios": RadiosForm,
         "select": SelectForm,
+        "tag": TagForm,
         "text-input": TextInputForm,
         "textarea": TextareaForm,
+        "warning": WarningForm,
     }
     contexts = {
         "buttons": {"title": "Buttons"},
         "checkbox": {"title": "Checkbox"},
         "checkboxes": {"title": "Checkboxes"},
+        "details": {"title": "Details"},
         "file-upload": {"title": "File upload"},
+        "inset": {"title": "Inset text"},
+        "panel": {"title": "Panel"},
         "radios": {"title": "Radios"},
         "select": {"title": "Select"},
+        "tag": {"title": "Tag"},
         "text-input": {"title": "Text input"},
         "textarea": {"title": "Textarea"},
+        "warning": {"title": "Warning text"},
     }
 
     def get_form_class(self):
