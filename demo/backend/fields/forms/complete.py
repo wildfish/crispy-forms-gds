@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Button, Field, Layout
+from crispy_forms_gds.layout import Button, Field, HTML, Layout
 
 
 class CompleteForm(forms.Form):
@@ -35,6 +35,10 @@ class CompleteForm(forms.Form):
         required=False,
     )
 
+    checkbox = forms.BooleanField(
+        label=_("I accept the terms of service"), required=False
+    )
+
     checkboxes = forms.ChoiceField(
         label=_("Checkboxes"),
         choices=(
@@ -56,6 +60,7 @@ class CompleteForm(forms.Form):
             Field("upload"),
             Field("radios"),
             Field("select"),
+            Field(HTML("<h3>Checkbox</h3>"), "checkbox"),
             Field("checkboxes"),
             Button.primary(
                 "continue", _("Continue"), css_class="govuk-!-margin-right-3",

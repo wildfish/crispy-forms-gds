@@ -125,6 +125,7 @@ class CrispyGDSFieldNode(template.Node):
             attrs = [attrs] * len(widgets)
 
         converters = {
+            "checkboxinput": "govuk-checkboxes__input",
             "select": "govuk-select",
             "textinput": "govuk-input",
             "textarea": "govuk-textarea",

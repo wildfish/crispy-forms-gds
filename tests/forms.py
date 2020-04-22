@@ -9,6 +9,15 @@ class BaseForm(forms.Form):
         self.helper = FormHelper(self)
 
 
+class CheckboxForm(BaseForm):
+
+    accept = forms.BooleanField(
+        label="I accept the terms of service",
+        help_text="Please read the terms of service.",
+        error_messages={"required": "You must accept our terms of service"},
+    )
+
+
 class CheckboxesForm(BaseForm):
 
     method = forms.ChoiceField(
