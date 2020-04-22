@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Layout, TabPanel, Tabs
+from crispy_forms_gds.layout import Fieldset, HTML, Layout, TabPanel, Tabs
 
 
 class BaseForm(forms.Form):
@@ -97,3 +97,14 @@ class TabsForm(forms.Form):
                 TabPanel("Second Tab", HTML("<p>Second panel</p>")),
             )
         )
+
+
+class FieldsetForm(forms.Form):
+
+    name = forms.CharField(label="Name")
+    email = forms.CharField(label="Email")
+
+    def __init__(self, *args, **kwargs):
+        super(FieldsetForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(Fieldset("name", "email", title="Contact"))
