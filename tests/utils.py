@@ -40,6 +40,10 @@ def render_template(template, **kwargs):
     return Template(template).render(Context(kwargs))
 
 
+def parse_template(template, **kwargs):
+    return parse_html(render_template(template, **kwargs))
+
+
 def render_form(form, **kwargs):
     """
     Render a form using a Django Template
