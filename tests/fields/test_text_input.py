@@ -56,3 +56,11 @@ def test_no_help_text():
     form = TextInputForm()
     form.fields["name"].help_text = ""
     assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text.html")
+
+
+def test_no_help_text_errors():
+    """Verify all the gds error attributes are displayed if no help text is given."""
+    form = TextInputForm(data={"name": ""})
+    form.fields["name"].help_text = ""
+    assert not form.is_valid()
+    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text_errors.html")

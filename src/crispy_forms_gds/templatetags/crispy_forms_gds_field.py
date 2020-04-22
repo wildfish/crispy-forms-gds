@@ -189,11 +189,16 @@ class CrispyGDSFieldNode(template.Node):
                     elif widget_class_name in ["FileInput", "ClearableFileInput"]:
                         css_class += " govuk-file-upload--error"
 
+                    if not field.help_text:
+                        widget.attrs["aria-describedby"] = ""
+
                     for idx, error in enumerate(field.errors, start=1):
-                        widget.attrs["aria-describedby"] += " %s_%d_error" % (
-                            field.auto_id,
-                            idx,
-                        )
+                        css_error_class = "%s_%d_error" % (field.auto_id, idx)
+
+                        if widget.attrs["aria-describedby"]:
+                            widget.attrs["aria-describedby"] += " "
+
+                        widget.attrs["aria-describedby"] += css_error_class
 
             widget.attrs["class"] = css_class
 
