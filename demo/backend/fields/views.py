@@ -4,6 +4,7 @@ from django.views.generic.edit import FormView
 from .forms import (
     CompleteForm,
     ButtonsForm,
+    CheckboxForm,
     CheckboxesForm,
     FileUploadForm,
     RadiosForm,
@@ -25,6 +26,7 @@ class FieldView(FormView):
 
     form_classes = {
         "buttons": ButtonsForm,
+        "checkbox": CheckboxForm,
         "checkboxes": CheckboxesForm,
         "file-upload": FileUploadForm,
         "radios": RadiosForm,
@@ -34,6 +36,7 @@ class FieldView(FormView):
     }
     contexts = {
         "buttons": {"title": "Buttons"},
+        "checkbox": {"title": "Checkbox"},
         "checkboxes": {"title": "Checkboxes"},
         "file-upload": {"title": "File upload"},
         "radios": {"title": "Radios"},

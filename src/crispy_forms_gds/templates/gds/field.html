@@ -3,7 +3,7 @@
 {% if field.is_hidden %}
   {{ field }}
 {% else %}
-  <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" {% if not field|is_checkbox %}class="govuk-form-group {% if form_show_errors%}{% if field.errors %}govuk-form-group--error{% endif %}{% endif %}{% else %}class="checkbox{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+  <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="govuk-form-group {% if form_show_errors%}{% if field.errors %}govuk-form-group--error{% endif %}{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
 
     {% if field|is_checkboxselectmultiple %}
       {% include 'gds/layout/checkboxes.html' %}
@@ -25,12 +25,14 @@
 
       {% if field|is_checkbox and form_show_labels %}
         {% include 'gds/layout/help_text_and_errors.html' %}
-        {% if field_label_is_heading %}<h1 class="govuk-label-wrapper">{% endif %}
-        <label for="{{ field.id_for_label }}" class="govuk-label{% if field_label_size %} govuk-label--{{ field_label_size }}{% endif %}">
-          {% crispy_gds_field field %}
-          {{ field.label|safe }}
-        </label>
-        {% if field_label_is_heading %}</h1>{% endif %}
+        <div class="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            {% crispy_gds_field field %}
+            <label class="govuk-label govuk-checkboxes__label" for="{{ field.id_for_label }}">
+              {{ field.label|safe }}
+            </label>
+          </div>
+        </div>
       {% else %}
         {% include 'gds/layout/help_text_and_errors.html' %}
         {% crispy_gds_field field %}

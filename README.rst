@@ -97,7 +97,7 @@ All in one
 **********
 The template pack supports all the basic components listed in the `GOV.UK Design System`_:
 
-.. image:: https://i.imgur.com/QYoUa8Al.png
+.. image:: https://i.imgur.com/RCTUPrg.png
 
 ****
 Demo

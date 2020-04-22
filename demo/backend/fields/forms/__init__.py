@@ -1,4 +1,5 @@
 from .buttons import ButtonsForm
+from .checkbox import CheckboxForm
 from .checkboxes import CheckboxesForm
 from .complete import CompleteForm
 from .file_upload import FileUploadForm
@@ -9,6 +10,7 @@ from .textarea import TextareaForm
 
 __all__ = [
     "ButtonsForm",
+    "CheckboxForm",
     "CheckboxesForm",
     "CompleteForm",
     "FileUploadForm",
