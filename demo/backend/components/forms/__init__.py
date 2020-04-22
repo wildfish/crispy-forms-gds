@@ -8,6 +8,7 @@ from .inset import InsetForm
 from .panel import PanelForm
 from .radios import RadiosForm
 from .select import SelectForm
+from .tabs import TabsForm
 from .tag import TagForm
 from .text_input import TextInputForm
 from .textarea import TextareaForm
@@ -24,6 +25,7 @@ __all__ = [
     "PanelForm",
     "RadiosForm",
     "SelectForm",
+    "TabsForm",
     "TagForm",
     "TextInputForm",
     "TextareaForm",

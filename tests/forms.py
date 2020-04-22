@@ -1,6 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
+from crispy_forms_gds.layout import HTML, Layout, TabPanel, Tabs
 
 
 class BaseForm(forms.Form):
@@ -84,3 +85,15 @@ class TextareaForm(BaseForm):
         help_text="Help text",
         error_messages={"required": "Required error message"},
     )
+
+
+class TabsForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Tabs(
+                TabPanel("First Tab", HTML("<p>First panel</p>")),
+                TabPanel("Second Tab", HTML("<p>Second panel</p>")),
+            )
+        )
