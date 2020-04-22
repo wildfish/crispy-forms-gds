@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_forms",
     "crispy_forms_gds",
-    "backend.fields",
+    "backend.components",
     "backend.cookbook",
 ]
 

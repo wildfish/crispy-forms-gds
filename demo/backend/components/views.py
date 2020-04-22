@@ -20,14 +20,14 @@ from .forms import (
 
 
 class IndexView(FormView):
-    template_name = "fields/index.html"
-    success_url = reverse_lazy("fields:index")
+    template_name = "components/index.html"
+    success_url = reverse_lazy("components:index")
     form_class = CompleteForm
 
 
-class FieldView(FormView):
-    template_name = "fields/field.html"
-    success_url = reverse_lazy("fields:index")
+class ComponentView(FormView):
+    template_name = "components/component.html"
+    success_url = reverse_lazy("components:index")
 
     form_classes = {
         "buttons": ButtonsForm,
@@ -61,8 +61,8 @@ class FieldView(FormView):
     }
 
     def get_form_class(self):
-        field_name = self.kwargs["name"]
-        return self.form_classes[field_name]
+        component_name = self.kwargs["name"]
+        return self.form_classes[component_name]
 
     def get_context_data(self, **kwargs):
         kwargs.update(self.contexts[self.kwargs["name"]])
