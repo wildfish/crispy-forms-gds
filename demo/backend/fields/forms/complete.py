@@ -57,16 +57,8 @@ class CompleteForm(forms.Form):
             Field("radios"),
             Field("select"),
             Field("checkboxes"),
-            Button(
-                "continue",
-                _("Continue"),
-                css_class="govuk-!-margin-right-3",
-                data_module="govuk-button",
+            Button.primary(
+                "continue", _("Continue"), css_class="govuk-!-margin-right-3",
             ),
-            Button(
-                "cancel",
-                _("Cancel"),
-                css_class="govuk-button--secondary",
-                data_module="govuk-button",
-            ),
+            Button.secondary("cancel", _("Cancel")),
         )

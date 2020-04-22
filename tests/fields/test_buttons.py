@@ -4,13 +4,37 @@ Tests to verify buttons are rendered correctly.
 """
 import os
 
-from tests.forms import ButtonsForm
-from tests.utils import TEST_DIR, parse_form, parse_contents
+from crispy_forms_gds.layout import Button
+
+from tests.utils import TEST_DIR, parse_template, parse_contents
 
 RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "buttons")
+TEMPLATE = '{% include "gds/layout/button.html" %}'
 
 
-def test_initial_attributes():
-    """Verify all the gds attributes are displayed."""
-    form = ButtonsForm()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
+def test_primary_button():
+    button = Button.primary("name", "Title")
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "primary.html"
+    )
+
+
+def test_secondary_button():
+    button = Button.secondary("name", "Title")
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "secondary.html"
+    )
+
+
+def test_warning_button():
+    button = Button.warning("name", "Title")
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "warning.html"
+    )
+
+
+def test_disabled_button():
+    button = Button.primary("name", "Title", disabled=True)
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "disabled.html"
+    )
