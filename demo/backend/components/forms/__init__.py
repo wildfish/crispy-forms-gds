@@ -1,3 +1,4 @@
+from .accordion import AccordionForm
 from .buttons import ButtonsForm
 from .checkbox import CheckboxForm
 from .checkboxes import CheckboxesForm
@@ -16,6 +17,7 @@ from .textarea import TextareaForm
 from .warning import WarningForm
 
 __all__ = [
+    "AccordionForm",
     "ButtonsForm",
     "CheckboxForm",
     "CheckboxesForm",

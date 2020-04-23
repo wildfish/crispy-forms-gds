@@ -5,6 +5,12 @@
   <nav>
     <ul class="govuk-list">
       <li>
+        <a href="{% url 'components:name' 'accordion' %}"
+           class="govuk-link govuk-link--no-visited-state">
+           {% trans 'Accordion' %}
+        </a>
+      </li>
+      <li>
         <a href="{% url 'components:name' 'buttons' %}"
            class="govuk-link govuk-link--no-visited-state">
            {% trans 'Buttons' %}

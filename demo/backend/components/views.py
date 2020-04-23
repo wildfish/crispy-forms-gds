@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
 from .forms import (
+    AccordionForm,
     CompleteForm,
     ButtonsForm,
     CheckboxForm,
@@ -32,6 +33,7 @@ class ComponentView(FormView):
     success_url = reverse_lazy("components:index")
 
     form_classes = {
+        "accordion": AccordionForm,
         "buttons": ButtonsForm,
         "checkbox": CheckboxForm,
         "checkboxes": CheckboxesForm,
@@ -49,6 +51,7 @@ class ComponentView(FormView):
         "warning": WarningForm,
     }
     contexts = {
+        "accordion": {"title": "Accordion"},
         "buttons": {"title": "Buttons"},
         "checkbox": {"title": "Checkbox"},
         "checkboxes": {"title": "Checkboxes"},

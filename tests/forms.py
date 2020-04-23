@@ -1,7 +1,15 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Fieldset, HTML, Layout, TabPanel, Tabs
+from crispy_forms_gds.layout import (
+    Accordion,
+    AccordionSection,
+    Fieldset,
+    HTML,
+    Layout,
+    TabPanel,
+    Tabs,
+)
 
 
 class BaseForm(forms.Form):
@@ -108,3 +116,20 @@ class FieldsetForm(forms.Form):
         super(FieldsetForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(Fieldset("name", "email", title="Contact"))
+
+
+class AccordionForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(AccordionForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Accordion(
+                AccordionSection(
+                    "First section", HTML("<p>First section contents.</p>"),
+                ),
+                AccordionSection(
+                    "Second section", HTML("<p>Second section contents.</p>"),
+                ),
+                css_id="accordion",
+            )
+        )
