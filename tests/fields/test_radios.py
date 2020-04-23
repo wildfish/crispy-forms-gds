@@ -30,9 +30,7 @@ def test_show_legend_as_heading():
     """Verify the field legend can be displayed as the page heading."""
     form = RadiosForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("method", context=dict(field_label_is_heading=True))
-    )
+    form.helper.layout = Layout(Field("method", context=dict(legend_tag="h1")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "legend_heading.html")
 
 
@@ -40,7 +38,7 @@ def test_change_legend_size():
     """Verify size of the field legend can be changed from the default."""
     form = RadiosForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(Field("method", context=dict(field_label_size="l")))
+    form.helper.layout = Layout(Field("method", context=dict(legend_size="l")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "legend_size.html")
 
 

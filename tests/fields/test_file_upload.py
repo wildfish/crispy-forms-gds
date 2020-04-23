@@ -30,9 +30,7 @@ def test_show_label_as_heading():
     """Verify the field label can be displayed as the page heading."""
     form = FileUploadForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("file", context=dict(field_label_is_heading=True))
-    )
+    form.helper.layout = Layout(Field("file", context=dict(label_tag="h1")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_heading.html")
 
 
@@ -40,7 +38,7 @@ def test_change_label_size():
     """Verify size of the field label can be changed from the default."""
     form = FileUploadForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(Field("file", context=dict(field_label_size="l")))
+    form.helper.layout = Layout(Field("file", context=dict(label_size="l")))
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")
 
 

@@ -16,11 +16,11 @@
     {% if not field|is_checkboxselectmultiple and not field|is_radioselect %}
 
       {% if field.label and not field|is_checkbox and form_show_labels %}
-        {% if field_label_is_heading %}<h1 class="govuk-label-wrapper">{% endif %}
-        <label for="{{ field.id_for_label }}" class="govuk-label{% if field_label_size %} govuk-label--{{ field_label_size }}{% endif %}">
+        {% if label_tag %}<{{ label_tag }} class="govuk-label-wrapper">{% endif %}
+        <label for="{{ field.id_for_label }}" class="govuk-label{% if label_size %} govuk-label--{{ label_size }}{% endif %}">
           {{ field.label|safe }}
         </label>
-        {% if field_label_is_heading %}</h1>{% endif %}
+        {% if label_tag %}</{{ label_tag }}>{% endif %}
       {% endif %}
 
       {% if field|is_checkbox and form_show_labels %}

@@ -113,9 +113,7 @@ class Field(crispy_forms_layout.LayoutObject):
     template = "%s/field.html"
 
     @classmethod
-    def text(
-        cls, field, label_size=None, label_is_heading=False, field_width=None, **kwargs
-    ):
+    def text(cls, field, label_size=None, label_tag=None, field_width=None, **kwargs):
         """
         Create a field for displaying a Text input.
 
@@ -125,8 +123,8 @@ class Field(crispy_forms_layout.LayoutObject):
             label_size (str): the size of the label. The default is None in which
                 case the label will be rendered at the same size as regular text.
 
-            label_is_heading (bool): Use the field label as the page title.
-                Default is False.
+            label_tag (str): Wrap the field label with this HTML tag.
+                Default is None.
 
             field_width (int, str): the width of the field - fixed or fluid. The
                 default is None in which case the field will be rendered full width.
@@ -142,10 +140,10 @@ class Field(crispy_forms_layout.LayoutObject):
         context = {}
 
         if label_size:
-            context["field_label_size"] = Size.clean(label_size)
+            context["label_size"] = Size.clean(label_size)
 
-        if label_is_heading:
-            context["field_label_is_heading"] = True
+        if label_tag:
+            context["label_tag"] = label_tag
 
         if field_width:
             if isinstance(field_width, int):
@@ -178,7 +176,7 @@ class Field(crispy_forms_layout.LayoutObject):
 
         Examples::
 
-            Field('name', context={'field_label_is_heading': True, 'field_label_size': 'govuk-label--xl'})
+            Field('name', context={'label_tag': 'h1', 'label_size': 'govuk-label--xl'})
             Field('age', css_class="govuk-input-width-5", style="color: #333;")
 
         """
@@ -266,22 +264,8 @@ class Field(crispy_forms_layout.LayoutObject):
             {k.replace("_", "-"): conditional_escape(v) for k, v in kwargs.items()}
         )
 
-    def render(
-        self,
-        form,
-        form_style,
-        context,
-        template_pack=TEMPLATE_PACK,
-        extra_context=None,
-        **kwargs
-    ):
-        if extra_context is None:
-            extra_context = {}
-
-        extra_context.update(self.context)
-
+    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
         template = self.get_template_name(template_pack)
-
         return self.get_rendered_fields(
             form,
             form_style,
@@ -289,7 +273,7 @@ class Field(crispy_forms_layout.LayoutObject):
             template_pack,
             template=template,
             attrs=self.attrs,
-            extra_context=extra_context,
+            extra_context=self.context,
             **kwargs,
         )
 

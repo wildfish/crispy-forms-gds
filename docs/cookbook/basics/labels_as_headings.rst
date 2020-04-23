@@ -4,11 +4,11 @@ Making labels and legends headings
 When there is only one question on a page you can make the label associated with
 a field the title of the page. To do that the field label or legend needs to be
 wrapped in an ``<h1>`` element - it's not enough just to change the size of the
-label or omit the label and add the ``<h1>`` tag instead, as that will confuse
+label or omit the label and add the heading tag instead, as that will confuse
 screen readers.
 
 You can do this easily enough on the ``Field`` class methods but setting the
-``label_is_heading`` argument to ``True``: ::
+``label_tag`` argument to ``h1``: ::
 
     from django import forms
 
@@ -23,7 +23,7 @@ You can do this easily enough on the ``Field`` class methods but setting the
             super().__init__(*args, **kwargs)
             self.helper = FormHelper()
             self.helper.layout = Layout(
-                Field.text("name", label_size="l", label_is_heading=True),
+                Field.text("name", label_size="l", label_tag="h1"),
                 Submit("submit", "Submit"),
             )
 
@@ -48,8 +48,8 @@ set this manually on a ``Field`` instance: ::
             self.helper = FormHelper()
             self.helper.layout = Layout(
                 Field("name", context={
-                    "field_label_size": Size.LARGE,
-                    "field_label_is_heading": True
+                    "label_size": Size.LARGE,
+                    "label_tag": "h1"
                 }),
                 Submit("submit", "Submit")
             )
