@@ -53,7 +53,8 @@ class CompleteForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.field_label_size = "m"
+        self.helper.label_size = "m"
+        self.helper.legend_size = "m"
         self.helper.layout = Layout(
             Field("text_input", css_class="govuk-!-width-one-half"),
             Field("textarea", rows="3"),

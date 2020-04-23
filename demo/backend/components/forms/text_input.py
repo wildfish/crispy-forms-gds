@@ -33,7 +33,8 @@ class TextInputForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(TextInputForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.field_label_size = Size.MEDIUM
+        self.helper.label_size = Size.MEDIUM
+        self.helper.legend_size = Size.MEDIUM
         self.helper.layout = Layout(
             "name",
             Field.text("email", field_width=Fluid.ONE_HALF),

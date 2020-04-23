@@ -15,7 +15,7 @@ def test_text_field_defaults():
 
 def test_text_field_label_size():
     field = Field.text("name", label_size=Size.MEDIUM)
-    assert field.context["field_label_size"] == "m"
+    assert field.context["label_size"] == "m"
     assert field.attrs == {}
 
 

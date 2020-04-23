@@ -13,7 +13,7 @@ There are two ways you can set the size of a label or legend:
 1. Globally, for every field on a form.
 2. Locally, for any field on a case-by-case basis.
 
-To set the labels size globally, set the `field_label_size` attribute on the
+To set the labels size globally, set the `label_size` attribute on the
 ``FormHelper`` class when you define the layout for a form: ::
 
     from django import forms
@@ -28,7 +28,7 @@ To set the labels size globally, set the `field_label_size` attribute on the
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.helper = FormHelper()
-            self.helper.field_label_size = Size.LARGE
+            self.helper.label_size = Size.LARGE
             self.helper.add_input(Submit("submit", "Submit"))
 
 To set the label size for an individual field, you can set the ``label_size``
@@ -51,7 +51,7 @@ argument on theField class methods: ::
                 Submit("submit", "Submit")
             )
 
-Alternatively set the ``field_label_size`` template variable in the context when
+Alternatively set the ``label_size`` template variable in the context when
 creating a ``Field`` object directly: ::
 
     from django import forms
@@ -67,6 +67,6 @@ creating a ``Field`` object directly: ::
             super().__init__(*args, **kwargs)
             self.helper = FormHelper()
             self.helper.layout = Layout(
-                Field("name", context={"field_label_size": Size.LARGE}),
+                Field("name", context={"label_size": Size.LARGE}),
                 Submit("submit", "Submit")
             )
