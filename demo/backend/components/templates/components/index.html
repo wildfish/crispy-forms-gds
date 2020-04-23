@@ -2,10 +2,6 @@
 {% load i18n crispy_forms_tags %}
 
 {% block content %}
-  {% if form.helper.form_show_errors and form.errors %}
-    {% include 'gds/layout/error_summary.html' %}
-  {% endif %}
-
   <h1 class="govuk-heading-xl">
     {% trans "Components" %}
   </h1>
@@ -17,9 +13,5 @@
     in more detail.
     {% endblocktrans %}
   </p>
-
-  <div class="govuk-body">
-    {% crispy form %}
-  </div>
 
 {% endblock %}

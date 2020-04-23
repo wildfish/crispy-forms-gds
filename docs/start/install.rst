@@ -35,6 +35,6 @@ project. If not, the `install guide`_ is very simple.
 NOTE: The app does not include any GDS assets, you will have to install them
 in your projects. Details are provided on the `GOV.UK Design System`_ site.
 Follow the `Getting Started`_ guide and the installation instructions for a
-`production`_ install. The demo site has a `webpack config file`_ which you might
-find useful.
+`production`_ install. The demo site for this project has a `webpack config file`_
+which you might find useful.
 

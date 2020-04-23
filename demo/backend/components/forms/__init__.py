@@ -2,7 +2,6 @@ from .accordion import AccordionForm
 from .buttons import ButtonsForm
 from .checkbox import CheckboxForm
 from .checkboxes import CheckboxesForm
-from .complete import CompleteForm
 from .details import DetailsForm
 from .fieldset import FieldsetForm
 from .file_upload import FileUploadForm
@@ -21,7 +20,6 @@ __all__ = [
     "ButtonsForm",
     "CheckboxForm",
     "CheckboxesForm",
-    "CompleteForm",
     "DetailsForm",
     "FieldsetForm",
     "FileUploadForm",

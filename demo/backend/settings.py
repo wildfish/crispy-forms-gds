@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_forms_gds",
     "backend.components",
-    "backend.cookbook",
 ]
 
 

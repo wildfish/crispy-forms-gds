@@ -1,9 +1,9 @@
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
 from .forms import (
     AccordionForm,
-    CompleteForm,
     ButtonsForm,
     CheckboxForm,
     CheckboxesForm,
@@ -22,10 +22,8 @@ from .forms import (
 )
 
 
-class IndexView(FormView):
+class IndexView(TemplateView):
     template_name = "components/index.html"
-    success_url = reverse_lazy("components:index")
-    form_class = CompleteForm
 
 
 class ComponentView(FormView):
