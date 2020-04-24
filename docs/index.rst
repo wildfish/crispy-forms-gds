@@ -16,6 +16,12 @@ for the `GOV.UK Design System`_.
 
     start/index
 
+.. toctree::
+    :caption: Layouts: Components
+    :maxdepth: 1
+
+    components/index
+
 .. _CHANGELOG: https://github.com/wildfish/crispy-forms-gds/blob/master/CHANGELOG.md
 
 You can find a detailed history of the project in the `CHANGELOG`_ on GitHub.

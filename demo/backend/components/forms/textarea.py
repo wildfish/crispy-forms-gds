@@ -1,26 +1,28 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Field, Layout, Submit
+from crispy_forms_gds.layout import Field, Layout, Size, Submit
 
 
 class TextareaForm(forms.Form):
 
     description = forms.CharField(
-        label=_("Can you provide more detail?"),
+        label="Can you provide more detail?",
         widget=forms.Textarea,
-        help_text=_(
-            "Do not include personal or financial information, like your "
-            "National Insurance number or credit card details."
-        ),
-        error_messages={"required": _("Enter a short description of your application")},
+        help_text="Do not include personal or financial information, like your "
+        "National Insurance number or credit card details.",
+        error_messages={
+            "required": "Enter a short description of the problem you had "
+            "making your purchase"
+        },
     )
 
     def __init__(self, *args, **kwargs):
         super(TextareaForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field("description", autocomplete="off", spellcheck="true", rows=3,),
-            Submit("submit", _("Submit")),
+            Field.textarea(
+                "description", label_size=Size.LARGE, label_tag="h1", rows=3
+            ),
+            Submit("submit", "Submit"),
         )

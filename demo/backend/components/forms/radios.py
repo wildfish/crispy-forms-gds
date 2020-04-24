@@ -1,25 +1,23 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Submit
+from crispy_forms_gds.layout import Field, Layout, Size, Submit
 
 
 class RadiosForm(forms.Form):
 
-    method = forms.ChoiceField(
-        choices=(
-            ("email", _("Email")),
-            ("phone", _("Phone")),
-            ("text", _("Text message")),
-        ),
+    name = forms.ChoiceField(
+        choices=(("yes", "Yes"), ("no", "No")),
         widget=forms.RadioSelect,
-        label=_("How would you like to be contacted?"),
-        help_text=_("Select the most convenient way to contact you."),
-        error_messages={"required": _("Enter the best way to contact you")},
+        label="Have you changed your name?",
+        help_text="This includes changing your last name or spelling your name differently.",
+        error_messages={"required": "Enter whether your name has changed"},
     )
 
     def __init__(self, *args, **kwargs):
         super(RadiosForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit("submit", _("Submit")))
+        self.helper.layout = Layout(
+            Field.radios("name", legend_size=Size.MEDIUM, legend_tag="h1")
+        )
+        self.helper.add_input(Submit("submit", "Submit"))

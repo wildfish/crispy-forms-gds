@@ -1,6 +1,5 @@
 from .accordion import AccordionForm
 from .buttons import ButtonsForm
-from .checkbox import CheckboxForm
 from .checkboxes import CheckboxesForm
 from .details import DetailsForm
 from .fieldset import FieldsetForm
@@ -18,7 +17,6 @@ from .warning import WarningForm
 __all__ = [
     "AccordionForm",
     "ButtonsForm",
-    "CheckboxForm",
     "CheckboxesForm",
     "DetailsForm",
     "FieldsetForm",

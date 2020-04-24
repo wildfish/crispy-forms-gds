@@ -1,5 +1,4 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import HTML, Layout
@@ -10,5 +9,11 @@ class DetailsForm(forms.Form):
         super(DetailsForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            HTML.details(_("This is the title"), _("These are the contents."))
+            HTML.details(
+                "Help with nationality",
+                "We need to know your nationality so we can work out which "
+                "elections you’re entitled to vote in. If you cannot provide "
+                "your nationality, you’ll have to send copies of identity "
+                "documents through the post.",
+            )
         )
