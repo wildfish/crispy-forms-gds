@@ -113,6 +113,68 @@ class Field(crispy_forms_layout.LayoutObject):
     template = "%s/field.html"
 
     @classmethod
+    def checkboxes(cls, field, legend_size=None, legend_tag=None, **kwargs):
+        """
+        Create a field for displaying checkboxes.
+
+        Args:
+            field (str): the name of the field.
+
+            legend_size (str): the size of the legend. The default is None in which
+                case the legend will be rendered at the same size as regular text.
+
+            legend_tag (str): Wrap the field legend with this HTML tag.
+                Default is None.
+
+            **kwargs: Attributes to add to the <input> element when the field is
+                rendered.
+
+        Returns:
+            a Field object configured to display a Checkboxes component.
+
+        """
+        context = {}
+
+        if legend_size:
+            context["legend_size"] = Size.clean(legend_size)
+
+        if legend_tag:
+            context["legend_tag"] = legend_tag
+
+        return Field(field, context=context, **kwargs)
+
+    @classmethod
+    def radios(cls, field, legend_size=None, legend_tag=None, **kwargs):
+        """
+        Create a field for displaying radio buttons.
+
+        Args:
+            field (str): the name of the field.
+
+            legend_size (str): the size of the legend. The default is None in which
+                case the legend will be rendered at the same size as regular text.
+
+            legend_tag (str): Wrap the field legend with this HTML tag.
+                Default is None.
+
+            **kwargs: Attributes to add to the <input> element when the field is
+                rendered.
+
+        Returns:
+            a Field object configured to display a Radios component.
+
+        """
+        context = {}
+
+        if legend_size:
+            context["legend_size"] = Size.clean(legend_size)
+
+        if legend_tag:
+            context["legend_tag"] = legend_tag
+
+        return Field(field, context=context, **kwargs)
+
+    @classmethod
     def text(cls, field, label_size=None, label_tag=None, field_width=None, **kwargs):
         """
         Create a field for displaying a Text input.
@@ -152,6 +214,42 @@ class Field(crispy_forms_layout.LayoutObject):
                 css_class = Fluid.clean(field_width)
 
         return Field(field, css_class=css_class, context=context, **kwargs)
+
+    @classmethod
+    def textarea(cls, field, label_size=None, label_tag=None, rows=10, **kwargs):
+        """
+        Create a field for displaying a Textarea.
+
+        Args:
+            field (str): the name of the field.
+
+            label_size (str): the size of the label. The default is None in which
+                case the label will be rendered at the same size as regular text.
+
+            label_tag (str): Wrap the field label with this HTML tag.
+                Default is None.
+
+            rows (int): the number of rows to display. If not specified then Django's
+                default of 10 will be used (the default used by most browsers is 2).
+
+            **kwargs: Attributes to add to the <textarea> element when the field is
+                rendered.
+
+        Returns:
+            a Field object configured to display a Text input.
+
+        """
+        context = {}
+
+        if label_size:
+            context["label_size"] = Size.clean(label_size)
+
+        if label_tag:
+            context["label_tag"] = label_tag
+
+        kwargs["rows"] = rows
+
+        return Field(field, context=context, **kwargs)
 
     def __init__(self, *fields, css_class=None, context=None, template=None, **kwargs):
         """

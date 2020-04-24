@@ -5,7 +5,6 @@ from django.views.generic.edit import FormView
 from .forms import (
     AccordionForm,
     ButtonsForm,
-    CheckboxForm,
     CheckboxesForm,
     DetailsForm,
     FieldsetForm,
@@ -33,7 +32,6 @@ class ComponentView(FormView):
     form_classes = {
         "accordion": AccordionForm,
         "buttons": ButtonsForm,
-        "checkbox": CheckboxForm,
         "checkboxes": CheckboxesForm,
         "details": DetailsForm,
         "fieldset": FieldsetForm,
@@ -51,7 +49,6 @@ class ComponentView(FormView):
     contexts = {
         "accordion": {"title": "Accordion"},
         "buttons": {"title": "Buttons"},
-        "checkbox": {"title": "Checkbox"},
         "checkboxes": {"title": "Checkboxes"},
         "details": {"title": "Details"},
         "fieldset": {"title": "Fieldset"},

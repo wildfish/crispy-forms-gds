@@ -1,31 +1,29 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Fieldset, Layout
+from crispy_forms_gds.layout import Field, Fieldset, Fluid, Layout, Size
 
 
 class FieldsetForm(forms.Form):
 
-    name = forms.CharField(
-        label=_("Name"),
-        help_text=_("Your full name."),
-        error_messages={
-            "required": _("Enter your name as it appears on your passport")
-        },
-    )
-
-    email = forms.CharField(
-        label=_("Email"),
-        help_text=_("Your primary email address."),
-        error_messages={
-            "required": _("Enter an email address where we can contact you")
-        },
-    )
+    street1 = forms.CharField(label="Building and street")
+    street2 = forms.CharField(label="")
+    city = forms.CharField(label="Town or city")
+    county = forms.CharField(label="County")
+    postcode = forms.CharField(label="Post code")
 
     def __init__(self, *args, **kwargs):
         super(FieldsetForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Fieldset("name", "email", title="Contact", size="l", tag="h1")
+            Fieldset(
+                Field.text("street1", field_width=Fluid.THREE_QUARTERS),
+                Field.text("street2", field_width=Fluid.THREE_QUARTERS),
+                Field.text("city", field_width=Fluid.ONE_HALF),
+                Field.text("county", field_width=Fluid.ONE_HALF),
+                Field.text("postcode", field_width=Fluid.ONE_QUARTER),
+                title="What is your address?",
+                size=Size.LARGE,
+                tag="h1",
+            )
         )
