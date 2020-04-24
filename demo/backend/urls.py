@@ -1,5 +1,6 @@
-from django.urls import path, include
+from django.urls import include, path
 from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
     path(r"", RedirectView.as_view(url="components/"), name="home"),

@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Accordion, AccordionSection, HTML, Layout
+from crispy_forms_gds.layout import HTML, Accordion, AccordionSection, Layout
 
 
 class AccordionForm(forms.Form):

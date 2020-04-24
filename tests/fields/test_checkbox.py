@@ -5,7 +5,8 @@ Tests to verify checkboxes are rendered correctly.
 import os
 
 from tests.forms import CheckboxForm
-from tests.utils import TEST_DIR, parse_form, parse_contents
+from tests.utils import TEST_DIR, parse_contents, parse_form
+
 
 RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "checkbox")
 

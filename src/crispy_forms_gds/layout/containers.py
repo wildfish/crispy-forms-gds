@@ -1,8 +1,8 @@
-from crispy_forms import layout as crispy_forms_layout
-from crispy_forms.utils import TEMPLATE_PACK, flatatt, render_field
 from django.template.loader import render_to_string
 from django.utils.text import slugify
 
+from crispy_forms import layout as crispy_forms_layout
+from crispy_forms.utils import TEMPLATE_PACK, flatatt, render_field
 from crispy_forms_gds.layout import Div
 
 

@@ -9,6 +9,7 @@ from django.test.html import parse_html
 from tests.forms import TextInputForm
 from tests.utils import TEST_DIR, parse_contents, render_template
 
+
 RESULT_DIR = os.path.join(TEST_DIR, "helpers", "results")
 
 

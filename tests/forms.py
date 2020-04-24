@@ -2,10 +2,10 @@ from django import forms
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import (
+    HTML,
     Accordion,
     AccordionSection,
     Fieldset,
-    HTML,
     Layout,
     TabPanel,
     Tabs,

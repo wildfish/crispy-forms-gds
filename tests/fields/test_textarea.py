@@ -6,9 +6,9 @@ import os
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout
-
 from tests.forms import TextareaForm
-from tests.utils import TEST_DIR, parse_form, parse_contents
+from tests.utils import TEST_DIR, parse_contents, parse_form
+
 
 RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "textarea")
 

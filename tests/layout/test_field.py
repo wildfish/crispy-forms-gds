@@ -3,8 +3,7 @@ Tests to verify that Field objects are configured correctly.
 
 """
 import pytest
-
-from crispy_forms_gds.layout import Field, Size, Fixed, Fluid
+from crispy_forms_gds.layout import Field, Fixed, Fluid, Size
 
 
 def test_text_field_defaults():
