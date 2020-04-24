@@ -115,7 +115,7 @@ class FieldsetForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(FieldsetForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout(Fieldset("name", "email", title="Contact"))
+        self.helper.layout = Layout(Fieldset("name", "email", legend="Contact"))
 
 
 class AccordionForm(forms.Form):

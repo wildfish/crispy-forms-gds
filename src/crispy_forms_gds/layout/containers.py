@@ -13,21 +13,23 @@ class Fieldset(crispy_forms_layout.LayoutObject):
     Example::
 
         Fieldset('form_field_1', 'form_field_2')
-        Fieldset('form_field_1', 'form_field_2', title="fieldset_title")
-        Fieldset('form_field_1', 'form_field_2', title="fieldset_title", tag="h1")
-        Fieldset('form_field_1', 'form_field_2', title="fieldset_title", size="xl")
+        Fieldset('form_field_1', 'form_field_2', legend="fieldset_title")
+        Fieldset('form_field_1', 'form_field_2', legend="fieldset_title", legend_tag="h1")
+        Fieldset('form_field_1', 'form_field_2', legend="fieldset_title", legend_size="xl")
 
    """
 
     css_class = "govuk-fieldset"
     template = "%s/layout/fieldset.html"
 
-    def __init__(self, *fields, title=None, size=None, tag=None, **kwargs):
+    def __init__(
+        self, *fields, legend=None, legend_size=None, legend_tag=None, **kwargs
+    ):
         self.fields = list(fields)
         self.context = {
-            "legend_title": title,
-            "legend_size": size,
-            "legend_tag": tag,
+            "legend": legend,
+            "legend_size": legend_size,
+            "legend_tag": legend_tag,
         }
         self.css_id = kwargs.pop("css_id", None)
         self.template = kwargs.pop("template", self.template)
