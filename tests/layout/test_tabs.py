@@ -5,7 +5,8 @@ Tests to verify selects are rendered correctly.
 import os
 
 from tests.forms import TabsForm
-from tests.utils import TEST_DIR, parse_form, parse_contents
+from tests.utils import TEST_DIR, parse_contents, parse_form
+
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "tabs")
 

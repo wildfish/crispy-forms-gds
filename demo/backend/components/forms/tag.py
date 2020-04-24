@@ -2,7 +2,7 @@ from django import forms
 from django.utils.safestring import mark_safe
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Layout, Colour
+from crispy_forms_gds.layout import HTML, Colour, Layout
 
 
 class TagForm(forms.Form):

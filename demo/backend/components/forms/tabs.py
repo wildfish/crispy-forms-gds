@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Layout, Tabs, TabPanel
+from crispy_forms_gds.layout import HTML, Layout, TabPanel, Tabs
 
 
 class TabsForm(forms.Form):

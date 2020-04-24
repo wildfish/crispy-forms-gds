@@ -1,6 +1,7 @@
-from crispy_forms import layout as crispy_forms_layout
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
+
+from crispy_forms import layout as crispy_forms_layout
 
 
 class Colour:
