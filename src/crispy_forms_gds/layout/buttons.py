@@ -19,7 +19,7 @@ class Button(BaseInput):
 
     """
 
-    template = "gds/layout/button.html"
+    template = "%s/layout/button.html"
     field_classes = "govuk-button"
 
     @classmethod
