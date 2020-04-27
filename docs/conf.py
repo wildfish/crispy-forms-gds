@@ -15,8 +15,8 @@ import sys
 
 import django
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.abspath(os.path.join(ROOT_DIR, 'src', 'crispy_forms_gds')))
+ROOT_DIR = os.path.dirname(os.path.abspath("."))
+sys.path.insert(0, os.path.abspath(os.path.join(ROOT_DIR, 'src')))
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'docs.settings'
 django.setup()
