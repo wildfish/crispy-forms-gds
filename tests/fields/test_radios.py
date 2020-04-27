@@ -15,7 +15,7 @@ RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "radios")
 
 def test_initial_attributes():
     """Verify all the gds attributes are displayed."""
-    form = RadiosForm()
+    form = RadiosForm(initial={"method": "email"})
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
 
 
