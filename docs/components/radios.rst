@@ -1,8 +1,8 @@
 .. _Radios: https://design-system.service.gov.uk/components/radios/
 
-======
+######
 Radios
-======
+######
 A `Radios`_ component is used when there is only one option allowed from a list. ::
 
     from django import forms

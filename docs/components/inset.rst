@@ -1,8 +1,8 @@
 .. _Inset text: https://design-system.service.gov.uk/components/inset-text/
 
-==========
+##########
 Inset text
-==========
+##########
 An `Inset text`_ component is simply HTML. It's included as a form component
 so you can notes or side-comments to the body of a form. ::
 

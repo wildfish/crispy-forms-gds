@@ -5,7 +5,7 @@ Tests to verify textareas are rendered correctly.
 import os
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Field, Layout
+from crispy_forms_gds.layout import Field, Layout, Size
 from tests.forms import TextareaForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
@@ -30,7 +30,7 @@ def test_show_label_as_heading():
     """Verify the field label can be displayed as the page heading."""
     form = TextareaForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(Field("description", context=dict(label_tag="h1")))
+    form.helper.layout = Layout(Field("description", context={"label_tag": "h1"}))
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_heading.html")
 
 
@@ -38,7 +38,9 @@ def test_change_label_size():
     """Verify size of the field label can be changed from the default."""
     form = TextareaForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(Field("description", context=dict(label_size="l")))
+    form.helper.layout = Layout(
+        Field("description", context={"label_size": Size.for_label("l")})
+    )
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")
 
 

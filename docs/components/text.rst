@@ -1,8 +1,8 @@
 .. _Text input: https://design-system.service.gov.uk/components/text-input/
 
-==========
+##########
 Text input
-==========
+##########
 The `Text input`_ component is the work-horse of any form: ::
 
     from django import forms

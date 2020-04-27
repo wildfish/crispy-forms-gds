@@ -1,8 +1,8 @@
 .. _Accordion: https://design-system.service.gov.uk/components/accordion/
 
-=========
+#########
 Accordion
-=========
+#########
 There are two Layout classes for adding an `Accordion`_ to a form. ``AccordionSection``
 which wraps the contents of each section and ``Accordion`` which wraps the sections
 and adds the ability to open and collapse them. ::

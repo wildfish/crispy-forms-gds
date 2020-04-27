@@ -1,8 +1,8 @@
 .. _Buttons: https://design-system.service.gov.uk/components/button/
 
-======
+######
 Button
-======
+######
 A `Button`_ component is all you need to submit a form: ::
 
     from django import forms

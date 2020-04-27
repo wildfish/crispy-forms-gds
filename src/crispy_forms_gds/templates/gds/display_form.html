@@ -1,6 +1,6 @@
 {% if form.form_html %}
   {% if include_media %}{{ form.media }}{% endif %}
-  {% if form_show_errors and form.helper.form_show_non_field_errors %}
+  {% if form_show_errors and form.helper.show_non_field_errors %}
     {% include "gds/errors.html" %}
   {% endif %}
   {{ form.form_html }}

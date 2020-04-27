@@ -17,10 +17,23 @@ for the `GOV.UK Design System`_.
     start/index
 
 .. toctree::
-    :caption: Layouts: Components
-    :maxdepth: 1
+    :caption: Components
+    :maxdepth: 2
 
     components/index
+
+.. toctree::
+    :caption: Classes
+    :maxdepth: 2
+
+    classes/templatetags
+    classes/helper
+    classes/constants
+    classes/fields
+    classes/buttons
+    classes/containers
+    classes/content
+
 
 .. _CHANGELOG: https://github.com/wildfish/crispy-forms-gds/blob/master/CHANGELOG.md
 
