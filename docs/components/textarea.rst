@@ -1,8 +1,8 @@
 .. _Textarea: https://design-system.service.gov.uk/components/textarea/
 
-========
+########
 Textarea
-========
+########
 Adding a `Textarea`_ to a form is straightforward: ::
 
     from django import forms

@@ -1,8 +1,8 @@
 .. _Warning text: https://design-system.service.gov.uk/components/warning-text/
 
-============
+############
 Warning text
-============
+############
 A `Warning text`_ component is simply HTML. It's included as a form component as
 warnings are useful for frightening your users into filling out the form
 correctly. ::

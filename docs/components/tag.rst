@@ -1,8 +1,8 @@
 .. _Tag: https://design-system.service.gov.uk/components/tag/
 
-===
+###
 Tag
-===
+###
 A `Tag`_ is general used to report status. ::
 
     from django import forms

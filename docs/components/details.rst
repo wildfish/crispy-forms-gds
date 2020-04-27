@@ -1,8 +1,8 @@
 .. _Details: https://design-system.service.gov.uk/components/details/
 
-=======
+#######
 Details
-=======
+#######
 A `Details`_ component is simply HTML. It's included as a form component as details
 section are useful for adding extra, optional information such as help text to
 fields. ::

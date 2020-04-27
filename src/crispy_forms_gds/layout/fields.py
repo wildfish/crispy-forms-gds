@@ -2,87 +2,7 @@ from django.utils.html import conditional_escape
 
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK
-
-
-class Size:
-    """
-    A set of constants for setting the size of labels, legends or headings.
-    """
-
-    SMALL = "s"
-    MEDIUM = "m"
-    LARGE = "l"
-    EXTRA_LARGE = "xl"
-
-    _values = (SMALL, MEDIUM, LARGE, EXTRA_LARGE)
-
-    @classmethod
-    def is_valid(cls, value):
-        return value in cls._values
-
-    @classmethod
-    def clean(cls, value):
-        if not cls.is_valid(value):
-            raise ValueError("Unexpected size", value)
-        return value
-
-
-class Fixed:
-    """
-    A set of constants for setting a fixed width on Text inputs.
-    """
-
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
-    TEN = 10
-    TWENTY = 20
-    THIRTY = 30
-
-    _values = (TWO, THREE, FOUR, FIVE, TEN, TWENTY, THIRTY)
-
-    @classmethod
-    def is_valid(cls, value):
-        return value in cls._values
-
-    @classmethod
-    def clean(cls, value):
-        if not cls.is_valid(value):
-            raise ValueError("Unexpected fixed width", value)
-        return "govuk-input--width-%d" % value
-
-
-class Fluid:
-    """
-    A set of constants for setting a fluid width on Text inputs.
-    """
-
-    ONE_QUARTER = "one-quarter"
-    ONE_THIRD = "one-third"
-    ONE_HALF = "one-half"
-    TWO_THIRDS = "two-thirds"
-    THREE_QUARTERS = "three-quarters"
-    FULL = "full"
-
-    _values = (
-        ONE_QUARTER,
-        ONE_THIRD,
-        ONE_HALF,
-        TWO_THIRDS,
-        THREE_QUARTERS,
-        FULL,
-    )
-
-    @classmethod
-    def is_valid(cls, value):
-        return value in cls._values
-
-    @classmethod
-    def clean(cls, value):
-        if not cls.is_valid(value):
-            raise ValueError("Unexpected fluid width", value)
-        return "govuk-!-width-%s" % value
+from crispy_forms_gds.layout import Fixed, Fluid, Size
 
 
 class Field(crispy_forms_layout.LayoutObject):
@@ -136,7 +56,7 @@ class Field(crispy_forms_layout.LayoutObject):
         context = {}
 
         if legend_size:
-            context["legend_size"] = Size.clean(legend_size)
+            context["legend_size"] = Size.for_legend(legend_size)
 
         if legend_tag:
             context["legend_tag"] = legend_tag
@@ -167,7 +87,38 @@ class Field(crispy_forms_layout.LayoutObject):
         context = {}
 
         if legend_size:
-            context["legend_size"] = Size.clean(legend_size)
+            context["legend_size"] = Size.for_legend(legend_size)
+
+        if legend_tag:
+            context["legend_tag"] = legend_tag
+
+        return Field(field, context=context, **kwargs)
+
+    @classmethod
+    def select(cls, field, legend_size=None, legend_tag=None, **kwargs):
+        """
+        Create a field for displaying a select drop-down.
+
+        Args:
+            field (str): the name of the field.
+
+            legend_size (str): the size of the legend. The default is None in which
+                case the legend will be rendered at the same size as regular text.
+
+            legend_tag (str): Wrap the field legend with this HTML tag.
+                Default is None.
+
+            **kwargs: Attributes to add to the <select> element when the field is
+                rendered.
+
+        Returns:
+            a Field object configured to display a Select component.
+
+        """
+        context = {}
+
+        if legend_size:
+            context["legend_size"] = Size.for_legend(legend_size)
 
         if legend_tag:
             context["legend_tag"] = legend_tag
@@ -198,20 +149,21 @@ class Field(crispy_forms_layout.LayoutObject):
             a Field object configured to display a Text input.
 
         """
-        css_class = None
         context = {}
 
         if label_size:
-            context["label_size"] = Size.clean(label_size)
+            context["label_size"] = Size.for_label(label_size)
 
         if label_tag:
             context["label_tag"] = label_tag
 
         if field_width:
             if isinstance(field_width, int):
-                css_class = Fixed.clean(field_width)
+                css_class = Fixed.for_input(field_width)
             else:
-                css_class = Fluid.clean(field_width)
+                css_class = Fluid.for_input(field_width)
+        else:
+            css_class = kwargs.get("css_class")
 
         return Field(field, css_class=css_class, context=context, **kwargs)
 
@@ -242,7 +194,7 @@ class Field(crispy_forms_layout.LayoutObject):
         context = {}
 
         if label_size:
-            context["label_size"] = Size.clean(label_size)
+            context["label_size"] = Size.for_label(label_size)
 
         if label_tag:
             context["label_tag"] = label_tag

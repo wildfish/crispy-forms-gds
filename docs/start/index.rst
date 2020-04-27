@@ -4,4 +4,5 @@
     install
     settings
     demo
-    examples
+    example
+    layouts

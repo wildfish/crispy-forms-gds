@@ -1,8 +1,8 @@
 .. _Select: https://design-system.service.gov.uk/components/select/
 
-======
+######
 Select
-======
+######
 Use a `Select`_ component only as a last resort for public facing services as there is
 often a high rate of errors. ::
 

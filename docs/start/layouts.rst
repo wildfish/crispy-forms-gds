@@ -1,66 +1,51 @@
-.. _Components: https://design-system.service.gov.uk/components
-.. _Error summary: https://design-system.service.gov.uk/components/error-summary/
+=======
+Layouts
+=======
+The real power of the crispy way is the ability to define exactly how a form is
+laid out in code rather than in HTML. The GOV.UK Design System adds a lot of attributes
+and CSS classes to the basic HTML tags that make up a form. When you add all the
+attributes needed for accessibility to ensure your forms are usable by as wide a
+range of people as possible then the resultant HTML is hard to manage: ::
 
-========
-Examples
-========
-You use crispy-forms-gds just like a regular crispy form except you import
-the various objects from ``crispy_forms_gds`` instead of crispy_forms. The
-minimum viable form using this template pack is: ::
+    <div id="div_id_name" class="govuk-form-group">
+      <label for="id_name" class="govuk-label">
+        Name
+      </label>
+      <div id="id_name_hint" class="govuk-hint">
+        Help text
+      </div>
+      <input type="text" name="name"
+             aria-describedby="id_name_hint"
+             class="govuk-input"
+             id="id_name">
+    </div>
 
-    from django import forms
+Now add in the markup needed to display an error: ::
 
-    from crispy_forms_gds.helper import FormHelper
-    from crispy_forms_gds.layout import Submit
+    <div id="div_id_name" class="govuk-form-group govuk-form-group--error">
+      <label for="id_name" class="govuk-label">
+        Name
+      </label>
+      <div id="id_name_hint" class="govuk-hint">
+        Help text
+      </div>
+      <span id="id_name_1_error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Required error message
+      </span>
+      <input type="text" name="name"
+             aria-describedby="id_name_hint id_name_1_error"
+             class="govuk-input govuk-input--error"
+             id="id_name">
+    </div>
 
+That's the absolute bare minimum needed to render a single text field and there's
+no support for the error summary, autocomplete or other attributes to make the form
+accessible. It's a lot of work and it's very easy to leave off a single attribute
+that would render the form useless for people with screen readers, for example.
 
-    class MinimumForm(forms.Form):
-
-        name = forms.CharField(
-            label="Name",
-            help_text="Your full name.",
-            error_messages={
-                "required": "Enter your name as it appears on your passport"
-            }
-        )
-
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
-            self.helper.add_input(Submit("submit", _("Submit")))
-
-All that is needed is to add the ``FormHelper`` class to the Form. Then in your
-template add Design System `Error summary`_ and the ``crispy`` templatetag: ::
-
-    {% load i18n crispy_forms_tags %}
-    ...
-    {% if form.helper.form_show_errors and form.errors %}
-      {% include 'gds/layout/error_summary.html' %}
-    {% endif %}
-    ...
-    {% crispy form %}
-    ...
-
-The template pack takes care of all the rendering so the displayed form follows
-the Design System style and takes care of accessibility as well.
-
-.. image:: form.png
-
-There is support for all the Design System `Components`_ that you might expect
-to encounter in a complex form with the exception of ``Date input`` which is on
-the to-do list. There are some components like ``Summary list``, ``Table`` and
-possibly, ``Skip link`` which might be useful but are not implemented currently
-as they are probably rarely needed. The rest: ``Back link``, ``Breadcrumbs``,
-``Header``, ``Footer`` and ``Phase banner`` are unlikely to ever appear in a form.
-
-Many of the Design System Components can be configured, for example setting the
-size of a label or the width of a text field. The simplest way is the crispy
-way and use ``Layout`` objects to pass in the necessary parameters. Some of the
-configuration involves setting CSS classes as well as template variables so
-``crispy-forms-gds`` adds a set of class methods to the various layout objects
-to make that easier. The following form is a big of a dog's breakfast in terms
-of user experience but it does give you a good overview of just how little code
-you need to create quite complex forms: ::
+Layouts solve all these problems. The template pack supports all the components
+available in the Design System so you can quickly and easily lay out a form and
+any incidental content with a minimum of effort: ::
 
     from django import forms
 
@@ -166,3 +151,38 @@ you need to create quite complex forms: ::
                 ),
                 Button.primary("apply", "Apply"),
             )
+
+That's a slightly contrived example but it shows you how the various Design
+System components can be used and configured in code.
+
+Take a look at the source code for the Demo Site. There's the base template
+for laying out the page but the main ``{% block %}`` for the page contents
+is just: ::
+
+    {% extends "components/base.html" %}
+    {% load i18n crispy_forms_tags %}
+
+    {% block content %}
+
+      {% if form.helper.form_show_errors and form.errors %}
+        {% include 'gds/layout/error_summary.html' %}
+      {% endif %}
+
+      <span class="govuk-caption-xl">
+        {% trans 'Components' %}
+      </span>
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <div class="govuk-body">
+        {% crispy form %}
+      </div>
+
+    {% endblock %}
+
+That's all the markup needed to display any of the forms in the Demo Site.
+All the work is done in the form layouts. All the markup for accessibility
+is already included in the template pack. You get 100% compliant forms, 100%
+of the time. When that is replicated across all the projects that use the
+GOV.UK Design System the savings in time and effort should be substantial.

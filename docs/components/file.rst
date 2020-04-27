@@ -1,8 +1,8 @@
 .. _File upload: https://design-system.service.gov.uk/components/file-upload/
 
-===========
+###########
 File upload
-===========
+###########
 A `File upload`_ component helps users select and upload a file. ::
 
     from django import forms

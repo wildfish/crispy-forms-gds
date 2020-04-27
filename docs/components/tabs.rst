@@ -1,8 +1,8 @@
 .. _Tabs: https://design-system.service.gov.uk/components/tabs/
 
-====
+####
 Tabs
-====
+####
 There are two Layout classes for adding an `Tabs`_ to a form. ``TabPanel``
 which wraps the contents of each section and ``Tabs`` which wraps the sections
 and adds the ability to step between them. ::

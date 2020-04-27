@@ -1,12 +1,21 @@
 """
-This is a reimplementation of the crispy_field template tag and associated
-filters so the correct GDS classes can be added to input elements. In
-particular the specific classes needed to render the different input types
-and associated error classes when a validation error is raised.
+This is a reimplementation of the crispy_forms_field template tag and
+associated filters so the correct GDS classes can be added to input
+elements. In particular the specific classes needed to render the
+different input types and associated error classes when a validation
+error is raised.
 
-Usage:
+Examples:
 
-   {% load crispy_forms_gds_field %}
+    Rendering a field: ::
+
+        {% load crispy_forms_gds_field %}
+        ...
+        {% crispy_gds_field field attrs %}
+
+    Using the filters: ::
+
+        {% if field|is_radioselect %}
 
 Do not load the original crispy_forms_field at the same time as nothing
 good will likely result.
@@ -15,12 +24,15 @@ The code was copied over verbatim from crispy_forms. Any additions are
 clearly marked with a check to see if the 'gds' template pack is being
 used.
 
+The templatetag is only used within the gds/field.html template and you
+probably won't have to deal with it, even if you are laying out a form
+explicitly.
+
 """
 from django import forms, template
 from django.conf import settings
-from django.template import Context, loader
 
-from crispy_forms.utils import TEMPLATE_PACK, get_template_pack
+from crispy_forms.utils import TEMPLATE_PACK
 
 
 register = template.Library()
@@ -28,48 +40,79 @@ register = template.Library()
 
 @register.filter
 def is_checkbox(field):
+    """
+    Template filter that returns True if the field is a checkbox, False otherwise.
+    """
     return isinstance(field.field.widget, forms.CheckboxInput)
 
 
 @register.filter
 def is_password(field):
+    """
+    Template filter that returns True if the field is a password field,
+    False otherwise.
+    """
     return isinstance(field.field.widget, forms.PasswordInput)
 
 
 @register.filter
 def is_radioselect(field):
+    """
+    Template filter that returns True if the field is a set of radio
+    buttons field, False otherwise.
+    """
     return isinstance(field.field.widget, forms.RadioSelect)
 
 
 @register.filter
 def is_select(field):
+    """
+    Template filter that returns True if the field is a drop-down select
+    field, False otherwise.
+    """
     return isinstance(field.field.widget, forms.Select)
 
 
 @register.filter
 def is_checkboxselectmultiple(field):
+    """
+    Template filter that returns True if the field is set of checkboxes,
+    False otherwise.
+    """
     return isinstance(field.field.widget, forms.CheckboxSelectMultiple)
 
 
 @register.filter
 def is_file(field):
+    """
+    Template filter that returns True if the field is a file upload button,
+    False otherwise.
+    """
     return isinstance(field.field.widget, forms.FileInput)
 
 
 @register.filter
 def is_clearable_file(field):
+    """
+    Template filter that returns True if the field is a clearable file upload
+    button, False otherwise.
+    """
     return isinstance(field.field.widget, forms.ClearableFileInput)
 
 
 @register.filter
 def is_multivalue(field):
+    """
+    Template filter that returns True if the field is a multi-value field,
+    False otherwise.
+    """
     return isinstance(field.field.widget, forms.MultiWidget)
 
 
 @register.filter
 def classes(field):
     """
-    Returns CSS classes of a field
+    Template filter that returns CSS classes of a field.
     """
     return field.widget.attrs.get("class", None)
 
@@ -77,18 +120,25 @@ def classes(field):
 @register.filter
 def css_class(field):
     """
-    Returns widgets class name in lowercase
+    Returns widget's class name in lowercase.
     """
     return field.field.widget.__class__.__name__.lower()
 
 
 def pairwise(iterable):
-    """s -> (s0,s1), (s2,s3), (s4, s5), ..."""
+    """
+    Splits a list of items into pairs: s -> (s0,s1), (s2,s3), (s4, s5), ...
+    """
     a = iter(iterable)
     return zip(a, a)
 
 
 class CrispyGDSFieldNode(template.Node):
+    """
+    The TemplateNode used for rendering a field from the template pack.
+
+    """
+
     def __init__(self, field, attrs):
         self.field = field
         self.attrs = attrs
@@ -231,7 +281,13 @@ class CrispyGDSFieldNode(template.Node):
 @register.tag(name="crispy_gds_field")
 def crispy_gds_field(parser, token):
     """
-    {% crispy_gds_field field attrs %}
+    The templatetag used to render fields from the template pack.
+
+    Examples:
+
+        ::
+
+            {% crispy_gds_field field attrs %}
     """
     token = token.split_contents()
     field = token.pop(1)
@@ -243,37 +299,3 @@ def crispy_gds_field(parser, token):
         attrs[attribute_name] = value
 
     return CrispyGDSFieldNode(field, attrs)
-
-
-@register.simple_tag()
-def crispy_addon(field, append="", prepend="", form_show_labels=True):
-    """
-    Renders a form field using bootstrap's prepended or appended text::
-
-        {% crispy_addon form.my_field prepend="$" append=".00" %}
-
-    You can also just prepend or append like so
-
-        {% crispy_addon form.my_field prepend="$" %}
-        {% crispy_addon form.my_field append=".00" %}
-    """
-    if field:
-        context = Context(
-            {
-                "field": field,
-                "form_show_errors": True,
-                "form_show_labels": form_show_labels,
-            }
-        )
-        template = loader.get_template(
-            "%s/layout/prepended_appended_text.html" % get_template_pack()
-        )
-        context["crispy_prepended_text"] = prepend
-        context["crispy_appended_text"] = append
-
-        if not prepend and not append:
-            raise TypeError("Expected a prepend and/or append argument")
-
-        context = context.flatten()
-
-    return template.render(context)

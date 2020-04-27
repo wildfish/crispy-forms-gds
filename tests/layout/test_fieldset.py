@@ -5,7 +5,7 @@ Tests to verify selects are rendered correctly.
 import os
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Fieldset, Layout
+from crispy_forms_gds.layout import Fieldset, Layout, Size
 from tests.forms import FieldsetForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
@@ -34,6 +34,6 @@ def test_change_legend_size():
     form = FieldsetForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
-        Fieldset("name", "email", legend="Contact", legend_size="l")
+        Fieldset("name", "email", legend="Contact", legend_size=Size.for_legend("l"))
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "legend_size.html")

@@ -17,7 +17,7 @@
 
       {% if field.label and not field|is_checkbox and form_show_labels %}
         {% if label_tag %}<{{ label_tag }} class="govuk-label-wrapper">{% endif %}
-        <label for="{{ field.id_for_label }}" class="govuk-label{% if label_size %} govuk-label--{{ label_size }}{% endif %}">
+        <label for="{{ field.id_for_label }}" class="govuk-label{% if label_size %} {{ label_size }}{% endif %}">
           {{ field.label|safe }}
         </label>
         {% if label_tag %}</{{ label_tag }}>{% endif %}

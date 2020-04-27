@@ -1,8 +1,8 @@
 .. _Fieldset: https://design-system.service.gov.uk/components/fieldset/
 
-========
+########
 Fieldset
-========
+########
 Use a `Fieldset`_  component to group related fields together. ::
 
     from django import forms

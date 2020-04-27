@@ -1,8 +1,8 @@
 .. _Panel: https://design-system.service.gov.uk/components/panel/
 
-=====
+#####
 Panel
-=====
+#####
 Use a `Panel`_ component for confirmation messages or to highlight important sections. ::
 
     from django import forms

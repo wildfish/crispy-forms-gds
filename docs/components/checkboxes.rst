@@ -1,8 +1,8 @@
 .. _Checkboxes: https://design-system.service.gov.uk/components/checkboxes/
 
-==========
+##########
 Checkboxes
-==========
+##########
 A `Checkboxes`_ component is used to render multiple ChoiceField and BooleanField
 though you need to override the default widget used by Django on the form. ::
 
