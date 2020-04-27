@@ -13,7 +13,7 @@ RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "checkbox")
 
 def test_initial_attributes():
     """Verify all the gds attributes are displayed."""
-    form = CheckboxForm()
+    form = CheckboxForm(initial={"accept": True})
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
 
 

@@ -15,7 +15,7 @@ RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "textarea")
 
 def test_initial_attributes():
     """Verify all the gds attributes are displayed."""
-    form = TextareaForm()
+    form = TextareaForm(initial={"description": "Field value"})
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
 
 
