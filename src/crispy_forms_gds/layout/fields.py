@@ -33,7 +33,9 @@ class Field(crispy_forms_layout.LayoutObject):
     template = "%s/field.html"
 
     @classmethod
-    def checkboxes(cls, field, legend_size=None, legend_tag=None, **kwargs):
+    def checkboxes(
+        cls, field, legend_size=None, legend_tag=None, small=False, **kwargs
+    ):
         """
         Create a field for displaying checkboxes.
 
@@ -45,6 +47,8 @@ class Field(crispy_forms_layout.LayoutObject):
 
             legend_tag (str): Wrap the field legend with this HTML tag.
                 Default is None.
+
+            small (bool): Display small checkboxes. Default is False.
 
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
@@ -61,10 +65,20 @@ class Field(crispy_forms_layout.LayoutObject):
         if legend_tag:
             context["legend_tag"] = legend_tag
 
+        context["checkboxes_small"] = small
+
         return Field(field, context=context, **kwargs)
 
     @classmethod
-    def radios(cls, field, legend_size=None, legend_tag=None, **kwargs):
+    def radios(
+        cls,
+        field,
+        legend_size=None,
+        legend_tag=None,
+        small=False,
+        inline=False,
+        **kwargs
+    ):
         """
         Create a field for displaying radio buttons.
 
@@ -76,6 +90,10 @@ class Field(crispy_forms_layout.LayoutObject):
 
             legend_tag (str): Wrap the field legend with this HTML tag.
                 Default is None.
+
+            small (bool): Display small radio buttons. Default is False.
+
+            inline (bool): Display the radio buttons in a row. Default is False.
 
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
@@ -91,6 +109,9 @@ class Field(crispy_forms_layout.LayoutObject):
 
         if legend_tag:
             context["legend_tag"] = legend_tag
+
+        context["radios_small"] = small
+        context["radios_inline"] = inline
 
         return Field(field, context=context, **kwargs)
 
@@ -168,7 +189,17 @@ class Field(crispy_forms_layout.LayoutObject):
         return Field(field, css_class=css_class, context=context, **kwargs)
 
     @classmethod
-    def textarea(cls, field, label_size=None, label_tag=None, rows=10, **kwargs):
+    def textarea(
+        cls,
+        field,
+        label_size=None,
+        label_tag=None,
+        rows=10,
+        max_characters=None,
+        max_words=None,
+        threshold=None,
+        **kwargs
+    ):
         """
         Create a field for displaying a Textarea.
 
@@ -184,8 +215,20 @@ class Field(crispy_forms_layout.LayoutObject):
             rows (int): the number of rows to display. If not specified then Django's
                 default of 10 will be used (the default used by most browsers is 2).
 
+            max_characters (int, optional): the maximum number of characters that should be entered.
+                Default is None.
+
+            max_words (int, optional): the maximum number of words that should be entered.
+                Default is None.
+
+            threshold (int, optional): the percentage of the count that has to be reached
+                before the limit is shown. Default is None.
+
             **kwargs: Attributes to add to the <textarea> element when the field is
                 rendered.
+
+        Raises:
+            ValueError: if you set max_characters and max_words at the same time.
 
         Returns:
             a Field object configured to display a Text input.
@@ -200,6 +243,29 @@ class Field(crispy_forms_layout.LayoutObject):
             context["label_tag"] = label_tag
 
         kwargs["rows"] = rows
+
+        if max_characters and max_words:
+            raise ValueError(
+                "Cannot set max_characters and max_words at the same time."
+            )
+
+        if threshold and not max_characters and not max_words:
+            raise ValueError(
+                "Cannot set the typing threshold without setting the maximum "
+                "number of characters of words."
+            )
+
+        if max_characters:
+            context["max_characters"] = max_characters
+
+        if max_words:
+            context["max_words"] = max_words
+
+        if max_characters or max_words:
+            kwargs["css_class"] = "govuk-js-character-count"
+
+            if threshold:
+                context["threshold"] = threshold
 
         return Field(field, context=context, **kwargs)
 

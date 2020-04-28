@@ -26,6 +26,14 @@ def test_validation_error_attributes():
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
 
 
+def test_checkbox_size():
+    """Verify size of the checkbox can be changed from the default."""
+    form = CheckboxesForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field("method", context={"checkboxes_small": True}))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "checkbox_size.html")
+
+
 def test_show_legend_as_heading():
     """Verify the field legend can be displayed as the page heading."""
     form = CheckboxesForm()

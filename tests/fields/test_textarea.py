@@ -4,6 +4,8 @@ Tests to verify textareas are rendered correctly.
 """
 import os
 
+import pytest
+
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
 from tests.forms import TextareaForm
@@ -63,3 +65,33 @@ def test_no_help_text_errors():
     form = TextareaForm(data={"description": ""})
     form.fields["description"].help_text = ""
     assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text_errors.html")
+
+
+def test_character_count():
+    """Verify the field can show the maximum number of characters allowed."""
+    form = TextareaForm(initial={"description": "Field value"})
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field.textarea("description", max_characters=100))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "character_count.html")
+
+
+def test_character_and_word_count():
+    """Verify an exception is raise if the character and words count is given."""
+    with pytest.raises(ValueError):
+        Field.textarea("description", max_characters=100, max_words=50)
+
+
+def test_threshold():
+    """Verify the info is not shown until after a certain number of words has been entered."""
+    form = TextareaForm(initial={"description": "Field value"})
+    form.helper = FormHelper()
+    form.helper.layout = Layout(
+        Field.textarea("description", max_words=100, threshold=50)
+    )
+    assert parse_form(form) == parse_contents(RESULT_DIR, "threshold.html")
+
+
+def test_character_threshold():
+    """Verify an exception is raise if the threshold is set with no limit."""
+    with pytest.raises(ValueError):
+        Field.textarea("description", threshold=50)

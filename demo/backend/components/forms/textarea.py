@@ -22,7 +22,11 @@ class TextareaForm(forms.Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field.textarea(
-                "description", label_size=Size.LARGE, label_tag="h1", rows=3
+                "description",
+                label_size=Size.LARGE,
+                label_tag="h1",
+                rows=3,
+                max_words=100,
             ),
             Submit("submit", "Submit"),
         )

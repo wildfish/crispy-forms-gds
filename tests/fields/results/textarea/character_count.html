@@ -1,0 +1,23 @@
+<form method="post">
+  <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="100">
+    <div id="div_id_description" class="govuk-form-group">
+      <label for="id_description" class="govuk-label">
+        Description
+      </label>
+      <div id="id_description_hint" class="govuk-hint">
+        Help text
+      </div>
+      <textarea name="description"
+             aria-describedby="id_description_hint id_description_info"
+             class="govuk-textarea govuk-js-character-count"
+             id="id_description"
+             rows="10"
+             cols="40">
+        Field value
+      </textarea>
+      <span id="id_description_info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+        You can enter up to 100 characters
+      </span>
+    </div>
+  </div>
+</form>

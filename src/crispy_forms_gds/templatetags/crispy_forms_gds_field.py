@@ -232,6 +232,15 @@ class CrispyGDSFieldNode(template.Node):
                 if field.help_text:
                     widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
 
+                if (
+                    "class" in widget.attrs
+                    and "govuk-js-character-count" in widget.attrs["class"]
+                ):
+                    if widget.attrs["aria-describedby"]:
+                        widget.attrs["aria-describedby"] += " %s_info" % field.auto_id
+                    else:
+                        widget.attrs["aria-describedby"] = "%s_info" % field.auto_id
+
                 if field.errors:
 
                     widget_class_name = widget.__class__.__name__
