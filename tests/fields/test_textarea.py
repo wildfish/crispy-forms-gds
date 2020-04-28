@@ -5,7 +5,6 @@ Tests to verify textareas are rendered correctly.
 import os
 
 import pytest
-
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
 from tests.forms import TextareaForm
