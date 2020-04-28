@@ -14,10 +14,21 @@ class RadiosForm(forms.Form):
         error_messages={"required": "Enter whether your name has changed"},
     )
 
+    method = forms.ChoiceField(
+        choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message"),),
+        widget=forms.RadioSelect,
+        label="How would you like to be contacted?",
+        help_text="Select the options that is best for you.",
+        error_messages={
+            "required": "Select the best way to send a confirmation message"
+        },
+    )
+
     def __init__(self, *args, **kwargs):
         super(RadiosForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field.radios("name", legend_size=Size.MEDIUM, legend_tag="h1")
+            Field.radios("name", legend_size=Size.MEDIUM, legend_tag="h1", inline=True),
+            Field.radios("method", legend_size=Size.MEDIUM, small=True),
         )
         self.helper.add_input(Submit("submit", "Submit"))

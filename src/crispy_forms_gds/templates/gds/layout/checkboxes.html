@@ -11,7 +11,7 @@
 
   {% include 'gds/layout/help_text_and_errors.html' %}
 
-  <div class="govuk-checkboxes{% if inline %}--inline{% endif %}">
+  <div class="govuk-checkboxes{% if inline %}--inline{% endif %}{% if checkboxes_small %} govuk-checkboxes--small{% endif %}">
     {% for choice in field.field.choices %}
       <div class="govuk-checkboxes__item">
 

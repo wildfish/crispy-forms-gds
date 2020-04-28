@@ -26,6 +26,22 @@ def test_validation_error_attributes():
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
 
 
+def test_small():
+    """Verify size of the radio buttons can be changed."""
+    form = RadiosForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field("method", context={"radios_small": True}))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "buttons_small.html")
+
+
+def test_inline():
+    """Verify radio buttons can be displayed in a row."""
+    form = RadiosForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field("method", context={"radios_inline": True}))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "buttons_inline.html")
+
+
 def test_show_legend_as_heading():
     """Verify the field legend can be displayed as the page heading."""
     form = RadiosForm()

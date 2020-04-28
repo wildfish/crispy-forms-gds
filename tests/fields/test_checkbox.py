@@ -4,6 +4,8 @@ Tests to verify checkboxes are rendered correctly.
 """
 import os
 
+from crispy_forms_gds.helper import FormHelper
+from crispy_forms_gds.layout import Field, Layout
 from tests.forms import CheckboxForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
@@ -22,6 +24,14 @@ def test_validation_error_attributes():
     form = CheckboxForm(data={"accept": ""})
     assert not form.is_valid()
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
+
+
+def test_checkbox_size():
+    """Verify size of the checkbox can be changed from the default."""
+    form = CheckboxForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field("accept", context={"checkboxes_small": True}))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "checkbox_size.html")
 
 
 def test_no_help_text():
