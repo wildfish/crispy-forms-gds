@@ -160,13 +160,11 @@ for laying out the page but the main ``{% block %}`` for the page contents
 is just: ::
 
     {% extends "components/base.html" %}
-    {% load i18n crispy_forms_tags %}
+    {% load i18n crispy_forms_tags crispy_forms_gds_tags %}
 
     {% block content %}
 
-      {% if form.helper.form_show_errors and form.errors %}
-        {% include 'gds/layout/error_summary.html' %}
-      {% endif %}
+      {% error_summary form %}
 
       <span class="govuk-caption-xl">
         {% trans 'Components' %}
