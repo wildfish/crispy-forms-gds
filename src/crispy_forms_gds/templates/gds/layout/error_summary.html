@@ -1,20 +1,22 @@
 {% load i18n %}
-<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-  <h2 class="govuk-error-summary__title" id="error-summary-title">
-    {% trans 'There is a problem' %}
-  </h2>
-  <div class="govuk-error-summary__body">
-    <ul class="govuk-list govuk-error-summary__list">
-      {% with first_id=form.visible_fields.0.auto_id %}
-        {% for error in form.non_field_errors %}
-          <li><a href="#{{ first_id }}">{{ error }}</a></li>
+{% if form.helper.form_show_errors and form.errors %}
+  <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+      {% trans 'There is a problem' %}
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        {% with first_id=form.visible_fields.0.auto_id %}
+          {% for error in form.non_field_errors %}
+            <li><a href="#{{ first_id }}">{{ error }}</a></li>
+          {% endfor %}
+        {% endwith %}
+        {% for field in form.visible_fields %}
+          {% for error in field.errors %}
+            <li><a href="#{{ field.auto_id }}">{{ error }}</a></li>
+          {% endfor %}
         {% endfor %}
-      {% endwith %}
-      {% for field in form.visible_fields %}
-        {% for error in field.errors %}
-          <li><a href="#{{ field.auto_id }}">{{ error }}</a></li>
-        {% endfor %}
-      {% endfor %}
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
+{% endif %}

@@ -29,19 +29,15 @@ using this template pack is something like this: ::
             self.helper.add_input(Submit("submit", _("Submit")))
 
 All that is needed is to add the ``FormHelper`` class to the Form. Then in your
-template add Design System `Error summary`_ and the ``crispy`` templatetag: ::
+template add the ``error_summary`` templatetag to display Design System `Error summary`_
+and the ``crispy`` templatetag to display the form: ::
 
-    {% load i18n crispy_forms_tags %}
+    {% load i18n crispy_forms_tags crispy_forms_gds_tags %}
     ...
-    {% if form.helper.form_show_errors and form.errors %}
-      {% include 'gds/layout/error_summary.html' %}
-    {% endif %}
+    {% error_summary form %}
     ...
     {% crispy form %}
     ...
-
-[That's way too much typing so if possible, we will look at replacing that conditional
-with another templatetag, for example ``{% error_summary form %}``.]
 
 The template pack takes care of all the rendering so the code above is displayed as:
 

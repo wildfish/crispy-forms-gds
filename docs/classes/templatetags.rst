@@ -8,11 +8,9 @@ Templatetags
 The crispy forms templatetag ``{% crispy form %}`` is still used to render
 the form since the template pack is simply a plugin. ::
 
-    {% load crispy_forms_tags %}
+    {% load crispy_forms_tags crispy_forms_gds_tags %}
     ...
-    {% if form.helper.form_show_errors and form.errors %}
-      {% include 'gds/layout/error_summary.html' %}
-    {% endif %}
+    {% error_summary form %}
     ...
     {% crispy form %}
     ...
