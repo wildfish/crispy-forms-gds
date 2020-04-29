@@ -25,8 +25,8 @@ help:
 	@echo "  venv        to create the virtualenv and install dependencies"
 	@echo "  dist        to build the package"
 	@echo "  docs        to build the HTML documentation"
-	@echo "  tests    	 to run the lint checks and tests"
-	@echo "  serve    	 to run the Django demo site"
+	@echo "  tests       to run the lint checks and tests"
+	@echo "  serve       to run the Django demo site"
 	@echo
 
 .PHONY: clean-dist
