@@ -1,11 +1,12 @@
 =======
 Layouts
 =======
+
 The real power of the crispy way is the ability to define exactly how a form is
 laid out in code rather than in HTML. The GOV.UK Design System adds a lot of attributes
 and CSS classes to the basic HTML tags that make up a form. When you add all the
 attributes needed for accessibility to ensure your forms are usable by as wide a
-range of people as possible then the resultant HTML is hard to manage: ::
+range of people as possible then the resultant HTML is hard to manage::
 
     <div id="div_id_name" class="govuk-form-group">
       <label for="id_name" class="govuk-label">

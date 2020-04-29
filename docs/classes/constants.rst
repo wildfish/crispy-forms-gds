@@ -9,32 +9,32 @@ something like ``govuk-!-width-three-quarters`` every time they want to set the 
 of a field?. The constants are translated into the respective CSS class when a widget
 is rendered.
 
-######
+
 Colour
-######
+======
 
 .. autoclass:: crispy_forms_gds.layout.Colour
    :members:
 
-##########
+
 Font Sizes
-##########
+==========
 
 .. autoclass:: crispy_forms_gds.layout.Size
    :members:
    :member-order: bysource
 
-############
+
 Fixed Widths
-############
+============
 
 .. autoclass:: crispy_forms_gds.layout.Fixed
    :members:
    :member-order: bysource
 
-############
+
 Fluid Widths
-############
+============
 
 .. autoclass:: crispy_forms_gds.layout.Fluid
    :members:

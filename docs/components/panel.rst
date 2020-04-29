@@ -1,9 +1,13 @@
+=====
+Panel
+=====
+
+Use a `Panel`_ component for confirmation messages or to highlight important sections.
+
 .. _Panel: https://design-system.service.gov.uk/components/panel/
 
-#####
-Panel
-#####
-Use a `Panel`_ component for confirmation messages or to highlight important sections. ::
+
+.. code-block::
 
     from django import forms
 
@@ -21,6 +25,7 @@ Use a `Panel`_ component for confirmation messages or to highlight important sec
                     "Your reference number <strong>HDJ2123F</strong>"
                 )
             )
+
 
 You can see this form live in the Demo site.
 

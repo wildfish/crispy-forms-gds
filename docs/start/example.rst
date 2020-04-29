@@ -1,11 +1,8 @@
-.. _Components: https://design-system.service.gov.uk/components
-.. _Error summary: https://design-system.service.gov.uk/components/error-summary/
-
 =======
 Example
 =======
-You use crispy-forms-gds just like a regular crispy form. The minimum viable form
-using this template pack is something like this: ::
+
+Use ``crispy-forms-gds`` like a normal crispy form::
 
     from django import forms
 
@@ -28,9 +25,10 @@ using this template pack is something like this: ::
             self.helper = FormHelper(self)
             self.helper.add_input(Submit("submit", _("Submit")))
 
-All that is needed is to add the ``FormHelper`` class to the Form. Then in your
-template add the ``error_summary`` templatetag to display Design System `Error summary`_
-and the ``crispy`` templatetag to display the form: ::
+
+Add the ``FormHelper`` class to the form, then in your template add the
+``error_summary`` template tag to display the Design System `Error summary`_. Use the
+``crispy`` template tag to display the form as normal::
 
     {% load i18n crispy_forms_tags crispy_forms_gds_tags %}
     ...
@@ -39,10 +37,12 @@ and the ``crispy`` templatetag to display the form: ::
     {% crispy form %}
     ...
 
+.. _Error summary: https://design-system.service.gov.uk/components/error-summary/
+
+
 The template pack takes care of all the rendering so the code above is displayed as:
 
 .. image:: form.png
 
-That's pretty basic but that's all you need to display forms that meet all the
-requirements for presentation and accessibility, recommended and mandated by the
-Design System guidelines.
+This will display forms that meet all the requirements for presentation and
+accessibility, recommended and mandated by the Design System guidelines.

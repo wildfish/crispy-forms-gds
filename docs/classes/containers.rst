@@ -2,9 +2,9 @@
 Containers
 ==========
 
-#########
+
 Accordion
-#########
+=========
 
 .. automodule:: crispy_forms_gds.layout.Accordion
    :members:
@@ -12,17 +12,16 @@ Accordion
 .. automodule:: crispy_forms_gds.layout.AccordionSection
    :members:
 
-########
+
 Fieldset
-########
+========
 
 .. automodule:: crispy_forms_gds.layout.Fieldset
    :members:
 
 
-####
 Tabs
-####
+====
 
 .. automodule:: crispy_forms_gds.layout.Tabs
    :members:

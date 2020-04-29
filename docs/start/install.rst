@@ -1,40 +1,41 @@
-.. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
-.. _install guide: https://django-crispy-forms.readthedocs.io/en/latest/install.html
-.. _GOV.UK Design System: https://design-system.service.gov.uk/
-.. _Getting started: https://design-system.service.gov.uk/get-started/
-.. _production: https://design-system.service.gov.uk/get-started/production/
-.. _webpack config file: https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js
-
 .. _install-intro:
 
-=======
-Install
-=======
-This guide assumes you have already installed `django-crispy-forms`_ in your
-project. If not, the `install guide`_ is very simple.
+============
+Installation
+============
 
-#. Install the package from PyPI: ::
+#.  Install ``django-crispy-forms`` using their `installation guide`__.
 
-    pip install crispy-forms-gds
+    .. __: https://django-crispy-forms.readthedocs.io/en/latest/install.html
 
-#. Add the apps to your settings: ::
+
+#.  Install ``crispy-forms-gds`` from PyPI::
+
+        pip install crispy-forms-gds
+
+
+#.  Add the app to your settings::
 
         INSTALLED_APPS = (
-           ...
-           'crispy_forms_gds',
-           ...
+            ...
+            'crispy_forms_gds',
+            ...
+
         )
 
-#. Update the crispy_forms settings to activate the template pack: ::
+#.  Override the crispy forms settings to set the template pack as the default::
 
         CRISPY_ALLOWED_TEMPLATE_PACKS = (
-            "bootstrap", "uni_form", "bootstrap3", "bootstrap4", "gds"
+            "bootstrap", "bootstrap3", "bootstrap4", "uni_form", "gds"
         )
         CRISPY_TEMPLATE_PACK = "gds"
 
-NOTE: The app does not include any GDS assets, you will have to install them
-in your projects. Details are provided on the `GOV.UK Design System`_ site.
-Follow the `Getting Started`_ guide and the installation instructions for a
-`production`_ install. The demo site for this project has a `webpack config file`_
-which you might find useful.
 
+#.  Install the GDS assets using their `Getting started guide`_  and `production
+    installation instructions`_.
+
+    Our demo site has a `webpack config`_ file which you might find useful.
+
+    .. _Getting started guide: https://design-system.service.gov.uk/get-started/
+    .. _production installation instructions: https://design-system.service.gov.uk/get-started/production/
+    .. _webpack config: https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js

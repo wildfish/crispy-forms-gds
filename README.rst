@@ -1,15 +1,13 @@
-.. _Django: https://www.djangoproject.com/
+================
+Crispy Forms GDS
+================
+
+A `GOV.UK Design System`_ template pack for `django-crispy-forms`_, for simple and
+powerful form generation which is compliant with GDS usability and accessibility
+guidelines.
+
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms/
 .. _GOV.UK Design System: https://design-system.service.gov.uk/
-.. _Getting started: https://design-system.service.gov.uk/get-started/
-.. _install guide: https://django-crispy-forms.readthedocs.io/en/latest/install.html
-.. _production: https://design-system.service.gov.uk/get-started/production/
-.. _webpack config: https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js
-.. _install nvm: https://github.com/nvm-sh/nvm
-
-################
-Crispy Forms GDS
-################
 
 .. image:: https://travis-ci.org/wildfish/crispy-forms-gds.svg?branch=master
     :target: https://travis-ci.org/wildfish/crispy-forms-gds
@@ -20,48 +18,34 @@ Crispy Forms GDS
 .. image:: https://img.shields.io/pypi/pyversions/crispy-forms-gds.svg
     :target: https://pypi.python.org/pypi/crispy-forms-gds/
 
-A `Django`_ application to add `django-crispy-forms`_ template pack and layout objects
-for the `GOV.UK Design System`_.
+Requires Django 2.2 or later and django-crispy-forms 1.9 or later.
 
-*******
-Install
-*******
-This assumes you have already installed django-crispy-forms in your
-project. If not, the `install guide`_ is very simple.
 
-1. Install the package from PyPI: ::
+Quickstart
+==========
+
+This is a minimal howto without options or details - see the
+`crispy-forms-gds documentation <http://crispy-forms-gds.readthedocs.io/>`_ for full
+instructions for installation and usage.
+
+Install using pip::
 
     pip install crispy-forms-gds
 
-2. Add the app to your settings: ::
+Add to installed apps, with settings to tell django-crispy-forms to use this theme::
 
-    INSTALLED_APPS = (
-        ...
-        'crispy_forms_gds',
-        ...
-    )
-
-3. Override the crispy_forms settings to set the template pack as the default: ::
-
-    CRISPY_ALLOWED_TEMPLATE_PACKS = (
-        "bootstrap", "bootstrap3", "bootstrap4", "uni_form", "gds"
-    )
+    INSTALLED_APPS = [
+      ...
+      'crispy_forms',
+      'crispy_forms_gds',
+    ]
+    CRISPY_ALLOWED_TEMPLATE_PACKS = ["gds"]
     CRISPY_TEMPLATE_PACK = "gds"
 
-NOTE: The app does not include any GDS assets, you will have to install them
-in your project. Details are provided on the `GOV.UK Design System`_ site.
-Follow the `Getting started`_ guide and the installation instructions for a
-`production`_ install. The demo site has a `webpack config`_ file which you
-might find useful.
 
-*******
-Example
-*******
-To use the template pack just build a regular crispy form as before but the
-layout objects are imported from crispy_forms_gds: ::
+Build a regular crispy form using layout objects from ``crispy_forms_gds``::
 
     from django import forms
-    from django.utils.translation import ugettext_lazy as _
 
     from crispy_forms_gds.helper import FormHelper
     from crispy_forms_gds.layout import Submit
@@ -70,59 +54,59 @@ layout objects are imported from crispy_forms_gds: ::
     class TextInputForm(forms.Form):
 
         name = forms.CharField(
-            label=_("Name"),
+            label="Name",
+            help_text="Your full name.",
             widget=forms.TextInput(),
-            help_text=_("Your full name."),
             error_messages={
-                "required": _("Enter your name as it appears on your passport")
+                "required": "Enter your name as it appears on your passport"
             }
         )
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.helper = FormHelper()
-            self.helper.add_input(Submit("submit", _("Submit")))
+            self.helper.add_input(Submit("submit", "Submit"))
 
-And render the form in your templates: ::
 
-    {% load i18n crispy_forms_tags %}
-    ...
+Render the form in your templates as normal::
+
+    {% load crispy_forms_tags %}
     {% crispy form %}
-    ...
 
-That's it.
 
-**********
-All in one
-**********
-The template pack supports all the basic components listed in the `GOV.UK Design System`_:
+Open the page in your browser:
+
+.. image:: docs/start/form.png
+
+
+Features
+========
+
+The template pack supports all the basic components listed in the `GOV.UK Design
+System`_:
 
 .. image:: https://i.imgur.com/RCTUPrg.png
 
-****
+
 Demo
-****
-If you checkout the code from the repository, there is a Django site you can run
-to see the forms in action. You will need to `install nvm`_ for managing node
-versions first. After that build everything and run the demo with: ::
+====
+
+If you checkout the code from the repository, there is a Django site you can run to see
+the forms in action. You will need to `install nvm`_ first (to manage node versions),
+then build and run the demo with::
 
     make serve
 
-********
-Requires
-********
-* Django >=2.2;
-* django-crispy-forms >= 1.9.x;
+.. _install nvm: https://github.com/nvm-sh/nvm
 
-*********
-Resources
-*********
+
+Further reading
+===============
+
+* Read the documentation on `Read the docs`_
+* Download the `PyPi package`_
+* Learn more about `Django Crispy Forms`_
+
 .. _Read the docs: http://crispy-forms-gds.readthedocs.io/
 .. _PyPi package: http://pypi.python.org/pypi/crispy-forms-gds
-.. _Github repository: https://github.com/widlfish/crispy-forms-gds;
 .. _Django Crispy Forms: https://django-crispy-forms.readthedocs.io/en/latest/
-
-* Read the documentation on `Read the docs`_;
-* Download the `PyPi package`_;
-* Clone the `Github repository`_;
-* Learn more about `Django Crispy Forms`_;
