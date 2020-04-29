@@ -1,10 +1,10 @@
-============
-Templatetags
-============
+=============
+Template tags
+=============
 
-############
-{% crispy %}
-############
+``{% crispy %}``
+================
+
 The crispy forms templatetag ``{% crispy form %}`` is still used to render
 the form since the template pack is simply a plugin. ::
 
@@ -16,9 +16,8 @@ the form since the template pack is simply a plugin. ::
     ...
 
 
-######################
-{% crispy_gds_field %}
-######################
+``{% crispy_gds_field %}``
+==========================
 
 .. automodule:: crispy_forms_gds.templatetags.crispy_forms_gds_field
    :members:
