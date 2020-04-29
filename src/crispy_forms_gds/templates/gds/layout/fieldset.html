@@ -1,5 +1,5 @@
 <fieldset {% if fieldset.css_id %}id="{{ fieldset.css_id }}"{% endif %}
-    {% if fieldset.css_class or form_style %}class="{{ fieldset.css_class }} {{ form_style }}"{% endif %}
+    {% if fieldset.css_class or form_style %}class="{{ fieldset.css_class }}{% if form_style %} {{ form_style }}{% endif %}"{% endif %}
     {{ fieldset.flat_attrs|safe }}>
     {% if legend %}
       <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">

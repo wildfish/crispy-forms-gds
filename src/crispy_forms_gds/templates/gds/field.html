@@ -4,7 +4,7 @@
   {{ field }}
 {% else %}
   {% if max_characters or max_words %}<div class="govuk-character-count" data-module="govuk-character-count"{% if max_characters %} data-maxlength="{{ max_characters }}"{% else %} data-maxwords="{{ max_words }}"{% endif %}{% if threshold %} data-threshold="{{ threshold }}"{% endif %}>{% endif %}
-  <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="govuk-form-group {% if form_show_errors%}{% if field.errors %}govuk-form-group--error{% endif %}{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+  <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="govuk-form-group{% if form_show_errors%}{% if field.errors %} govuk-form-group--error{% endif %}{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
 
     {% if field|is_checkboxselectmultiple %}
       {% include 'gds/layout/checkboxes.html' %}

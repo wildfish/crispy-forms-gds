@@ -12,11 +12,15 @@ full = $(shell $(PYTHON) setup.py --fullname)
 # Where everything lives
 pip := venv/bin/pip3
 pytest := venv/bin/pytest
+tox := venv/bin/tox
 python := venv/bin/python3
 django := venv/bin/python3 demo/manage.py
 frontend := demo/frontend
 nvm := sh ~/.nvm/nvm.sh
 
+# Rather than a full run with tox just run the tests with
+# a single environment
+testenv := py38-django300
 
 .PHONY: help
 help:
@@ -76,8 +80,8 @@ install: venv dist
 reinstall: clean-dist install
 
 .PHONY: tests
-tests: install
-	$(pytest)
+tests:
+	$(tox) -e $(testenv)
 
 .PHONY: serve
 serve: install $(frontend)/dist
