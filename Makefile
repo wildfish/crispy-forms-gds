@@ -12,15 +12,10 @@ full = $(shell $(PYTHON) setup.py --fullname)
 # Where everything lives
 pip := venv/bin/pip3
 pytest := venv/bin/pytest
-tox := venv/bin/tox
 python := venv/bin/python3
 django := venv/bin/python3 demo/manage.py
 frontend := demo/frontend
 nvm := sh ~/.nvm/nvm.sh
-
-# Rather than a full run with tox just run the tests with
-# a single environment
-testenv := py38-django300
 
 .PHONY: help
 help:
@@ -31,7 +26,6 @@ help:
 	@echo "  dist        to build the package"
 	@echo "  docs        to build the HTML documentation"
 	@echo "  install     to install the package in the vitualenv"
-	@echo "  reinstall   to rebuild and reinstall the package in the vitualenv"
 	@echo "  tests    	 to run the lint checks and tests"
 	@echo "  serve    	 to run the Django demo site"
 	@echo
@@ -72,20 +66,13 @@ $(frontend)/dist: $(frontend)/node_modules
 docs:
 	python setup.py build_sphinx
 
-.PHONY: install
-install: venv dist
-	$(pip) install dist/$(full).tar.gz
-
-.PHONY: reinstall
-reinstall: clean-dist install
-
 .PHONY: tests
 tests:
-	$(tox) -e $(testenv)
+	PYTHONPATH=src $(pytest)
 
 .PHONY: serve
-serve: install $(frontend)/dist
-	$(django) migrate
-	$(django) runserver
+serve: $(frontend)/dist
+	PYTHONPATH=src $(django) migrate
+	PYTHONPATH=src $(django) runserver
 
 -include *.mk

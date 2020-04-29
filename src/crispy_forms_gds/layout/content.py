@@ -220,7 +220,7 @@ class HTML(crispy_forms_layout.HTML):
               <tr class="govuk-table__row">
                 {% for item in headings %}
                   <th scope="col" class="govuk-table__header">{{ item }}</th>
-                {% endfor %}  
+                {% endfor %}
               </tr>
             </thead>
             {% endif %}
