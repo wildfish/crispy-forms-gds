@@ -10,7 +10,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added 
-- Hints can now be added to checkboxes.
+- Hints can now be added to checkboxes and radios.
 
 ## [0.1.0] - 2020-04-28
 ### Added

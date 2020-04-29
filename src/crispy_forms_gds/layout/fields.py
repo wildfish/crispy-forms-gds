@@ -83,6 +83,7 @@ class Field(crispy_forms_layout.LayoutObject):
         legend_tag=None,
         small=False,
         inline=False,
+        hints=None,
         **kwargs
     ):
         """
@@ -101,6 +102,9 @@ class Field(crispy_forms_layout.LayoutObject):
 
             inline (bool): Display the radio buttons in a row. Default is False.
 
+            hints (dict): Hints that will be displayed for one or more checkboxes.
+                The dictionary key is the checkbox value. Defaults to None.
+
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
 
@@ -118,6 +122,9 @@ class Field(crispy_forms_layout.LayoutObject):
 
         context["radios_small"] = small
         context["radios_inline"] = inline
+
+        if hints:
+            context["radios_hints"] = hints
 
         return Field(field, context=context, **kwargs)
 
