@@ -12,9 +12,12 @@ pytest
 pytest-black
 pytest-flake8
 pytest-cov
-sphinx
-sphinx-rtd-theme
-sphinx-autobuild
 tox
 twine
 wheel
+
+doc8
+sphinx
+sphinx-rtd-theme
+sphinx-autobuild
+-e git+https://github.com/wildfish/sphinx_wildfish_theme.git#egg=sphinx_wildfish_theme
