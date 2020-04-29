@@ -25,7 +25,6 @@ help:
 	@echo "  venv        to create the virtualenv and install dependencies"
 	@echo "  dist        to build the package"
 	@echo "  docs        to build the HTML documentation"
-	@echo "  install     to install the package in the vitualenv"
 	@echo "  tests    	 to run the lint checks and tests"
 	@echo "  serve    	 to run the Django demo site"
 	@echo
@@ -71,7 +70,7 @@ tests:
 	PYTHONPATH=src $(pytest)
 
 .PHONY: serve
-serve: $(frontend)/dist
+serve: venv $(frontend)/dist
 	PYTHONPATH=src $(django) migrate
 	PYTHONPATH=src $(django) runserver
 
