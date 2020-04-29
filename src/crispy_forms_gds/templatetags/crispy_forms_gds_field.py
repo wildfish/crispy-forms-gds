@@ -39,6 +39,11 @@ register = template.Library()
 
 
 @register.filter
+def lookup(d, value):
+    return d.get(value)
+
+
+@register.filter
 def is_checkbox(field):
     """
     Template filter that returns True if the field is a checkbox, False otherwise.

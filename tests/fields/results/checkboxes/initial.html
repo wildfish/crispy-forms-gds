@@ -13,21 +13,25 @@
       <div class="govuk-checkboxes">
 
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="id_method_1" name="method" type="checkbox" value="email" checked>
+          <input class="govuk-checkboxes__input" id="id_method_1" name="method" type="checkbox" value="email" checked="checked">
           <label class="govuk-label govuk-checkboxes__label" for="id_method_1">
             Email
           </label>
         </div>
 
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="id_method_2" name="method" type="checkbox" value="phone">
+          <input class="govuk-checkboxes__input" id="id_method_2" name="method" type="checkbox" value="phone"
+                 aria-describedby="id_method_2_hint">
           <label class="govuk-label govuk-checkboxes__label" for="id_method_2">
             Phone
           </label>
+          <span id="id_method_2_hint" class="govuk-hint govuk-checkboxes__hint">
+            Select this option only if you have a mobile phone
+          </span>
         </div>
 
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="id_method_3" name="method" type="checkbox" value="text" checked>
+          <input class="govuk-checkboxes__input" id="id_method_3" name="method" type="checkbox" value="text" checked="checked">
           <label class="govuk-label govuk-checkboxes__label" for="id_method_3">
             Text message
           </label>

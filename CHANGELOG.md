@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Added 
+- Hints can now be added to checkboxes.
+
 ## [0.1.0] - 2020-04-28
 ### Added
 - Added all the form-level components from the Design System. The only
