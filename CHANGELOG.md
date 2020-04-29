@@ -11,6 +11,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added 
 - Hints can now be added to checkboxes and radios.
+- Accordion sections can now display a summary of the contents.
 
 ## [0.1.0] - 2020-04-28
 ### Added

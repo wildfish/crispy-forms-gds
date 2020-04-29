@@ -5,6 +5,11 @@
         {{ div.name }}
       </span>
     </h2>
+    {% if div.summary %}
+      <div class="govuk-accordion__section-summary govuk-body" id="{{ div.parent }}-summary-{{ div.index }}">
+        {{ div.summary }}
+      </div>
+    {% endif %}
   </div>
   <div class="govuk-accordion__section-content">
     {{ fields|safe }}

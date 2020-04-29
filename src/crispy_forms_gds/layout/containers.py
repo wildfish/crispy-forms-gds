@@ -36,7 +36,9 @@ class Accordion(Div):
 
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
         content = ""
-        for group in self.fields:
+        for index, group in enumerate(self.fields, start=1):
+            context["index"] = index
+            context["parent"] = self.css_id
             content += render_field(
                 group, form, form_style, context, template_pack=template_pack, **kwargs
             )
@@ -51,17 +53,19 @@ class AccordionSection(Div):
     tab. It takes accordion tab name as first argument::
 
         AccordionSection("section_name", "form_field_1", "form_field_2")
+        AccordionSection("section_name", "form_field_1", summary="A short description of the contents")
+
     """
 
     template = "%s/accordion-group.html"
-    data_parent = ""  # accordion parent div id.
     css_class = ""
 
-    def __init__(self, name, *fields, **kwargs):
+    def __init__(self, name, *fields, summary=None, **kwargs):
         super().__init__(*fields, **kwargs)
         self.name = name
-        if not self.css_id:
-            self.css_id = slugify(self.name)
+        self.summary = summary
+        self.index = None
+        self.parent = None
 
     def __contains__(self, field_name):
         """
@@ -70,6 +74,8 @@ class AccordionSection(Div):
         return field_name in map(lambda pointer: pointer[1], self.get_field_names())
 
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
+        self.index = context.get("index", None)
+        self.parent = context.get("parent")
         return super().render(form, form_style, context, template_pack)
 
 
