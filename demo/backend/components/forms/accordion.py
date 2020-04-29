@@ -13,6 +13,7 @@ class AccordionForm(forms.Form):
                 AccordionSection(
                     "Writing well for the web",
                     HTML.p("This is the content for Writing well for the web."),
+                    summary="An introduction to clear and concise writing.",
                 ),
                 AccordionSection(
                     "Writing well for specialists",

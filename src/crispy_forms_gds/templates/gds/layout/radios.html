@@ -1,4 +1,4 @@
-{% load l10n %}
+{% load l10n crispy_forms_gds_field %}
 <fieldset class="govuk-fieldset"{% if field.help_text or field.errors %} aria-describedby="{% if field.help_text %}id_method_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"{% endif %}>
 
   {% if field.label %}
@@ -24,11 +24,19 @@
           {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
             checked="checked"
           {% endif %}
+          {% if radios_hints and choice.0 in radios_hints.keys %}
+             aria-describedby="id_{{ field.html_name }}_{{ forloop.counter }}_hint"
+          {% endif %}
         >
 
         <label class="govuk-label govuk-radios__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
           {{ choice.1|unlocalize }}
         </label>
+        {% if radios_hints and choice.0 in radios_hints.keys %}
+          <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="govuk-hint govuk-radios__hint">
+            {{ radios_hints|lookup:choice.0 }}
+          </span>
+        {% endif %}
       </div>
     {% endfor %}
   </div>

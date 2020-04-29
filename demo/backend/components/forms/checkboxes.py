@@ -24,7 +24,11 @@ class CheckboxesForm(forms.Form):
         super(CheckboxesForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field.checkboxes("multiple", legend_size=Size.MEDIUM),
+            Field.checkboxes(
+                "multiple",
+                legend_size=Size.MEDIUM,
+                hints={"phone": "Select this option only if you have a mobile phone"},
+            ),
             Field.checkboxes("single", small=True),
         )
         self.helper.add_input(Submit("submit", "Submit"))

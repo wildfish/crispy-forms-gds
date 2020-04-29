@@ -29,6 +29,11 @@ class RadiosForm(forms.Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field.radios("name", legend_size=Size.MEDIUM, legend_tag="h1", inline=True),
-            Field.radios("method", legend_size=Size.MEDIUM, small=True),
+            Field.radios(
+                "method",
+                legend_size=Size.MEDIUM,
+                small=True,
+                hints={"phone": "Select this option only if you have a mobile phone"},
+            ),
         )
         self.helper.add_input(Submit("submit", "Submit"))

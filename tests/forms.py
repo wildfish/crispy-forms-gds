@@ -125,7 +125,9 @@ class AccordionForm(forms.Form):
         self.helper.layout = Layout(
             Accordion(
                 AccordionSection(
-                    "First section", HTML("<p>First section contents.</p>"),
+                    "First section",
+                    HTML("<p>First section contents.</p>"),
+                    summary="A summary of the first section",
                 ),
                 AccordionSection(
                     "Second section", HTML("<p>Second section contents.</p>"),
