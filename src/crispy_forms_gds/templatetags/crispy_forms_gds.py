@@ -9,7 +9,7 @@ Examples:
 
     Rendering a field: ::
 
-        {% load crispy_forms_gds_field %}
+        {% load crispy_forms_gds %}
         ...
         {% crispy_gds_field field attrs %}
 
@@ -36,6 +36,11 @@ from crispy_forms.utils import TEMPLATE_PACK
 
 
 register = template.Library()
+
+
+@register.inclusion_tag("gds/layout/error_summary.html")
+def error_summary(form):
+    return {"form": form}
 
 
 @register.filter

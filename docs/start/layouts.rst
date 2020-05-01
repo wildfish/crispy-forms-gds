@@ -161,7 +161,7 @@ for laying out the page but the main ``{% block %}`` for the page contents
 is just: ::
 
     {% extends "components/base.html" %}
-    {% load i18n crispy_forms_tags crispy_forms_gds_tags %}
+    {% load i18n crispy_forms_tags crispy_forms_gds %}
 
     {% block content %}
 
