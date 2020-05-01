@@ -17,7 +17,6 @@ django := venv/bin/python3 demo/manage.py
 frontend := demo/frontend
 nvm := sh ~/.nvm/nvm.sh
 
-
 .PHONY: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of:"
@@ -26,10 +25,8 @@ help:
 	@echo "  venv        to create the virtualenv and install dependencies"
 	@echo "  dist        to build the package"
 	@echo "  docs        to build the HTML documentation"
-	@echo "  install     to install the package in the vitualenv"
-	@echo "  reinstall   to rebuild and reinstall the package in the vitualenv"
-	@echo "  tests    	 to run the lint checks and tests"
-	@echo "  serve    	 to run the Django demo site"
+	@echo "  tests       to run the lint checks and tests"
+	@echo "  serve       to run the Django demo site"
 	@echo
 
 .PHONY: clean-dist
@@ -68,20 +65,13 @@ $(frontend)/dist: $(frontend)/node_modules
 docs:
 	python setup.py build_sphinx
 
-.PHONY: install
-install: venv dist
-	$(pip) install dist/$(full).tar.gz
-
-.PHONY: reinstall
-reinstall: clean-dist install
-
 .PHONY: tests
-tests: install
-	$(pytest)
+tests:
+	PYTHONPATH=src $(pytest)
 
 .PHONY: serve
-serve: install $(frontend)/dist
-	$(django) migrate
-	$(django) runserver
+serve: venv $(frontend)/dist
+	PYTHONPATH=src $(django) migrate
+	PYTHONPATH=src $(django) runserver
 
 -include *.mk
