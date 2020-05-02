@@ -33,6 +33,7 @@ from django import forms, template
 from django.conf import settings
 
 from crispy_forms.utils import TEMPLATE_PACK
+from crispy_forms_gds.fields import DateInputWidget
 
 
 register = template.Library()
@@ -40,12 +41,52 @@ register = template.Library()
 
 @register.inclusion_tag("gds/layout/error_summary.html")
 def error_summary(form):
+    """
+    Template tag that renders the list of errors from a form.
+    """
+
     return {"form": form}
 
 
 @register.filter
 def lookup(d, value):
+    """
+    Template filter that looks up a value from a dict.
+    """
     return d.get(value)
+
+
+@register.filter
+def pop(d, key):
+    """
+    Template filter that looks removes a key-value pair from a dict.
+    """
+    return d.pop(key)
+
+
+@register.filter
+def error_summary(bound_field):
+    """
+    Template tag that returns the set of errors indexed by field id.
+
+    Each key-value pair in the dict is the id of the field and the
+    list of errors for that field. The items are returned rather than
+    the dict to get over a limitation in the template syntax.
+
+    """
+    seen = []
+    errors = {}
+    if hasattr(bound_field.field, "fields"):
+        for idx, subfield in enumerate(bound_field.field.fields):
+            key = "%s_%d" % (bound_field.auto_id, idx)
+            subfield_errors = getattr(subfield.widget, "errors", [])
+            errors[key] = subfield_errors
+            seen.extend(subfield_errors)
+    for error in bound_field.errors:
+        if error not in seen:
+            errors.setdefault(bound_field.auto_id, [])
+            errors[bound_field.auto_id].append(error)
+    return errors.items()
 
 
 @register.filter
@@ -54,6 +95,14 @@ def is_checkbox(field):
     Template filter that returns True if the field is a checkbox, False otherwise.
     """
     return isinstance(field.field.widget, forms.CheckboxInput)
+
+
+@register.filter
+def is_date_input(field):
+    """
+    Template filter that returns True if the field is a Date input components, False otherwise.
+    """
+    return isinstance(field.field.widget, DateInputWidget)
 
 
 @register.filter
@@ -182,6 +231,16 @@ class CrispyGDSFieldNode(template.Node):
             [getattr(field.field.widget, "widget", field.field.widget)],
         )
 
+        if template_pack == "gds":
+            if is_multivalue(field):
+                error_widgets = [field.widget for field in field.field.fields]
+                error_count = sum(
+                    len(getattr(widget, "errors", [])) for widget in error_widgets
+                )
+            else:
+                error_widgets = None
+                error_count = 0
+
         if isinstance(attrs, dict):
             attrs = [attrs] * len(widgets)
 
@@ -194,7 +253,7 @@ class CrispyGDSFieldNode(template.Node):
         }
         converters.update(getattr(settings, "CRISPY_CLASS_CONVERTERS", {}))
 
-        for widget, attr in zip(widgets, attrs):
+        for widget_idx, (widget, attr) in enumerate(zip(widgets, attrs)):
             class_name = widget.__class__.__name__.lower()
             class_name = converters.get(class_name, class_name)
 
@@ -239,7 +298,7 @@ class CrispyGDSFieldNode(template.Node):
                 if hasattr(widget, "input_type") and "input_type" in widget.attrs:
                     widget.input_type = widget.attrs.pop("input_type")
 
-                if field.help_text:
+                if field.help_text and not is_multivalue(field):
                     widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
 
                 if (
@@ -256,20 +315,40 @@ class CrispyGDSFieldNode(template.Node):
                     widget_class_name = widget.__class__.__name__
 
                     if widget_class_name in ["Select", "TextInput", "Textarea"]:
-                        css_class += " govuk-input--error"
+                        if is_multivalue(field):
+                            if error_count == 0:
+                                css_class += " govuk-input--error"
+                            elif getattr(error_widgets[widget_idx], "errors", None):
+                                css_class += " govuk-input--error"
+                        else:
+                            css_class += " govuk-input--error"
                     elif widget_class_name in ["FileInput", "ClearableFileInput"]:
                         css_class += " govuk-file-upload--error"
 
                     if not field.help_text:
                         widget.attrs["aria-describedby"] = ""
 
-                    for idx, error in enumerate(field.errors, start=1):
-                        css_error_class = "%s_%d_error" % (field.auto_id, idx)
+                    for error_idx, error in enumerate(field.errors, start=1):
+                        css_error_class = "%s_%d_error" % (field.auto_id, error_idx)
 
-                        if widget.attrs["aria-describedby"]:
-                            widget.attrs["aria-describedby"] += " "
+                        if is_multivalue(field):
+                            if getattr(error_widgets[widget_idx], "errors", None):
+                                if error in error_widgets[widget_idx].errors:
+                                    if "aria-describedby" not in widget.attrs:
+                                        widget.attrs["aria-describedby"] = ""
 
-                        widget.attrs["aria-describedby"] += css_error_class
+                                    if widget.attrs["aria-describedby"]:
+                                        widget.attrs["aria-describedby"] += " "
+
+                                    widget.attrs["aria-describedby"] += css_error_class
+                        else:
+                            if "aria-describedby" not in widget.attrs:
+                                widget.attrs["aria-describedby"] = ""
+
+                            if widget.attrs["aria-describedby"]:
+                                widget.attrs["aria-describedby"] += " "
+
+                            widget.attrs["aria-describedby"] += css_error_class
 
             widget.attrs["class"] = css_class
 

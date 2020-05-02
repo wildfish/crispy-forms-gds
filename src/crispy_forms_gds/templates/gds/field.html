@@ -14,7 +14,11 @@
       {% include 'gds/layout/radios.html' %}
     {% endif %}
 
-    {% if not field|is_checkboxselectmultiple and not field|is_radioselect %}
+    {% if field|is_multivalue %}
+      {% include 'gds/layout/multifield.html' %}
+    {% endif %}
+
+    {% if not field|is_checkboxselectmultiple and not field|is_radioselect and not field|is_multivalue %}
 
       {% if field.label and not field|is_checkbox and form_show_labels %}
         {% if label_tag %}<{{ label_tag }} class="govuk-label-wrapper">{% endif %}

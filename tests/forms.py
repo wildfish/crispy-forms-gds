@@ -1,5 +1,6 @@
 from django import forms
 
+from crispy_forms_gds.fields import DateInputField
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import (
     HTML,
@@ -35,6 +36,15 @@ class CheckboxesForm(BaseForm):
         label="How would you like to be contacted?",
         help_text="Select all options that are relevant to you.",
         error_messages={"required": "Enter the ways to contact you"},
+    )
+
+
+class DateInputForm(BaseForm):
+
+    date = DateInputField(
+        label="When was your passport issued?",
+        help_text="For example, 12 11 2007",
+        require_all_fields=False,
     )
 
 

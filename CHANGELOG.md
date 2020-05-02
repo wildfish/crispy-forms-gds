@@ -12,6 +12,8 @@ and by implication, [Semantic Versioning](http://semver.org/).
 ### Added 
 - Hints can now be added to checkboxes and radios.
 - Accordion sections can now display a summary of the contents.
+- merged the templatetags so all you have to do is {% load crispy_forms_gds %}.
+- Added the fields and templates needed for the Date input component.
 
 ## [0.1.0] - 2020-04-28
 ### Added
