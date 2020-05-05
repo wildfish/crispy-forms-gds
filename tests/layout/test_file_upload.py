@@ -10,7 +10,7 @@ from tests.forms import FileUploadForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
 
-RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "file_upload")
+RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "file_upload")
 
 
 def test_initial_attributes():

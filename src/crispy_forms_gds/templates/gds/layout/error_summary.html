@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n crispy_forms_gds %}
 {% if form.helper.form_show_errors and form.errors %}
   <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
     <h2 class="govuk-error-summary__title" id="error-summary-title">
@@ -12,8 +12,10 @@
           {% endfor %}
         {% endwith %}
         {% for field in form.visible_fields %}
-          {% for error in field.errors %}
-            <li><a href="#{{ field.auto_id }}">{{ error }}</a></li>
+          {% for field_id, errors in field|error_summary %}
+            {% for error in errors %}
+              <li><a href="#{{ field_id }}">{{ error }}</a></li>
+            {% endfor %}
           {% endfor %}
         {% endfor %}
       </ul>

@@ -15,6 +15,7 @@ list.
     accordion
     button
     checkboxes
+    date
     details
     fieldset
     file

@@ -10,7 +10,7 @@ from tests.forms import CheckboxesForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
 
-RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "checkboxes")
+RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "checkboxes")
 
 
 def test_initial_attributes():

@@ -10,7 +10,7 @@ from tests.forms import RadiosForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
 
-RESULT_DIR = os.path.join(TEST_DIR, "fields", "results", "radios")
+RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "radios")
 
 
 def test_initial_attributes():
