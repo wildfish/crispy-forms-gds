@@ -11,7 +11,7 @@ day, month and year: ::
 
     from crispy_forms_gds.fields import DateInputField
     from crispy_forms_gds.helper import FormHelper
-    from crispy_forms_gds.layout import Submit
+    from crispy_forms_gds.layout import Layout, Submit
 
 
     class DateInputForm(forms.Form):
@@ -24,8 +24,8 @@ day, month and year: ::
 
         def __init__(self, *args, **kwargs):
             super(DateInputForm, self).__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
-            self.helper.add_input(Submit("submit", _("Submit")))
+            self.helper = FormHelper()
+            self.helper.layout = Layout("date", Submit("submit", _("Submit")))
 
             self.fields["date"].fields[2].error_messages[
                 "incomplete"

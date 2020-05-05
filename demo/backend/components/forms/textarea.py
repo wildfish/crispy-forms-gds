@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Field, Layout, Size, Submit
+from crispy_forms_gds.layout import HTML, Field, Hidden, Layout, Size, Submit
 
 
 class TextareaForm(forms.Form):
@@ -11,22 +11,22 @@ class TextareaForm(forms.Form):
         widget=forms.Textarea,
         help_text="Do not include personal or financial information, like your "
         "National Insurance number or credit card details.",
-        error_messages={
-            "required": "Enter a short description of the problem you had "
-            "making your purchase"
-        },
+        error_messages={"required": "Enter a short description of your application"},
     )
 
     def __init__(self, *args, **kwargs):
         super(TextareaForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field.textarea(
-                "description",
-                label_size=Size.LARGE,
-                label_tag="h1",
-                rows=3,
-                max_words=100,
-            ),
+            Field.textarea("description", rows=3, max_words=100,),
             Submit("submit", "Submit"),
+        )
+
+    def valid_layout(self):
+        value = self.cleaned_data["description"]
+        self.helper.layout = Layout(
+            Hidden("description", value),
+            HTML.h2("You answered..."),
+            HTML.p(value),
+            Submit("continue", "Continue"),
         )
