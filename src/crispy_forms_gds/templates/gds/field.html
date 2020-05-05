@@ -42,7 +42,7 @@
         {% include 'gds/layout/help_text_and_errors.html' %}
         {% crispy_gds_field field %}
         {% if max_characters or max_words %}
-          <span id="{{ field.id_for_label }}_info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+          <span id="{{ field.id_for_label }}-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
             {% if max_characters %}
               {% blocktrans %}
               You can enter up to {{ max_characters }} characters

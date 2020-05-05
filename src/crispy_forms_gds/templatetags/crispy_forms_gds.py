@@ -305,10 +305,15 @@ class CrispyGDSFieldNode(template.Node):
                     "class" in widget.attrs
                     and "govuk-js-character-count" in widget.attrs["class"]
                 ):
+
+                    # The javascript that updates the span containing character count
+                    # as the user types expects the id to end in '-info'. Anything else
+                    # won't work.
+
                     if widget.attrs["aria-describedby"]:
-                        widget.attrs["aria-describedby"] += " %s_info" % field.auto_id
+                        widget.attrs["aria-describedby"] += " %s-info" % field.auto_id
                     else:
-                        widget.attrs["aria-describedby"] = "%s_info" % field.auto_id
+                        widget.attrs["aria-describedby"] = "%s-info" % field.auto_id
 
                 if field.errors:
 
