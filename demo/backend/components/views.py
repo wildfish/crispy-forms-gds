@@ -74,3 +74,10 @@ class ComponentView(FormView):
     def get_context_data(self, **kwargs):
         kwargs.update(self.contexts[self.kwargs["name"]])
         return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        if "continue" in form.data:
+            return super().form_invalid(form)
+        else:
+            form.valid_layout()
+            return super().form_invalid(form)

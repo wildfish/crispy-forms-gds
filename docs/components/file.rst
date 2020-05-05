@@ -8,7 +8,7 @@ A `File upload`_ component helps users select and upload a file. ::
     from django import forms
 
     from crispy_forms_gds.helper import FormHelper
-    from crispy_forms_gds.layout import Submit
+    from crispy_forms_gds.layout import HTML, Layout, Submit
 
 
     class FileUploadForm(forms.Form):
@@ -23,7 +23,7 @@ A `File upload`_ component helps users select and upload a file. ::
 
         def __init__(self, *args, **kwargs):
             super(FileUploadForm, self).__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
-            self.helper.add_input(Submit("submit", "Submit"))
+            self.helper = FormHelper()
+            self.helper.layout = Layout("file", Submit("submit", "Submit"))
 
 You can see this form live in the Demo site.

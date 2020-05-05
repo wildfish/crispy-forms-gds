@@ -18,10 +18,7 @@ Adding a `Textarea`_ to a form is straightforward: ::
             widget=forms.Textarea,
             help_text="Do not include personal or financial information, like your "
             "National Insurance number or credit card details.",
-            error_messages={
-                "required": "Enter a short description of the problem you "
-                "had making your purchase"
-            },
+            error_messages={"required": "Enter a short description of your application"},
         )
 
         def __init__(self, *args, **kwargs):
@@ -29,7 +26,11 @@ Adding a `Textarea`_ to a form is straightforward: ::
             self.helper = FormHelper()
             self.helper.layout = Layout(
                 Field.textarea(
-                    "description", label_size=Size.LARGE, label_tag="h1", rows=3
+                    "description",
+                    label_size=Size.LARGE,
+                    label_tag="h2",
+                    rows=3,
+                    max_words=100,
                 ),
                 Submit("submit", "Submit"),
             )

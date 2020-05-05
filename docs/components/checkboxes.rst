@@ -14,7 +14,7 @@ though you need to override the default widget used by Django on the form. ::
 
     class CheckboxesForm(forms.Form):
 
-        multiple = forms.ChoiceField(
+        multiple = forms.MultipleChoiceField(
             choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message"),),
             widget=forms.CheckboxSelectMultiple,
             label="How would you like to be contacted?",
@@ -32,8 +32,13 @@ though you need to override the default widget used by Django on the form. ::
             super(CheckboxesForm, self).__init__(*args, **kwargs)
             self.helper = FormHelper()
             self.helper.layout = Layout(
-                Field.checkbox("multiple", legend_size=Size.MEDIUM), "single"
+                Field.checkboxes(
+                    "multiple",
+                    legend_size=Size.MEDIUM,
+                    hints={"phone": "Select this option only if you have a mobile phone"},
+                ),
+                Field.checkboxes("single", small=True),
+                Submit("submit", "Submit"),
             )
-            self.helper.add_input(Submit("submit", "Submit"))
 
 You can see this form live in the Demo site.

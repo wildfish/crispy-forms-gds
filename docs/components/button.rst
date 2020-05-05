@@ -20,7 +20,6 @@ A `Button`_ component is all you need to submit a form: ::
                 Div(Button.secondary("find", "Find address")),
                 Div(Button.primary("win", "Win lottery", disabled=True)),
                 Div(Button.warning("delete", "Delete account")),
-                Div(Submit('submit', "Submit"))
             )
 
 You can see this form live in the Demo site.

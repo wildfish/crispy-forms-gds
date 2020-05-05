@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms_gds.fields import DateInputField
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Submit
+from crispy_forms_gds.layout import HTML, Hidden, Layout, Submit
 
 
 class DateInputForm(forms.Form):
@@ -16,9 +16,20 @@ class DateInputForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(DateInputForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.helper.add_input(Submit("submit", _("Submit")))
+        self.helper = FormHelper()
+        self.helper.layout = Layout("date", Submit("submit", _("Submit")))
 
         self.fields["date"].fields[2].error_messages[
             "incomplete"
         ] = "The date your passport was issued must include a year"
+
+    def valid_layout(self):
+        value = self.cleaned_data["date"]
+        self.helper.layout = Layout(
+            Hidden("date_0", value.day),
+            Hidden("date_1", value.month),
+            Hidden("date_2", value.year),
+            HTML.h2("You answered..."),
+            HTML.table(None, [("Date:", value.strftime("%e %B %Y"))]),
+            Submit("continue", "Continue"),
+        )
