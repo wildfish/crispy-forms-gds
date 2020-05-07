@@ -2,13 +2,14 @@
 Template tags
 =============
 
+
 ``{% crispy %}``
 ================
 
-The crispy forms templatetag ``{% crispy form %}`` is still used to render
+The django-crispy-forms templatetag ``{% crispy %}`` is still used to render
 the form since the template pack is simply a plugin. ::
 
-    {% load crispy_forms_tags crispy_forms_gds %}
+    {% load crispy_forms_tags %}
     ...
     {% crispy form %}
     ...
@@ -32,18 +33,17 @@ of errors exactly where you need it ::
     ...
 
 If you choose not to display an error summary then you will need to set the
-``show_non_field_errors`` on your ``FormHelper`` to True in order to get
+``show_non_field_errors`` on your ``FormHelper`` to ``True`` in order to get
 non-field errors to be displayed, in the typical location, at the top of
 your form: ::
 
-        def __init__(self, *args, **kwargs):
-            super(DateInputForm, self).__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
-            self.helper.show_non_field_errors = True
+    def __init__(self, *args, **kwargs):
+        super(DateInputForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.show_non_field_errors = True
 
 
 ``{% crispy_gds_field %}``
 ==========================
 
 .. automodule:: crispy_forms_gds.templatetags.crispy_forms_gds
-   :members:
