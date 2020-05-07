@@ -37,3 +37,27 @@ def test_change_legend_size():
         Fieldset("name", "email", legend="Contact", legend_size=Size.LARGE)
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "legend_size.html")
+
+
+def test_css_class():
+    """Verify an extra CSS class can be added to the fieldset."""
+    form = FieldsetForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Fieldset(css_class="extra-css-class"))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "css_class.html")
+
+
+def test_css_id():
+    """Verify the id attribute can be set on the fieldset."""
+    form = FieldsetForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Fieldset(css_id="new_id"))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "css_id.html")
+
+
+def test_attribute():
+    """Verify the extra attributes can be added."""
+    form = FieldsetForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Fieldset(key="value"))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "attributes.html")

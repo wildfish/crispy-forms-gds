@@ -1,4 +1,4 @@
-<div class="govuk-accordion__section">
+<div class="govuk-accordion__section{% if div.css_class %} {{ div.css_class }}{% endif %}"{% if div.css_id %} id="{{ div.css_id }}"{% endif %} {{ div.flat_attrs|safe }}>
   <div class="govuk-accordion__section-header">
     <h2 class="govuk-accordion__section-heading">
       <span class="govuk-accordion__section-button">

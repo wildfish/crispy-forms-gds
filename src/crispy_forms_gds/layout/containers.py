@@ -84,16 +84,8 @@ class Accordion(Div):
 
     def __init__(self, *fields, **kwargs):
         super().__init__(*fields, **kwargs)
-        self.fields = list(fields)
-
-        if hasattr(self, "css_class") and "css_class" in kwargs:
-            self.css_class += " %s" % kwargs.pop("css_class")
-        if not hasattr(self, "css_class"):
-            self.css_class = kwargs.pop("css_class", None)
-
-        self.css_id = kwargs.pop("css_id", "accordion")
-        self.template = kwargs.pop("template", self.template)
-        self.flat_attrs = flatatt(kwargs)
+        if not self.css_id:
+            self.css_id = "accordion"
 
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
         content = ""
@@ -228,6 +220,11 @@ class Fieldset(crispy_forms_layout.LayoutObject):
 
         if legend_tag:
             self.context["legend_tag"] = legend_tag
+
+        if hasattr(self, "css_class") and "css_class" in kwargs:
+            self.css_class += " %s" % kwargs.pop("css_class")
+        if not hasattr(self, "css_class"):
+            self.css_class = kwargs.pop("css_class", None)
 
         self.css_id = kwargs.pop("css_id", None)
         self.template = kwargs.pop("template", self.template)
