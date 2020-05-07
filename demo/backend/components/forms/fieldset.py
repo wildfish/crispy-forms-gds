@@ -22,8 +22,8 @@ class FieldsetForm(forms.Form):
                 Field.text("city", field_width=Fluid.ONE_HALF),
                 Field.text("county", field_width=Fluid.ONE_HALF),
                 Field.text("postcode", field_width=Fluid.ONE_QUARTER),
-                title="What is your address?",
-                size=Size.LARGE,
-                tag="h1",
+                legend="What is your address?",
+                legend_size=Size.LARGE,
+                legend_tag="h1",
             )
         )

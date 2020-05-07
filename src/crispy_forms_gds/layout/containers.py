@@ -3,6 +3,7 @@ from django.utils.text import slugify
 
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK, flatatt, render_field
+from crispy_forms_gds.layout import Size
 
 
 class Div(crispy_forms_layout.Div):
@@ -30,7 +31,7 @@ class Accordion(Div):
         if not hasattr(self, "css_class"):
             self.css_class = kwargs.pop("css_class", None)
 
-        self.css_id = kwargs.pop("css_id", "")
+        self.css_id = kwargs.pop("css_id", "accordion")
         self.template = kwargs.pop("template", self.template)
         self.flat_attrs = flatatt(kwargs)
 
@@ -99,11 +100,17 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         self, *fields, legend=None, legend_size=None, legend_tag=None, **kwargs
     ):
         self.fields = list(fields)
-        self.context = {
-            "legend": legend,
-            "legend_size": legend_size,
-            "legend_tag": legend_tag,
-        }
+        self.context = {}
+
+        if legend:
+            self.context["legend"] = legend
+
+        if legend_size:
+            self.context["legend_size"] = Size.for_legend(legend_size)
+
+        if legend_tag:
+            self.context["legend_tag"] = legend_tag
+
         self.css_id = kwargs.pop("css_id", None)
         self.template = kwargs.pop("template", self.template)
         self.flat_attrs = flatatt(kwargs)
@@ -159,6 +166,8 @@ class TabPanel(Div):
     def __init__(self, name, *fields, **kwargs):
         super().__init__(*fields, **kwargs)
         self.name = name
+        if "css_id" in kwargs:
+            self.css_id = kwargs["css_id"]
         if not self.css_id:
             self.css_id = slugify(self.name)
 

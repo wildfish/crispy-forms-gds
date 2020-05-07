@@ -1,5 +1,5 @@
 """
-Tests to verify selects are rendered correctly.
+Tests to verify fieldsets are rendered correctly.
 
 """
 import os
@@ -34,6 +34,6 @@ def test_change_legend_size():
     form = FieldsetForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
-        Fieldset("name", "email", legend="Contact", legend_size=Size.for_legend("l"))
+        Fieldset("name", "email", legend="Contact", legend_size=Size.LARGE)
     )
     assert parse_form(form) == parse_contents(RESULT_DIR, "legend_size.html")
