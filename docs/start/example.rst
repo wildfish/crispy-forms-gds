@@ -28,7 +28,7 @@ Use ``crispy-forms-gds`` like a normal crispy form::
 
 Add the ``FormHelper`` class to the form, then in your template add the
 ``error_summary`` template tag to display the Design System `Error summary`_. Use the
-``crispy`` template tag to display the form as normal::
+``crispy`` template tag from ``django-crispy-forms`` to display the form as normal::
 
     {% load i18n crispy_forms_tags crispy_forms_gds %}
     ...

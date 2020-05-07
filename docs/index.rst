@@ -23,7 +23,7 @@ for the `GOV.UK Design System`_.
 
 .. toctree::
     :caption: Components
-    :maxdepth: 2
+    :titlesonly:
 
     components/index
 
