@@ -13,7 +13,6 @@ class SelectForm(forms.Form):
             ("views", "Most views"),
             ("comments", "Most comments"),
         ),
-        widget=forms.Select,
         label="Sort by",
     )
 

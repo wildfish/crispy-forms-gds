@@ -38,3 +38,24 @@ def test_disabled_button():
     assert parse_template(TEMPLATE, input=button) == parse_contents(
         RESULT_DIR, "disabled.html"
     )
+
+
+def test_css_class():
+    button = Button.primary("name", "Title", css_class="extra-css-class")
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "css_class.html"
+    )
+
+
+def test_css_id():
+    button = Button.primary("name", "Title", css_id="new_id")
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "css_id.html"
+    )
+
+
+def test_extra_attributes():
+    button = Button.primary("name", "Title", key="value")
+    assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "attributes.html"
+    )

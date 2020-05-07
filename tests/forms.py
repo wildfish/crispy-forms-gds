@@ -142,6 +142,5 @@ class AccordionForm(forms.Form):
                 AccordionSection(
                     "Second section", HTML("<p>Second section contents.</p>"),
                 ),
-                css_id="accordion",
             )
         )

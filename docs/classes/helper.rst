@@ -2,6 +2,5 @@
 FormHelper
 ==========
 
-.. automodule:: crispy_forms_gds.helper
-   :members:
+.. autoclass:: crispy_forms_gds.helper.FormHelper
 

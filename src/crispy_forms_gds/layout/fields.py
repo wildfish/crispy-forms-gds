@@ -1,8 +1,7 @@
-from django.template.loader import render_to_string
 from django.utils.html import conditional_escape
 
 from crispy_forms import layout as crispy_forms_layout
-from crispy_forms.utils import TEMPLATE_PACK, flatatt
+from crispy_forms.utils import TEMPLATE_PACK
 from crispy_forms_gds.layout import Fixed, Fluid, Size
 
 
@@ -34,14 +33,35 @@ class Field(crispy_forms_layout.LayoutObject):
     template = "%s/field.html"
 
     @classmethod
+    def checkbox(cls, field, small=False, **kwargs):
+        """
+        Create a field for displaying a single checkbox.
+
+        Args:
+            field (str): the name of the field.
+
+            small (bool): Display small checkboxes. Default is False.
+
+            **kwargs: Attributes to add to the <input> element when the field is
+                rendered.
+
+        Returns:
+            a Field object configured to display a Checkboxes component with a
+                single (yes/no) choice.
+
+        """
+        return Field(field, context={"checkboxes_small": small}, **kwargs)
+
+    @classmethod
     def checkboxes(
         cls, field, legend_size=None, legend_tag=None, small=False, hints=None, **kwargs
     ):
         """
-        Create a field for displaying checkboxes.
+        Create a field for displaying a set of checkboxes.
 
         Args:
-            field (str): the name of the field.
+            field (str): the name of the field. The field's label will be used as
+                the title of the <legend>.
 
             legend_size (str): the size of the legend. The default is None in which
                 case the legend will be rendered at the same size as regular text.
@@ -409,4 +429,16 @@ class Field(crispy_forms_layout.LayoutObject):
 
 
 class Hidden(crispy_forms_layout.Hidden):
+    """
+    Add a hidden field to a form's layout.
+
+    Examples:
+
+        Hidden("name")
+
+    The class is simply imported from ``django-crispy-forms``. It's included
+    so all the imports, when using the template pack come from the same source.
+
+    """
+
     pass

@@ -1,5 +1,5 @@
 """
-Tests to verify checkboxes are rendered correctly.
+Tests to verify a single (boolean) checkbox is rendered correctly.
 
 """
 import os

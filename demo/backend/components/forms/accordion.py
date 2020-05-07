@@ -27,6 +27,5 @@ class AccordionForm(forms.Form):
                     "How people read",
                     HTML.p("This is the content for How people read."),
                 ),
-                css_id="accordion",
             )
         )
