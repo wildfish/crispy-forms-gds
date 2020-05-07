@@ -1,5 +1,5 @@
 """
-Tests to verify date fields are rendered correctly.
+Tests to verify date inputs are rendered correctly.
 
 """
 import datetime
