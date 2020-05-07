@@ -1,9 +1,12 @@
 """
 This is a reimplementation of the crispy_forms_field template tag and
-associated filters so the correct GDS classes can be added to input
-elements. In particular the specific classes needed to render the
-different input types and associated error classes when a validation
-error is raised.
+associated filters so the correct Design System CSS classes can be added
+to input elements.
+
+The Design System also required that errors contain references to fields
+for accessibility reasons. That is not possible using Django's template
+language so this template tag also handles the setting of error CSS classes
+and updating of aria attributes when a form field is rendered.
 
 Examples:
 
@@ -17,16 +20,16 @@ Examples:
 
         {% if field|is_radioselect %}
 
-Do not load the original crispy_forms_field at the same time as nothing
-good will likely result.
+``crispy_gds_field`` is a drop-in replacement for ``crispy_field``. Don't
+mix them together as nothing good will likely result.
 
-The code was copied over verbatim from crispy_forms. Any additions are
-clearly marked with a check to see if the 'gds' template pack is being
+The code was copied over verbatim from ``django-crispy-forms``. Any additions
+are clearly marked with a check to see if the 'gds' template pack is being
 used.
 
-The templatetag is only used within the gds/field.html template and you
-probably won't have to deal with it, even if you are laying out a form
-explicitly.
+This templatetag is only used within the gds/field.html template and you
+almost certainly will not have to deal with it, even if you are laying out a
+form explicitly.
 
 """
 from django import forms, template
@@ -44,7 +47,6 @@ def error_summary(form):
     """
     Template tag that renders the list of errors from a form.
     """
-
     return {"form": form}
 
 

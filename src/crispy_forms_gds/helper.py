@@ -30,8 +30,11 @@ class FormHelper(crispy_forms_helper.FormHelper):
             as body text. To change the font size and weight use one of the
             pre-defined Design System sizes: 's', 'm', 'l' or 'xl'.
 
+    These attributes are added as template variables. They can be overridden
+    on each field, as required.
 
     Examples:
+
         You use FormHelper the same way as the django-crispy-form version.
 
         Let the FormHelper create a default layout for the form: ::

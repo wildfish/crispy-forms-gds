@@ -9,6 +9,32 @@ from crispy_forms_gds.widgets import DateInputWidget
 
 
 class DateInputField(forms.MultiValueField):
+    """
+    DateInputField is a MultiValueField for dates with separate fields for
+    the day, month and year.
+
+    The attribute ``require_all_fields`` determines where blank fields are
+    handled. If ``True`` and if all of the day, month or year fields are
+    blank a ``required`` error is raised. If any of the fields are blank
+    then an ``incomplete`` error is raised, These errors are reported
+    at the MultiValueField level - collectively - and so are not tied to
+    any specific field. Generally, for the Design System, you will want to
+    tie every error to a specific field. You can do that by setting
+    ``require_all_fields`` to ``False`` when you create a Form. Then an
+    error will be reported for each blank field. Which strategy to choose
+    will probably depend in the application, some cases a general "one of
+    the fields is blank" is sufficient and for other applications a detailed
+    list of exactly what error occurred in what field will be more instructive.
+
+    The error messages on the MultiValueField and in the validators on each
+    sub-field are utterly generic and do not provide the clear guidance that
+    is generally needed for public-facing applications. You should almost
+    always override these with message tailored to your application so the
+    user can receive clear and specific instruction on what the problem is
+    and how it can be corrected.
+
+    """
+
     widget = DateInputWidget
 
     def __init__(self, **kwargs):
@@ -40,21 +66,29 @@ class DateInputField(forms.MultiValueField):
 
     def clean(self, value):
         """
+        Validate the values entered into the day, month and year fields.
+
         Validate every value in the given list. A value is validated against
         the corresponding Field in self.fields.
 
-        For example, if this MultiValueField was instantiated with
-        fields=(DateField(), TimeField()), clean() would call
-        DateField.clean(value[0]) and TimeField.clean(value[1]).
+        Normally, all errors are reported at the level of the MultiValueField.
+        However the Design System requires that the Error Summary has links to
+        tie an error to a specific field. To make that work the ValidationErrors
+        for each field (day, month and year) are added to a list on the respective
+        widgets as well as the error list on the (bound) field. This was the easiest
+        way to get access to the errors for a specific field when the DateInputWidget
+        on the MultiValueField is rendered.
 
-        Normally all errors are reported at the MultiValueField level. However
-        the Error Summary component in the Design System requires an error to
-        be tied to a specific field within the MultiValueField. So the clean
-        method is overridden so when a ValidationError is raised by one of the
-        constituent fields it is recorded on the respective widgets. When the
-        Error Summary is rendered a custom templatetag generates the list of
-        errors with the id of the widget that generated them. That allows a
-        link to be generated that takes the user to the field that generated it.
+        Args:
+            value (list, tuple): the values entered into each field. The values are
+                in the order the fields are added to the ``fields`` attribute.
+
+        Raises:
+            ValidationError: if any of the values fails the validation checks performed
+                at the widget level or in this method.
+
+        Returns:
+             the value converted to a ``date``.
 
         """
         clean_data = []
@@ -112,6 +146,17 @@ class DateInputField(forms.MultiValueField):
         return out
 
     def compress(self, data_list):
+        """"
+        Convert the values entered into the fields as a ``date``.
+
+        Args:
+            data_list (tuple): a 3-tuple the of values entered into the fields.
+
+        Returns:
+            the ``date`` for the values entered in the day, month and year fields.
+                If any of the field are blank then None is returned.
+
+        """
         day, month, year = data_list
         if day and month and year:
             return date(day=int(day), month=int(month), year=int(year))
