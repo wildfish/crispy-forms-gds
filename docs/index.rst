@@ -12,14 +12,11 @@ for the `GOV.UK Design System`_.
 
 .. toctree::
     :caption: Get started
-    :maxdepth: 1
+    :titlesonly:
 
     start/install
-    start/example
-    start/layouts
-    start/settings
+    start/tutorial
     start/demo
-
 
 .. toctree::
     :caption: Components

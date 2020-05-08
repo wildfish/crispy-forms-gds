@@ -10,7 +10,9 @@ repository then you can run the Django demo site to see all Design System
 components in action.
 
 The project has a `makefile`_ in the project root that simplifies setting everything
-up. To run the Django demo site simply type::
+up. To run the Django demo site simply type:
+
+.. code-block:: bash
 
     make serve
 
