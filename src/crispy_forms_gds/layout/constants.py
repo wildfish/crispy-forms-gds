@@ -2,18 +2,25 @@ class Colour:
     """
     .. include:: ../conf.rst
 
-    A set of constants for defining tag colours.
+    A set of constants defining the names for colours.
 
-    Attributes:
-        BLUE: Make the tag :tag-blue:`BLUE`.
-        GREEN: Make the tag :tag-green:`GREEN`.
-        GREY: Make the tag :tag-grey:`GREY`.
-        ORANGE: Make the tag :tag-orange:`ORANGE`.
-        PINK: Make the tag :tag-pink:`PINK`.
-        PURPLE: Make the tag :tag-purple:`PURPLE`.
-        RED: Make the tag :tag-red:`RED`.
-        TURQUOISE: Make the tag :tag-turquoise:`TURQUOISE`.
-        YELLOW: Make the tag :tag-yellow:`YELLOW`.
+        :colour-blue:`BLUE`
+
+        :colour-green:`GREEN`
+
+        :colour-grey:`GREY`
+
+        :colour-orange:`ORANGE`
+
+        :colour-pink:`PINK`
+
+        :colour-purple:`PURPLE`
+
+        :colour-red:`RED`
+
+        :colour-turquoise:`TURQUOISE`
+
+        :colour-yellow:`YELLOW`
 
     Examples:
         You pass the colour in the class method for generating a tag: ::
@@ -23,7 +30,7 @@ class Colour:
         If a new class is added but is has not been added to the template
         pack, then just pass the name: ::
 
-            HTML.tag("Pending", 'lilac', validate=False)
+            HTML.tag("Pending", 'lilac')
 
     """
 

@@ -12,14 +12,11 @@ for the `GOV.UK Design System`_.
 
 .. toctree::
     :caption: Get started
-    :maxdepth: 1
+    :titlesonly:
 
     start/install
-    start/example
-    start/layouts
-    start/settings
+    start/tutorial
     start/demo
-
 
 .. toctree::
     :caption: Components
@@ -28,16 +25,15 @@ for the `GOV.UK Design System`_.
     components/index
 
 .. toctree::
-    :caption: Classes
-    :maxdepth: 2
+    :caption: Reference
+    :titlesonly:
 
-    classes/templatetags
-    classes/helper
-    classes/constants
-    classes/fields
-    classes/buttons
-    classes/containers
-    classes/content
+    reference/constants
+    reference/form/index
+    reference/layout/index
+    reference/settings
+    reference/templatetags
+    reference/filters
 
 You can find a detailed history of the project in the `CHANGELOG`_ on GitHub.
 

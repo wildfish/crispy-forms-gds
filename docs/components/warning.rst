@@ -25,5 +25,7 @@ correctly. ::
 
 You can see this form live in the Demo site.
 
-At some point we will look into whether it is possible to change the symbol
-colour and contents to create more general alerts.
+The styling and layout for a warning is not flexible. You could the symbol but
+the styling is fixed so the symbol's background is black. Since a Warning component
+is just a snippet of HTML it is much easier simply to clone the styling and generate
+your own HTML if you need something different.

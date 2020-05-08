@@ -10,8 +10,11 @@ from crispy_forms_gds.widgets import DateInputWidget
 
 class DateInputField(forms.MultiValueField):
     """
+    .. _Date input: https://design-system.service.gov.uk/components/date-input/
+
     DateInputField is a MultiValueField for dates with separate fields for
-    the day, month and year.
+    the day, month and year. It is used to implement the `Date input`_
+    component.
 
     The attribute ``require_all_fields`` determines where blank fields are
     handled. If ``True`` and if all of the day, month or year fields are
@@ -146,7 +149,7 @@ class DateInputField(forms.MultiValueField):
         return out
 
     def compress(self, data_list):
-        """"
+        """
         Convert the values entered into the fields as a ``date``.
 
         Args:

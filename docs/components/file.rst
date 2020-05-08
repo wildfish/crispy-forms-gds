@@ -27,3 +27,6 @@ A `File upload`_ component helps users select and upload a file. ::
             self.helper.layout = Layout("file", Submit("submit", "Submit"))
 
 You can see this form live in the Demo site.
+
+The Design System adds some styling but other than that file upload is a
+vanilla <input[type=file]> element.

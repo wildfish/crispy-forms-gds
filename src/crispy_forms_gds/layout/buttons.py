@@ -26,6 +26,27 @@ class Button(BaseInput):
 
         Button.primary('add', 'Add contact', disabled=True)
 
+    Arguments:
+        name (str): the value sent when the form is submitted.
+
+        value (str): the button's title.
+
+        disabled (bool, optional): is the button disabled. The default is ``False``.
+
+        css_id (str, optional): an unique identifier for the <button>. Generally
+            you will need to set this only if you need to add some javascript or
+            very specific styling.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the <button>. The basic Design System CSS class,
+            ``govuk-button`` is added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one normally used.
+
+        **kwargs: any additional attributes you want to add to the <button>.
+
     """
 
     template = "%s/layout/button.html"
@@ -55,20 +76,6 @@ class Button(BaseInput):
         )
 
     def __init__(self, name, value, disabled=False, **kwargs):
-        """
-        Create a button.
-
-        Args:
-            name: the name of the button. This will be slugified when the button
-                is rendered.
-
-            value: the button title.
-
-            disabled: is the button displayed initially disabled. Default is False.
-
-            **kwargs: Attributes to add to the <button> element when it is rendered.
-
-        """
         if disabled:
             kwargs["disabled"] = "disabled"
             kwargs["aria-disabled"] = "true"
@@ -81,10 +88,8 @@ class Submit(BaseInput):
     Create a Submit button.
 
     Submit buttons are rendered as ``input[type=submit]`` elements and work exactly
-    the same way as primary Buttons.
-
-    As with Buttons, disabling a Submit button is simply a matter of setting the
-    attribute.
+    the same way as primary Buttons. This is not a Design System component however
+    it is included as it's a basic element of ``django-crispy-forms``.
 
     Examples: ::
 
@@ -92,12 +97,26 @@ class Submit(BaseInput):
         Submit('add', 'Add contact', disabled=True)
 
     Args:
-        name: the name of the button. This will be slugified when the button
-            is rendered.
+        name (str): the value sent when the form is submitted.
 
-        value: the button title.
+        value (str): the button's title.
 
-        **kwargs: Attributes to add to the <input> element when it is rendered.
+        disabled (bool, optional): is the button disabled. The default is ``False``.
+
+        css_id (str, optional): an unique identifier for the <input> element.
+            Generally you will need to set this only if you need to add some
+            javascript or very specific styling.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the <input> element. The basic Design System CSS class,
+            ``govuk-button`` is added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one normally used.
+
+        **kwargs: any additional attributes you want to add to the <input>
+            element.
 
     """
 

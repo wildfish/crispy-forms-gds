@@ -28,5 +28,3 @@ Use a `Panel`_ component for confirmation messages or to highlight important sec
 
 
 You can see this form live in the Demo site.
-
-On the to-do list is to see if it is possible to change the background colour.

@@ -47,7 +47,21 @@ A `Radios`_ component is used when there is only one option allowed from a list.
 
 You can see this form live in the Demo site.
 
-On the to-do list is the ability to change the size of the radio buttons to
-something a little more discrete. Also the ability to display them horizontally
-so the field takes less space when there are only a small number of options and
-the labels allow it.
+The set of radio buttons are wrapped in a <fieldset> with a <legend>. The field's
+label used as the legend title. The keyword argument, ``legend_size`` is used to
+change the size and weight of the font of the legend, otherwise the legend will
+be the same size as body text, which is a bit unimposing. The ``Size`` class
+defines a set of string constants, ``SMALL``, ``MEDIUM``, ``LARGE`` and ``EXTRA_LARGE``
+to make things a little more readable but you can just use the corresponding values:
+``'s'``, ``'m'``, ``'l'`` or ``'xl'`` directly if you prefer.
+
+Im a multi-page form, where a single set of radio buttons is the only component on
+a page, you can wrap the legend in an ``<h1>`` header tag by setting the ``legend_tag``
+keyword argument to ``'h1'`` - leaving out the angle brackets. This avoids the duplication,
+particularly for screen readers, of having a page title then the radio buttons' legend
+effectively saying the same thing.
+
+For each radio button you can display an additional item of help text in the form of a
+hint. The ``hints`` keyword argument takes a dictionary where the keys are the
+respective radio button value and the value is the hint to be displayed
+below the radio button label. That allows you to display hints as needed.

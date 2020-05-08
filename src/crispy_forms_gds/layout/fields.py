@@ -9,25 +9,57 @@ class Field(crispy_forms_layout.LayoutObject):
     """
     A Layout object for display one or more fields in a form.
 
-    Field instances are rather low level, however, they give you better control
-    over setting the css classes and HTML attributes on a field. You can also
-    set template variables to control the rendering of all the markup - labels
-    etc. that make up a field.
+    Field instances are rather low level. You can set the attributes and
+    define the context variables used when the field is rendered.
 
-    For general use it's simpler to use the class methods to generate Field
+    Examples::
+
+        Field(
+            "name",
+            context={'label_size': 'govuk-label--m'},
+            css_class="govuk-!-width-one-half"
+        )
+
+        Field(
+            'age',
+            css_class="govuk-input-width-5",
+            style="color: #333;"
+        )
+
+    However it is much simpler to use the class methods to generate Field
     instances. This hide some of the details in the way the field is rendered
     and give more of a "component" feel. You can always update the instances
-    after  if you need to.
+    after if you need to.
 
     Examples::
 
         Field.text("name", label_size=Size.MEDIUM, field_width=Fluid.ONE_HALF)
+        Field.checkboxes("options", legend_size=Size.MEDIUM)
+        Field.radios("method", small=True)
 
     Field is a copy of the Crispy Forms Field class but with more well-defined
     interface. The ability to set template variables was added and the template
     keyword argument was made explicit - before it was just another kwarg. The
     one incompatibility is the wrapper_class keyword argument, which was removed.
     You can still add it via the context since it was used as a template variable.
+
+    Args:
+        css_class (str, optional): the css classes that will be added to the widget.
+
+        context (dict, optional): the list of values that will be added to the template
+            context when the field is rendered.
+
+        template (str, optional): the template used to render this field, overriding the
+            one defined on the class.
+
+        *fields: the names of the fields to display.
+
+        **kwargs (str): the list of attributes that will be added to the widget. Use '_'
+            instead of '-' in the attribute name. It will be converted to '-'.
+
+    The variables defined in the context are only in scope while the field is
+    being rendered. The original template context is then restored.
+
     """
 
     template = "%s/field.html"
@@ -44,10 +76,6 @@ class Field(crispy_forms_layout.LayoutObject):
 
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
-
-        Returns:
-            a Field object configured to display a Checkboxes component with a
-                single (yes/no) choice.
 
         """
         return Field(field, context={"checkboxes_small": small}, **kwargs)
@@ -76,9 +104,6 @@ class Field(crispy_forms_layout.LayoutObject):
 
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
-
-        Returns:
-            a Field object configured to display a Checkboxes component.
 
         """
         context = {}
@@ -129,9 +154,6 @@ class Field(crispy_forms_layout.LayoutObject):
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
 
-        Returns:
-            a Field object configured to display a Radios component.
-
         """
         context = {}
 
@@ -166,9 +188,6 @@ class Field(crispy_forms_layout.LayoutObject):
             **kwargs: Attributes to add to the <select> element when the field is
                 rendered.
 
-        Returns:
-            a Field object configured to display a Select component.
-
         """
         context = {}
 
@@ -199,9 +218,6 @@ class Field(crispy_forms_layout.LayoutObject):
 
             **kwargs: Attributes to add to the <input> element when the field is
                 rendered.
-
-        Returns:
-            a Field object configured to display a Text input.
 
         """
         context = {}
@@ -264,9 +280,6 @@ class Field(crispy_forms_layout.LayoutObject):
         Raises:
             ValueError: if you set max_characters and max_words at the same time.
 
-        Returns:
-            a Field object configured to display a Text input.
-
         """
         context = {}
 
@@ -304,32 +317,6 @@ class Field(crispy_forms_layout.LayoutObject):
         return Field(field, context=context, **kwargs)
 
     def __init__(self, *fields, css_class=None, context=None, template=None, **kwargs):
-        """
-        Create a Field for adding to a Layout.
-
-        Args:
-            *fields: the names of the fields to display.
-
-            css_class (str): the css classes that will be added to the widget.
-
-            context (dict): the list of values that will be added to the template
-                context when the field is rendered.
-
-            template (str): the template used to render this field, overriding the
-                one defined on the class.
-
-            **kwargs (str): the list of attributes that will be added to the widget. Use '_'
-                instead of '-' in the attribute name. It will be converted to '-'.
-
-        The variables defined in the context are only in scope while the field is
-        being rendered. The original template context is then restored.
-
-        Examples::
-
-            Field('name', context={'label_tag': 'h1', 'label_size': 'govuk-label--xl'})
-            Field('age', css_class="govuk-input-width-5", style="color: #333;")
-
-        """
         self.fields = list(fields)
 
         if hasattr(self, "attrs"):
@@ -392,8 +379,6 @@ class Field(crispy_forms_layout.LayoutObject):
         Args:
             **kwargs: keyword arguments that will be added as template variables.
 
-        Returns:
-
         """
         self.context.update(kwargs)
 
@@ -432,12 +417,31 @@ class Hidden(crispy_forms_layout.Hidden):
     """
     Add a hidden field to a form's layout.
 
-    Examples:
+    Examples::
 
-        Hidden("name")
+        Hidden("name", "Homer Simpson")
+
+    Arguments:
+        name (str): the name of the field when the form is submitted.
+
+        value (str): the value that will be submitted.
+
+        css_id (str, optional): an unique identifier for the hidden field.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the hidden field.
+
+        template (str, optional): the path to a template that overrides the
+            one normally used.
+
+        **kwargs: any additional attributes you want to add to the <button>.
 
     The class is simply imported from ``django-crispy-forms``. It's included
     so all the imports, when using the template pack come from the same source.
+
+    Generally the ``css_id``, ``css_class``, ``template`` and remaining keywords
+    arguments are of limited use in this case. They are present as they are
+    common to all fields.
 
     """
 

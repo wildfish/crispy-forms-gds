@@ -33,9 +33,9 @@ of errors exactly where you need it ::
     ...
 
 If you choose not to display an error summary then you will need to set the
-``show_non_field_errors`` on your ``FormHelper`` to ``True`` in order to get
-non-field errors to be displayed, in the typical location, at the top of
-your form: ::
+``show_non_field_errors`` on your ``FormHelper`` to ``True`` (the default
+is False) in order to get non-field errors to be displayed, in the typical
+location, at the top of your form: ::
 
     def __init__(self, *args, **kwargs):
         super(DateInputForm, self).__init__(*args, **kwargs)
@@ -46,4 +46,18 @@ your form: ::
 ``{% crispy_gds_field %}``
 ==========================
 
-.. automodule:: crispy_forms_gds.templatetags.crispy_forms_gds
+This is a reimplementation of the ``{% crispy_forms_field %}`` template tag
+from ``django-crispy-forms``. The Design System requires that errors contain
+references to fields for accessibility reasons. That is not so easy to do using
+Django's template language so this template tag also handles the setting of error
+CSS classes and updating of aria attributes when a form field is rendered.
+
+.. code-block:: html+django
+
+    {% load crispy_forms_gds %}
+    ...
+    {% crispy_gds_field field attrs %}
+
+This template tag is only used within the ``gds/field.html`` template and you
+almost certainly will not have to deal with it, even if you are laying out a
+form explicitly.

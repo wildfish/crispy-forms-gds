@@ -3,7 +3,7 @@
   {% for subwidget in widget.subwidgets %}
     <div class="govuk-date-input__item">
       <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="{{ subwidget.attrs.id }}">{{ subwidget.attrs|pop:"label" }}</label>
+        <label class="govuk-label govuk-date-input__label" for="{{ subwidget.attrs.id }}">{{ subwidget.attrs|dict_pop:"label" }}</label>
         {% include subwidget.template_name with widget=subwidget %}
       </div>
     </div>

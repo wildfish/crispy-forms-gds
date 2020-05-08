@@ -35,7 +35,7 @@ You can see this form live in the Demo site.
 
 There are two things to note in the above example. The first is that the field
 attribute, ``require_all_fields`` is set to False. This is done to avoid getting
-'parent' level errors mixed with errors from the day, month and year fields. For
+field-level errors mixed with errors from the separate day, month and year fields. For
 example if ``require_all_fields`` is True and the user leaves the year field blank
 then there will be a ``required`` error, "Enter the day, month and year" from the
 date field and an "Enter the year" error from the year field. Setting ``require_all_fields``

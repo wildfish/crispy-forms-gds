@@ -29,6 +29,6 @@ fields. ::
 
 You can see this form live in the Demo site.
 
-What would be interesting would be to see if the Design System lets you add fields
-instead of static contents. It is obviously a user experience nightmare but it is
-something we might look into at a late time.
+The first argument is the "title" for the detail section and the second is
+content that is shown when the user clicks on the title. That's all there is
+to it.

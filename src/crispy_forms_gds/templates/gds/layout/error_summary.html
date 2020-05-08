@@ -12,7 +12,7 @@
           {% endfor %}
         {% endwith %}
         {% for field in form.visible_fields %}
-          {% for field_id, errors in field|error_summary %}
+          {% for field_id, errors in field|field_errors %}
             {% for error in errors %}
               <li><a href="#{{ field_id }}">{{ error }}</a></li>
             {% endfor %}

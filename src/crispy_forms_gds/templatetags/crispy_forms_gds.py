@@ -1,42 +1,7 @@
-"""
-This is a reimplementation of the crispy_forms_field template tag and
-associated filters so the correct Design System CSS classes can be added
-to input elements.
-
-The Design System also required that errors contain references to fields
-for accessibility reasons. That is not possible using Django's template
-language so this template tag also handles the setting of error CSS classes
-and updating of aria attributes when a form field is rendered.
-
-Examples:
-
-    Rendering a field: ::
-
-        {% load crispy_forms_gds %}
-        ...
-        {% crispy_gds_field field attrs %}
-
-    Using the filters: ::
-
-        {% if field|is_radioselect %}
-
-``crispy_gds_field`` is a drop-in replacement for ``crispy_field``. Don't
-mix them together as nothing good will likely result.
-
-The code was copied over verbatim from ``django-crispy-forms``. Any additions
-are clearly marked with a check to see if the 'gds' template pack is being
-used.
-
-This templatetag is only used within the gds/field.html template and you
-almost certainly will not have to deal with it, even if you are laying out a
-form explicitly.
-
-"""
 from django import forms, template
 from django.conf import settings
 
 from crispy_forms.utils import TEMPLATE_PACK
-from crispy_forms_gds.fields import DateInputWidget
 
 
 register = template.Library()
@@ -51,7 +16,7 @@ def error_summary(form):
 
 
 @register.filter
-def lookup(d, value):
+def dict_lookup(d, value):
     """
     Template filter that looks up a value from a dict.
     """
@@ -59,7 +24,7 @@ def lookup(d, value):
 
 
 @register.filter
-def pop(d, key):
+def dict_pop(d, key):
     """
     Template filter that looks removes a key-value pair from a dict.
     """
@@ -67,7 +32,7 @@ def pop(d, key):
 
 
 @register.filter
-def error_summary(bound_field):
+def field_errors(bound_field):
     """
     Template tag that returns the set of errors indexed by field id.
 
@@ -100,24 +65,7 @@ def is_checkbox(field):
 
 
 @register.filter
-def is_date_input(field):
-    """
-    Template filter that returns True if the field is a Date input components, False otherwise.
-    """
-    return isinstance(field.field.widget, DateInputWidget)
-
-
-@register.filter
-def is_password(field):
-    """
-    Template filter that returns True if the field is a password field,
-    False otherwise.
-    """
-    return isinstance(field.field.widget, forms.PasswordInput)
-
-
-@register.filter
-def is_radioselect(field):
+def is_radios(field):
     """
     Template filter that returns True if the field is a set of radio
     buttons field, False otherwise.
@@ -135,7 +83,7 @@ def is_select(field):
 
 
 @register.filter
-def is_checkboxselectmultiple(field):
+def is_checkboxes(field):
     """
     Template filter that returns True if the field is set of checkboxes,
     False otherwise.
@@ -153,37 +101,12 @@ def is_file(field):
 
 
 @register.filter
-def is_clearable_file(field):
-    """
-    Template filter that returns True if the field is a clearable file upload
-    button, False otherwise.
-    """
-    return isinstance(field.field.widget, forms.ClearableFileInput)
-
-
-@register.filter
 def is_multivalue(field):
     """
     Template filter that returns True if the field is a multi-value field,
     False otherwise.
     """
     return isinstance(field.field.widget, forms.MultiWidget)
-
-
-@register.filter
-def classes(field):
-    """
-    Template filter that returns CSS classes of a field.
-    """
-    return field.widget.attrs.get("class", None)
-
-
-@register.filter
-def css_class(field):
-    """
-    Returns widget's class name in lowercase.
-    """
-    return field.field.widget.__class__.__name__.lower()
 
 
 def pairwise(iterable):
@@ -388,11 +311,18 @@ def crispy_gds_field(parser, token):
     """
     The templatetag used to render fields from the template pack.
 
-    Examples:
+    Examples: ::
 
-        ::
+        {% crispy_gds_field field attrs %}
 
-            {% crispy_gds_field field attrs %}
+    The code was copied over verbatim from ``django-crispy-forms``. Any additions
+    are clearly marked with a check to see if the 'gds' template pack is being
+    used.
+
+    This template tag is only used within the gds/field.html template and you
+    almost certainly will not have to deal with it, even if you are laying out a
+    form explicitly.
+
     """
     token = token.split_contents()
     field = token.pop(1)

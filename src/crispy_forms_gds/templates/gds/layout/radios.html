@@ -34,7 +34,7 @@
         </label>
         {% if radios_hints and choice.0 in radios_hints.keys %}
           <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="govuk-hint govuk-radios__hint">
-            {{ radios_hints|lookup:choice.0 }}
+            {{ radios_hints|dict_lookup:choice.0 }}
           </span>
         {% endif %}
       </div>

@@ -5,7 +5,9 @@ Accordion
 #########
 There are two Layout classes for adding an `Accordion`_ to a form. ``AccordionSection``
 which wraps the contents of each section and ``Accordion`` which wraps the sections
-and adds the ability to open and collapse them. ::
+and adds the ability to open and collapse them.
+
+.. code-block::django
 
     from django import forms
 
@@ -23,6 +25,7 @@ and adds the ability to open and collapse them. ::
                     AccordionSection(
                         "Writing well for the web",
                         HTML.p("This is the content for Writing well for the web.")
+                        summary="An introduction to clear and concise writing.",
                     ),
                     AccordionSection(
                         "Writing well for specialists",
@@ -35,8 +38,7 @@ and adds the ability to open and collapse them. ::
                     AccordionSection(
                         "How people read",
                         HTML.p("This is the content for How people read.")
-                    ),
-                    css_id="accordion"
+                    )
                 )
             )
 
@@ -44,24 +46,52 @@ You can see this form live in the Demo site.
 
 The first argument passed to the ``AccordionSection`` is the title, followed by the
 list of fields or other layout objects that will shown in the section. You can add
-any number of fields, other layout objects or composed layouts: ::
+any number of fields, other layout objects or composed layouts:
 
-    ...
-    self.helper.layout = Layout(
-        Accordion(
-            AccordionSection(
-                "Profile", "name", "born"
-            ),
-            AccordionSection(
-                "Contact", "email", Row(
-                    "country_code", "phone_number", "extension"
-                )
-            ),
-            css_id="accordion"
+.. code-block::django
+
+    Accordion(
+        AccordionSection(
+            "Contact", "email", Div(
+                "country_code", "phone_number", "extension"
+            )
         )
     )
 
-The ``css_id`` is needed for the Design System javascript to add all the CSS classes
-and attributes that create the accordion. If there is only one accordion on a page you
-`can` leave it out but, really, it's not recommended. What is likely to happen is that
-a future release will add a default value so the extra typing can be avoided.
+
+There is also the optional ``summary`` keyword argument. This is a short description
+of the contents of a panel so the user does not need to open it:
+
+.. code-block::django
+
+    AccordionSection(
+        "Writing well for the web",
+        HTML.p("This is the content for Writing well for the web.")
+        summary="An introduction to clear and concise writing.",
+    ),
+
+
+Each ``Accordion`` on a page needs to have a unique identifier otherwise the javascript
+used to control the component will not function correctly. You set the identifier using
+the ``css_id`` keyword argument: ::
+
+    Accordion(
+        AccordionSection(
+            ...
+        ),
+        css_id="accordion-1"
+    ),
+    ...
+    Accordion(
+        AccordionSection(
+            ...
+        ),
+        css_id="accordion-2"
+    )
+
+The default value is ``accordion``. Tf there is only one accordion on the page you
+don't need to change it.
+
+You cannot nest Accordions. Firstly because the javascript controls don't work - all
+the panels are open. Secondly, it's visually confusing. The nested Accordion is not
+indented.
