@@ -3,14 +3,13 @@ Design System
 =============
 
 There is support for all the `Design System Components`_ that you might expect to
-encounter in a complex form with the exception of ``Date input`` which is on the to-do
-list.
+encounter in a complex form.
 
 .. _Design System Components: https://design-system.service.gov.uk/components
 
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     accordion
     button

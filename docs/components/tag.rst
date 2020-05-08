@@ -38,3 +38,9 @@ Here we had to force render the tags then use ``mark_safe`` so the HTML could be
 displayed within a table. That means, right now, you can't put layout objects
 in tables. We are not too bothered since the Design System in intended to steer
 you away from such shenanigans but we'll fix this in the future.
+
+The contents of a ``TabPanel`` can be any set of Fields, HTML content,
+LayoutObject or composed layout. You cannot nest sets of tabs. It works
+visually, although the appearance is a little cluttered, however the
+javascript that controls the switching between tabs does not work.
+

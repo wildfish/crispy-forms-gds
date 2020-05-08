@@ -3,8 +3,8 @@
 ######
 Select
 ######
-Use a `Select`_ component only as a last resort for public facing services as there is
-often a high rate of errors. ::
+The Design System recommends using a `Select`_ component only as a last resort
+for public facing services as there is often a high rate of errors. ::
 
     from django import forms
 
@@ -21,7 +21,6 @@ often a high rate of errors. ::
                 ("views", "Most views"),
                 ("comments", "Most comments"),
             ),
-            widget=forms.Select,
             label="Sort by",
         )
 

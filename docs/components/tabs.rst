@@ -3,9 +3,9 @@
 ####
 Tabs
 ####
-There are two Layout classes for adding an `Tabs`_ to a form. ``TabPanel``
-which wraps the contents of each section and ``Tabs`` which wraps the sections
-and adds the ability to step between them. ::
+There are two Layout classes for adding `Tabs`_ component to a form: ``TabPanel``,
+which contains the list of fields and other LayoutObjects which form the contents
+of each panel and a parent ``Tabs`` which contains the list of panels. ::
 
     from django import forms
 
@@ -59,14 +59,43 @@ and adds the ability to step between them. ::
                 )
             )
 
-You can see this form live in the Demo site.
+You can see this form live in the Demo site. Here we just copied the example
+from the GOV.UK Design System site so all the layout objects are chunks of HTML.
 
-The first argument passed to the ``TabPanel`` is the title, followed by the
-list of fields or other layout objects that will shown in the section. Here
-we just copied the example from the GOV.UK Design System site so all the
-layout objects are chunks of HTML.
+The first argument passed to each ``TabPanel`` is the title, followed by the
+list of fields or other layout objects that make up the contents. The ``Tabs``
+object just contains the list of TabPanels.
 
 When each tab is displayed the panel shrinks to fit the content. That's not a
 a problem if the data is regular, as in the above example, or if the tabs are
 displayed on a separate page in a multi-page form. It might not make for a good
 visual experience if used on a large form however.
+
+There is one complication. The name passed to the TabPanel is used to generate
+the id attribute on the <div> that is used to create the panel. That means if
+you have more than one set of tabs on a page with the same set of titles,
+clicking on one panel brings to the front all the panels with the same name.
+That is easily fixed however. Just set the ``css_id`` so you make the identifier
+for each panel unique: ::
+
+    HTML.h1("Past Week"),
+    Tabs(
+        TabPanel(
+            "Opened", HTML.h1("Opened"), HTML.table(headings, past_week_opened)
+        ),
+        TabPanel(
+            "Closed", HTML.h1("Closed"), HTML.table(headings, past_week_closed)
+        )
+    ),
+    HTML.h1("Past Month"),
+    Tabs(
+        TabPanel(
+            "Opened", HTML.h1("Opened"), HTML.table(headings, past_month_opened),
+            css_id="past-month-opened"
+        ),
+        TabPanel(
+            "Closed", HTML.h1("Closed"), HTML.table(headings, past_month_closed),
+            css_id="past-month-closed"
+        ),
+    )
+

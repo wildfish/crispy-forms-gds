@@ -19,7 +19,7 @@ so you can notes or side-comments to the body of a form. ::
             self.helper.layout = Layout(
                 HTML.inset(
                     "It can take up to 8 weeks to register a lasting power of "
-                    "attorney if there are no mistakes in the application. "
+                    "attorney if there are no mistakes in the application."
                 )
             )
 
