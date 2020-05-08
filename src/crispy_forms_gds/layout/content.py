@@ -7,10 +7,10 @@ from crispy_forms_gds.layout.constants import Colour
 
 class HTML(crispy_forms_layout.HTML):
     """
-    The HTML layout object lets you add general content to you form
+    The HTML layout object lets you add general content to a form
     so you can avoid having to lay it out manually.
 
-    You can pass in any string containing HTML: ::
+    You can pass in any string containing HTML::
 
         self.helper.layout = Layout(
             ...
@@ -18,35 +18,40 @@ class HTML(crispy_forms_layout.HTML):
             ...
         )
 
-    Alternatively, use one the class methods: ::
+    Arguments:
+        html (str): the unescaped HTML to be displayed.
 
-         self.helper.layout = Layout(
-            ...
-            HTML.p("This is the content for a paragraph."),
-            ...
-        )
+    To make life easier there are several class methods which generate
+    various HTML elements::
+
+        HTML.p("This is the content for a paragraph.")
 
     For something as simple a paragraph that does not save you much in
     typing. However where it really makes a difference is when layout
-    complex things like tables which require a whole slew of classes to
-    be added to the basic HTML: ::
+    complex things like a Details component which require a whole slew
+    of classes to be added to the basic HTML. Compare::
 
-        def __init__(self, *args, **kwargs):
-            super(MyForm, self).__init__(*args, **kwargs)
+        HTML.details(
+            "Help with nationality",
+            "We need to know your nationality so we can work out which "
+            "elections you’re entitled to vote in.",
+        )
 
-            headings = ["Case manager", "Cases opened", "Cases closed"]
+    to the actual layout::
 
-            data = [
-                ["David Francis", "3", "0"],
-                ["Paul Farmer", "1", "0"],
-                ["Rita Patel", "2", "0"],
-            ]
+        HTML('<details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Help with nationality</span>
+              </summary>
+              <div class="govuk-details__text">
+                  We need to know your nationality so we can work out which
+                  elections you’re entitled to vote in.
+              </div>
+            </details>')
 
-            self.helper = FormHelper()
-            self.helper.layout = Layout(
-                HTML.table(headings, data)
-            )
-
+    The set of class methods is not comprehensive. For now, only the most common
+    HTML elements and Design System components are included. More will added as
+    the need and demand arises.
 
     """
 
@@ -60,9 +65,6 @@ class HTML(crispy_forms_layout.HTML):
         Args:
             title: the text for the short link.
             content: the detailed description shown when the user clicks on the link.
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         snippet = """
@@ -91,9 +93,6 @@ class HTML(crispy_forms_layout.HTML):
         Args:
             content: the text for the heading.
 
-        Returns:
-            An HTML instance that can be added to a form's layout.
-
         """
         return HTML.heading("h1", "xl", content)
 
@@ -104,9 +103,6 @@ class HTML(crispy_forms_layout.HTML):
 
         Args:
             content: the text for the heading.
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         return HTML.heading("h2", "l", content)
@@ -119,9 +115,6 @@ class HTML(crispy_forms_layout.HTML):
         Args:
             content: the text for the heading.
 
-        Returns:
-            An HTML instance that can be added to a form's layout.
-
         """
         return HTML.heading("h3", "m", content)
 
@@ -132,9 +125,6 @@ class HTML(crispy_forms_layout.HTML):
 
         Args:
             content: the text for the heading.
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         return HTML.heading("h4", "s", content)
@@ -149,9 +139,6 @@ class HTML(crispy_forms_layout.HTML):
         Args:
             content: the text to be displayed.
 
-        Returns:
-            An HTML instance that can be added to a form's layout.
-
         """
         snippet = '<div class="govuk-inset-text">%s</div>' % mark_safe(content)
         return HTML(snippet)
@@ -163,9 +150,6 @@ class HTML(crispy_forms_layout.HTML):
 
         Args:
             content: the text to be displayed.
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         snippet = '<p class="govuk-body">%s</p>' % mark_safe(content)
@@ -181,9 +165,6 @@ class HTML(crispy_forms_layout.HTML):
         Args:
             title: the title.
             content: the message (subtitle).
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         snippet = """
@@ -207,9 +188,6 @@ class HTML(crispy_forms_layout.HTML):
         Args:
             headings: the list of heading for the columns.
             data: the list of contents for each row - a list of lists of strings.
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         context = Context(dict(headings=headings, data=data))
@@ -252,9 +230,6 @@ class HTML(crispy_forms_layout.HTML):
             title: the text that is displayed in the tag.
             colour: the name of the background colour used in the tag.
 
-        Returns:
-            An HTML instance that can be added to a form's layout.
-
         """
         snippet = '<strong class="govuk-tag %s">%s</strong>' % (
             Colour.for_tag(colour, validate=False),
@@ -271,9 +246,6 @@ class HTML(crispy_forms_layout.HTML):
 
         Args:
             content: the message that is displayed as a warning.
-
-        Returns:
-            An HTML instance that can be added to a form's layout.
 
         """
         snippet = """

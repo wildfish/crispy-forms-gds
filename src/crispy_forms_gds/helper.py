@@ -41,7 +41,7 @@ class FormHelper(crispy_forms_helper.FormHelper):
 
             def __init__(self, *args, **kwargs):
                 super(MyForm, self).__init__(*args, **kwargs)
-                self.helper = FormHelper(form)
+                self.helper = FormHelper(self)
 
         Create a custom Layout: ::
 

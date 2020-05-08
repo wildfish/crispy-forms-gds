@@ -1,12 +1,12 @@
-.tag-blue { display: inline-block; font-weight: bold; color: #144e81; background-color: #d2e2f1; padding: 4px; }
-.tag-green { display: inline-block; font-weight: bold; color: #005a30; background-color: #cce2d8; padding: 4px; }
-.tag-grey { display: inline-block; font-weight: bold; color: #454a4d; background-color: #eff0f1; padding: 4px; }
-.tag-orange { display: inline-block; font-weight: bold; color: #6e3619; background-color: #fcd6c3; padding: 4px; }
-.tag-pink { display: inline-block; font-weight: bold; color: #80224d; background-color: #f7d7e6; padding: 4px; }
-.tag-purple { display: inline-block; font-weight: bold; color: #3d2375; background-color: #dbd5e9; padding: 4px; }
-.tag-red { display: inline-block; font-weight: bold; color: #942514; background-color: #f6d7d2; padding: 4px; }
-.tag-turquoise { display: inline-block; font-weight: bold; color: #10403c; background-color: #bfe3e0; padding: 4px; }
-.tag-yellow { display: inline-block; font-weight: bold; color: #594d00; background-color: #fff7bf; padding: 4px; }
+.colour-blue { display: inline-block; font-weight: bold; color: #144e81; background-color: #d2e2f1; padding: 4px; }
+.colour-green { display: inline-block; font-weight: bold; color: #005a30; background-color: #cce2d8; padding: 4px; }
+.colour-grey { display: inline-block; font-weight: bold; color: #454a4d; background-color: #eff0f1; padding: 4px; }
+.colour-orange { display: inline-block; font-weight: bold; color: #6e3619; background-color: #fcd6c3; padding: 4px; }
+.colour-pink { display: inline-block; font-weight: bold; color: #80224d; background-color: #f7d7e6; padding: 4px; }
+.colour-purple { display: inline-block; font-weight: bold; color: #3d2375; background-color: #dbd5e9; padding: 4px; }
+.colour-red { display: inline-block; font-weight: bold; color: #942514; background-color: #f6d7d2; padding: 4px; }
+.colour-turquoise { display: inline-block; font-weight: bold; color: #10403c; background-color: #bfe3e0; padding: 4px; }
+.colour-yellow { display: inline-block; font-weight: bold; color: #594d00; background-color: #fff7bf; padding: 4px; }
 .font-small { font-weight: 700; font-size: 1rem; }
 .font-medium { font-weight: 700; font-size: 1.125rem; }
 .font-large { font-weight: 700; font-size: 1.5rem; }

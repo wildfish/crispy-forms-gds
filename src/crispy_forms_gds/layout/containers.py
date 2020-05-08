@@ -8,34 +8,38 @@ from crispy_forms_gds.layout import Size
 
 class Div(crispy_forms_layout.Div):
     """
-    A layout object for displaying a Div.
-
-    Div is just a general-purpose container for laying out forms. It
-    inherits everything from it's ``django-crispy-forms`` parent. it is
-    include in the template pack as it make imports easier.
+    A layout object for displaying a general-purpose Div. This is not
+    a Design System component but is included as it's a basic part of
+    ``django-crispy-forms``.
 
     Although there is the Fieldset component for grouping fields together
     a Div is quite useful when you just need to add some spacing between
     elements.
 
-    Examples: ::
+    Examples::
 
         Div("name", "email", "phone", css_class="govuk-!-margin-bottom-5")
-        Button.primary("add", "Add contact")
+        Div("street", "city", "post_code")
 
-    Args:
-        *fields: a list of ``LayoutObjects`` - fields, buttons, HTML,
+    Arguments:
+        css_id (str, optional): an unique identifier for the <div>. Generally
+            you will need to set this if you need to add some javascript or
+            very specific styling.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the <div>. This parameter is for any styling you
+            want to apply. Nothing is added by default.
+
+        template (str, optional): the path to a template that overrides the
+            one normally used.
+
+        *fields: a list of layout objects - fields, buttons, HTML,
             etc. that displayed inside the <div> element.
 
-        **kwargs: the keyword arguments supported by a ``LayoutObject``:
-            ``css_id`` - the unique identifier for the component;
-            ``css_class`` - additional css classes that can be used to
-            style the <div> and ``template`` - the path to another
-            template that can be used to render the accordion. The
-            remaining keyword arguments are added as attributes to the
-            <div> element.
+        **kwargs: any additional attributes you want to add to the parent
+            <div>.
 
-     """
+    """
 
     pass
 
@@ -49,34 +53,36 @@ class Accordion(Div):
     Accordion is the parent object to which you add an ``AccordionSection`` for
     each of the panels you want to display.
 
-    Each accordion on a given page must have a unique identifier so the
-    javascript controls that open and close the panels can be added by
-    the Design System. The default value is 'accordion' so you don't
-    need to set it if there is only one.
-
-    Examples: ::
+    Examples::
 
         Accordion(
-            AccordionSection("group name", "form_field_1", "form_field_2"),
-            AccordionSection("another group name", "form_field")
+            AccordionSection("title_1", "form_field_1", "form_field_2"),
+            AccordionSection("title_2", "form_field_3")
         )
 
         Accordion(
-            AccordionSection("group name", "form_field_1", "form_field_2"),
+            AccordionSection("title", "form_field_1", "form_field_2"),
             css_id="accordion-1"
         )
 
-    Args:
+    Arguments:
+        css_id (str, optional): an unique identifier for the accordion. The
+            default is "accordion". You will need to set this if you have more
+            than one accordion on a page.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the parent <div>. The basic Design System CSS
+            classes will be added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one normally used the accordion.
+
         *fields: a list of AccordionSection objects that are the panels
             that make up this accordion.
 
-        **kwargs: the keyword arguments supported by a ``LayoutObject``:
-            ``css_id`` - the unique identifier for the component;
-            ``css_class`` - additional css classes that can be used to
-            style the accordion and ``template`` - the path to another
-            template that can be used to render the accordion. The
-            remaining keyword arguments are added as attributes to the
-            parent <div> that is to create the accordion.
+        **kwargs: any additional attributes you want to add to the parent
+            <div>.
 
     """
 
@@ -104,15 +110,9 @@ class AccordionSection(Div):
     """
     .. _Accordion: https://design-system.service.gov.uk/components/accordion/
 
-    A layout object for displaying a panel in an `Accordion`_ component.
+    A layout object for displaying a action in an `Accordion`_ component.
 
-    The AccordionSection has a title and an optional summary that describes
-    the contents of the panel. The contents can be one or more LayoutObjects:
-    fields, buttons, composed layouts, etc. You cannot nest Accordions however.
-    (The controls don't work - all the panels are open. It's visually confusing
-    as the styling assumes only one level).
-
-    Examples: ::
+    Examples::
 
         AccordionSection("title", "form_field_1", "form_field_2")
 
@@ -122,20 +122,28 @@ class AccordionSection(Div):
             summary="A short description of the contents"
         )
 
-    Args:
-        name (str): the title of the panel.
+    Arguments:
+        name (str): the title of the section.
 
-        summary (str, optional): a short description of the panel contents.
+        summary (str, optional): a short description of the section's contents.
 
-        *fields: a list of LayoutObjects objects that make up the panel contents.
+        css_id (str, optional): an unique identifier for the section. This is
+            included as an AccordionSection is just a specialised Div. It is
+            a basic LayoutObject param and should never have to set it.
 
-        **kwargs: the keyword arguments supported by a ``LayoutObject``:
-            ``css_id`` - the unique identifier for the component;
-            ``css_class`` - additional css classes that can be used to
-            style the accordion section and ``template`` - the path to
-            another template that can be used to render the section. The
-            remaining keyword arguments are added as attributes to the
-            <div> that is to create the section.
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the section <div>. The basic Design System CSS
+            classes will be added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one used to render a section.
+
+        *fields: a list of layout objects objects that make up the section
+            contents.
+
+        **kwargs:  any additional attributes you want to add to the section
+            <div>.
 
     """
 
@@ -166,40 +174,38 @@ class Fieldset(crispy_forms_layout.LayoutObject):
     A layout object for displaying groups of fields.
 
     The contents of a Fieldset are be one or more LayoutObjects: fields, buttons,
-    composed layouts, etc.
+    composed layouts, etc. You can give the <fieldset> a <legend> title, set the size
+    of the font used and wrap the <legend> in a heading tag if necessary.
 
-    A Fieldset has an optional title which is created using a <legend> element.
-    The title size is set from one of the predefined Design System sizes:
-    small ('s'), medium ('m'), large ('l') or extra-large ('xl'). The sizes are
-    defined as constants on the ``Size`` class. The size is translated to the
-    appropriate CSS class when the Fieldset is rendered. If the Fieldset is the
-    only element on the page you can "promote" the <legend> to become the page
-    title by wrapping it in an <h1> tag. The avoids the duplication that would
-    result, particularly for screen readers, where the page had both a title and
-    the Fieldset <legend>.
-
-    Examples: ::
+    Examples::
 
         Fieldset('form_field_1', 'form_field_2')
         Fieldset('form_field_1', 'form_field_2', legend="fieldset_title")
         Fieldset('form_field_1', 'form_field_2', legend="fieldset_title", legend_tag="h1")
         Fieldset('form_field_1', 'form_field_2', legend="fieldset_title", legend_size="xl")
 
-    Args:
+    Arguments:
         legend (str, optional): the title displayed in a <legend>.
+
         legend_size (str, optional): the size of the title: 's', 'm', 'l' or
-            'xl'.
-        legend_tag (str, optional): an HTML tag that wraps the <legend>. Normally
+            'xl'. It's more readable if you use the contants on the ``Size`` class.
+
+        legend_tag (str, optional): an HTML tag that wraps the <legend>. Typically
             this is 'h1' so the <legend> also acts as the page title.
+
+        css_id (str, optional): an unique identifier for the fieldset.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the <fieldset>. The basic Design System CSS
+            classes will be added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one provided by the template pack.
 
         *fields: a list of LayoutObjects objects that make up the Fieldset contents.
 
-        **kwargs: the keyword arguments supported by a ``LayoutObject``:
-            ``css_id`` - the unique identifier for the component;
-            ``css_class`` - additional css classes that can be used to style
-            the <fieldset> and ``template`` - the path to another template
-            that can be used to render the <fieldset>. The remaining keyword
-            arguments are added as attributes to the <fieldset> element.
+        **kwargs:  any additional attributes you want to add to the <fieldset>.
 
    """
 
@@ -252,26 +258,28 @@ class Tabs(Div):
     list of fields and other layout objects which make up the content of
     each tab.
 
-    Example: ::
+    Examples::
 
         Tabs(
             TabPane('tab_name_1', 'form_field_1', 'form_field_2'),
             TabPane('tab_name_2', 'form_field_3')
         )
 
-    Args:
+    Arguments:
+        css_id (str, optional): an unique identifier for the parent <div>.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the parent <div>. The basic Design System CSS
+            classes will be added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one provided by the template pack.
+
         *fields: a list of TabPanel objects that make up the set of tabs.
 
-        **kwargs: the keyword arguments supported by a ``LayoutObject``:
-            ``css_id`` - the unique identifier for the component;
-            ``css_class`` - additional css classes that can be used to style
-            the parent <div> and ``template`` - the path to another template
-            that can be used to render the set of tabs. The remaining keyword
-            arguments are added as attributes to the parent <div> element.
-
-    The ``css_id`` keyword argument generally is not needed since the javascript
-    added by the Design System applies to the daughter ``TabPanels`` and not the
-    parent <div>.
+        **kwargs:  any additional attributes you want to add to the parent
+            <div>.
 
     """
 
@@ -289,27 +297,31 @@ class TabPanel(Div):
     """
     A layout object that displays the contents of each pane in a set of tabs.
 
-    The contents of a ``TabPanel`` can be any set of Fields, HTML content,
-    LayoutObject or composed layout. You cannot nest sets of tabs. It works
-    visually, although the appearance is a little cluttered, however the
-    javascript that controls the switching between tabs does not work.
-
-    Example::
+    Examples::
 
         TabPanel('tab_name', 'form_field_1', 'form_field_2', 'form_field_3')
 
-    Args:
-        name (str): the title of the panel. This is also used as the id
-            for the <div> that displays the contents.
+    Arguments:
+        name (str): the title of the panel.
+
+        css_id (str, optional): an unique identifier for the parent <div>.
+            If you don't set this then the slugified title is used for the
+            id attribute. You must set this if you have more than one set
+            of tabs on a page with the same set of titles.
+
+        css_class (str, optional): the names of one or more CSS classes that
+            will be added to the parent <div>. The basic Design System CSS
+            classes will be added automatically. This parameter is for any
+            extra styling you want to apply.
+
+        template (str, optional): the path to a template that overrides the
+            one provided by the template pack.
+
 
         *fields: a list of layout objects that make up the contents of the panel.
 
-        **kwargs: the keyword arguments supported by a ``LayoutObject``:
-            ``css_id`` - the unique identifier for the component;
-            ``css_class`` - additional css classes that can be used to style
-            the parent <div> of the panel and ``template`` - the path to another
-            template that can be used to render the set of tabs. The remaining
-            keyword arguments are added as attributes to the parent <div> element.
+        **kwargs:  any additional attributes you want to add to the <div>
+            element used for create the tab panel.
 
     """
 

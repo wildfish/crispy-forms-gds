@@ -28,16 +28,15 @@ for the `GOV.UK Design System`_.
     components/index
 
 .. toctree::
-    :caption: Classes
-    :maxdepth: 2
+    :caption: Reference
+    :titlesonly:
 
-    classes/templatetags
-    classes/helper
-    classes/constants
-    classes/fields
-    classes/buttons
-    classes/containers
-    classes/content
+    reference/constants
+    reference/form/index
+    reference/layout/index
+    reference/settings
+    reference/templatetags
+    reference/filters
 
 You can find a detailed history of the project in the `CHANGELOG`_ on GitHub.
 
