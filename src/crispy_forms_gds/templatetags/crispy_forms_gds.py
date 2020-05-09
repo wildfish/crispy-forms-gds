@@ -31,6 +31,29 @@ def back_link(url, title=None):
     return format_html('<a href="{}" class="govuk-back-link">{}</a>', url, title)
 
 
+@register.simple_tag
+def button_link(url, title):
+    """
+    Template tag that returns the HTML needed to display a link as a Button component.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% button_link url title %}
+
+    Args:
+        url (str): the URL for the link.
+        title (str): the title of the button.
+
+    """
+    return format_html(
+        '<a href="{}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">{}</a>',
+        url,
+        title,
+    )
+
+
 @register.inclusion_tag("gds/layout/error_summary.html")
 def error_summary(form):
     """

@@ -60,3 +60,5 @@ CSS classes and updating of aria attributes when a form field is rendered.
 
 
 .. autofunction:: crispy_forms_gds.templatetags.crispy_forms_gds.back_link
+
+.. autofunction:: crispy_forms_gds.templatetags.crispy_forms_gds.button_link

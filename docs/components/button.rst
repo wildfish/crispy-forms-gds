@@ -55,3 +55,30 @@ Disabling a button is simply a matter of adding the disabled attribute: ::
 
     Button.primary("win", "Win lottery", disabled=True)
 
+
+Links
+=====
+You can also use the ``{% button_link %}`` template tag to style a link as a button::
+
+    {% load crispy_forms_gds %}
+    ...
+    {% button_link url title %}
+
+There is not a direct reference to styling links as button in the Design System guide,
+apart from a "Start" button so we are not entirely sure this meets the criteria
+especially for accessibility. However in our experience sometime a "Cancel" button is
+needed (particularly in internal, not public facing sites) so hopefully this template
+tag is useful.
+
+Like any other template tag ``button_link`` can be used in a layout and so included in
+a form::
+
+    from crispy_forms_gds.templatetags.crispy_forms_gds import button_link
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML(button_link(reverse("home"), "Cancel")),
+        )
+
