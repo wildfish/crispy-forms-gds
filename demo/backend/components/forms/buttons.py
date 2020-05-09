@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import HTML, Button, Div, Layout
-from crispy_forms_gds.templatetags.crispy_forms_gds import button_link
+from crispy_forms_gds.templatetags.crispy_forms_gds import button_link, button_start
 
 
 class ButtonsForm(forms.Form):
@@ -16,6 +16,7 @@ class ButtonsForm(forms.Form):
             Div(Button.secondary("win", "Win lottery", disabled=True)),
             Div(Button.warning("delete", "Delete account")),
             Div(HTML(button_link(reverse("home"), "Link"))),
+            Div(HTML(button_start(reverse("home"), "Start now"))),
         )
 
     def get_button(self):

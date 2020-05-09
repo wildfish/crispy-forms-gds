@@ -82,3 +82,12 @@ a form::
             HTML(button_link(reverse("home"), "Cancel")),
         )
 
+Start button
+------------
+A Start button is just a button link with an inline icon. You use it the same way::
+
+    {% load crispy_forms_gds %}
+    ...
+    {% button_start url 'Start now' %}
+
+There is an example included on the Button component page in the Demo site.

@@ -20,6 +20,9 @@ pass it as an argument to the tag: ::
     {% back_link home_url "Take me back home" %}
 
 
+There is an example of the ``{% back_link %}`` tag in the Demo site on the main
+Components page.
+
 You can also add the link to a form: ::
 
     from crispy_forms_gds.templatetags.crispy_forms_gds import back_link

@@ -54,6 +54,34 @@ def button_link(url, title):
     )
 
 
+@register.simple_tag
+def button_start(url, title):
+    """
+    Template tag that returns the HTML needed to display a Start button.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% button_start url title %}
+
+    Args:
+        url (str): the URL for the link.
+        title (str): the title of the button.
+
+    """
+    html = """
+    <a href="{}" role="button" draggable="false" 
+       class="govuk-button govuk-button--start" data-module="govuk-button">
+        {}
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" 
+           width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>"""
+    return format_html(html, url, title)
+
+
 @register.inclusion_tag("gds/layout/error_summary.html")
 def error_summary(form):
     """
