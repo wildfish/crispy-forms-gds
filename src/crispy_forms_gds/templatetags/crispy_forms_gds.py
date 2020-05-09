@@ -1,10 +1,34 @@
 from django import forms, template
 from django.conf import settings
+from django.utils.html import format_html
+from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.utils import TEMPLATE_PACK
 
 
 register = template.Library()
+
+
+@register.simple_tag
+def back_link(url, title=None):
+    """
+    Template tag that returns the HTML needed to display a URL as a Back link component.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% url "home" as home_url %}
+        {% back_link home_url %}
+
+    Args:
+        url (str): the URL for the link.
+        title (str, optional): the title if the default "Back" is not suitable.
+
+    """
+    if title is None:
+        title = _("Back")
+    return format_html('<a href="{}" class="govuk-back-link">{}</a>', url, title)
 
 
 @register.inclusion_tag("gds/layout/error_summary.html")
@@ -309,7 +333,7 @@ class CrispyGDSFieldNode(template.Node):
 @register.tag(name="crispy_gds_field")
 def crispy_gds_field(parser, token):
     """
-    The templatetag used to render fields from the template pack.
+    The template tag used to render fields from the template pack.
 
     Examples: ::
 

@@ -3,6 +3,9 @@
 
 {% block content %}
 
+  {% url 'components:index' as back_url %}
+  {% back_link back_url %}
+
   {% error_summary form %}
 
   <span class="govuk-caption-xl">
