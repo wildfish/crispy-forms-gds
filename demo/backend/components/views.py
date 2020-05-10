@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
@@ -73,6 +73,11 @@ class ComponentView(FormView):
 
     def get_context_data(self, **kwargs):
         kwargs.update(self.contexts[self.kwargs["name"]])
+        kwargs["breadcrumbs"] = (
+            ("Home", reverse("home")),
+            ("Components", reverse("components:index")),
+            (kwargs["title"], None),
+        )
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):

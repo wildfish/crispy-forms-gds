@@ -12,7 +12,7 @@ from crispy_forms_gds.templatetags.crispy_forms_gds import (
     button_link,
     button_start,
 )
-from tests.utils import TEST_DIR, parse_contents
+from tests.utils import TEST_DIR, parse_contents, parse_template
 
 
 RESULT_DIR = os.path.join(TEST_DIR, "templatetags", "results")
@@ -34,3 +34,15 @@ def test_button_start():
     html = button_start("http://www.example.com/", "Start now")
     assert isinstance(html, SafeString)
     assert parse_html(html) == parse_contents(RESULT_DIR, "button_start.html")
+
+
+def test_breadcrumbs():
+    links = [
+        ("Home", "/"),
+        ("Previous", "/previous/"),
+        ("Current", None),
+    ]
+    template = '{% include "gds/layout/breadcrumbs.html" %}'
+    assert parse_template(template, crumbs=links) == parse_contents(
+        RESULT_DIR, "breadcrumbs.html"
+    )

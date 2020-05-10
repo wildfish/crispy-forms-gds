@@ -3,8 +3,7 @@
 
 {% block content %}
 
-  {% url 'components:index' as back_url %}
-  {% back_link back_url %}
+  {% breadcrumbs breadcrumbs %}
 
   {% error_summary form %}
 
