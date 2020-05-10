@@ -2,18 +2,23 @@
 {% load i18n crispy_forms_gds %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    {% trans "Demo" %}
-  </h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-  <p class="govuk-body govuk-!-margin-bottom-5">
-    {% blocktrans %}
-      Welcome to the Demo site for <strong>crispy-forms-gds</strong>. Here you will
-      find fully working example of all the components in the GOV.UK Design System.
-    {% endblocktrans %}
-  </p>
+      <h1 class="govuk-heading-xl">
+        {% trans "Demo" %}
+      </h1>
 
-  {% url 'components:index' as start_url %}
-  {% button_start start_url "Start now" %}
+      <p class="govuk-body govuk-!-margin-bottom-5">
+        {% blocktrans %}
+          Welcome to the Demo site for <strong>crispy-forms-gds</strong>. Here you will
+          find fully working example of all the components in the GOV.UK Design System.
+        {% endblocktrans %}
+      </p>
 
+      {% url 'components:index' as start_url %}
+      {% button_start start_url "Start now" %}
+
+    </div>
+  </div>
 {% endblock %}

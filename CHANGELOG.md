@@ -15,6 +15,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Merged the templatetags so all you have to do is {% load crispy_forms_gds %}.
 - Added the fields and templates needed for the Date input component.
 - Added template tags for back links, start buttons and breadcrumbs.
+- Added a production-ready base template that can be used in sites.
 
 ## [0.1.0] - 2020-04-28
 ### Added

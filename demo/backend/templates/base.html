@@ -1,35 +1,7 @@
-{% load static i18n %}<!DOCTYPE html>
-<html lang="en" class="govuk-template">
+{% extends "gds/base.html" %}
+{% load i18n crispy_forms_gds %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b0c0c">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <title>{% block title %}{% endblock %}</title>
-
-  <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="{% static "govuk/images/favicon.ico" %}" type="image/x-icon">
-  <link rel="mask-icon" href="{% static "govuk/images/govuk-mask-icon.svg" %}" color="#0b0c0c">
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static "govuk/images/govuk-apple-touch-icon-180x180.png" %}">
-  <link rel="apple-touch-icon" sizes="167x167" href="{% static "govuk/images/govuk-apple-touch-icon-167x167.png" %}">
-  <link rel="apple-touch-icon" sizes="152x152" href="{% static "govuk/images/govuk-apple-touch-icon-152x152.png" %}">
-  <link rel="apple-touch-icon" href="{% static "govuk/images/govuk-apple-touch-icon.png" %}">
-
-  {% if not WEBPACK_DEV_URL %}
-  <link rel="stylesheet" href="{% static "index.css" %}">
-  {% endif %}
-
-  <meta property="og:image" content="{% static "govuk/images/govuk-opengraph-image.png" %}">
-</head>
-
-<body class="govuk-template__body ">
-  <script>
-    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-  </script>
-
-  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
+{% block header %}
   <header class="govuk-header" role="banner" data-module="govuk-header">
     <div class="govuk-header__container">
       <div class="govuk-width-container">
@@ -39,23 +11,26 @@
       </div>
     </div>
   </header>
+{% endblock %}
 
+{% block phase_banner %}
   <div class="govuk-phase-banner govuk-width-container" style="border-bottom: none">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
         {% trans "Open" %}
       </strong>
       <span class="govuk-phase-banner__text">
-        {% blocktrans %}
+      {% blocktrans %}
         This is an Open Source project – your
         <a class="govuk-link" href="https://github.com/wildfish/crispy-forms-gds/issues">feedback</a>
         will help us to improve it.
-        {% endblocktrans %}
+      {% endblocktrans %}
       </span>
     </p>
   </div>
+{% endblock %}
 
-  {% block sitenav %}
+{% block extra_header %}
   <nav class="demo-navigation govuk-clearfix">
     <div class="govuk-width-container">
       <ul class="demo-navigation__list">
@@ -67,30 +42,9 @@
       </ul>
     </div>
   </nav>
-  {% endblock %}
+{% endblock %}
 
-  {% block main  %}
-    <div class="govuk-width-container">
-      <main class="govuk-main-wrapper" id="main-content" role="main">
-
-        <div class="govuk-grid-row">
-          {% block alerts %}{% endblock %}
-        </div>
-
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-quarter">
-            {% block sidebar %}
-            {% endblock %}
-          </div>
-          <div class="govuk-grid-column-three-quarters">
-            {% block content %}
-            {% endblock %}
-          </div>
-        </div>
-      </main>
-    </div>
-  {% endblock %}
-
+{% block footer %}
   <footer class="govuk-footer " role="contentinfo">
     <div class="govuk-width-container">
       <div class="govuk-footer__meta">
@@ -102,10 +56,4 @@
       </div>
     </div>
   </footer>
-
-  <script src="{% static "index.js" %}"></script>
-  {% block extra_script %}{% endblock %}
-
-</body>
-
-</html>
+{% endblock %}

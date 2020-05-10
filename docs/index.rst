@@ -32,6 +32,7 @@ for the `GOV.UK Design System`_.
     reference/form/index
     reference/layout/index
     reference/settings
+    reference/templates
     reference/templatetags
     reference/filters
 

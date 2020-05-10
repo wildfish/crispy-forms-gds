@@ -20,18 +20,20 @@ encounter in a complex form.
     details
     fieldset
     file
+    footer
+    header
     inset
     panel
+    phase_banner
     radios
     select
+    skip_link
     tabs
     tag
     text
     textarea
     warning
 
-The remaining components in the Design System list: `Footer`, `Header`,
-`Phase panel` and `Skip link` are page-level components and probably have limited utility
-within a form nd are not supported, as yet. However `Summary list` has the potential for
-being used in a form. We are just not sure how to implement it, given that the list contents
-and specifically actions can be laid out in various ways.
+The only Design System component not in this list is `Summary list`. Right now we are
+just not sure how to implement it, given that the list contents and specifically
+actions can be laid out in various ways.
