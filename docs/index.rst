@@ -35,6 +35,12 @@ for the `GOV.UK Design System`_.
     reference/templatetags
     reference/filters
 
+.. toctree::
+    :caption: Development
+    :titlesonly:
+
+    development
+
 You can find a detailed history of the project in the `CHANGELOG`_ on GitHub.
 
 .. _CHANGELOG: https://github.com/wildfish/crispy-forms-gds/blob/master/CHANGELOG.md
