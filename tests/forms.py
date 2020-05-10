@@ -123,14 +123,14 @@ class FieldsetForm(forms.Form):
     email = forms.CharField(label="Email")
 
     def __init__(self, *args, **kwargs):
-        super(FieldsetForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(Fieldset("name", "email", legend="Contact"))
 
 
 class AccordionForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(AccordionForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Accordion(

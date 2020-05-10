@@ -6,7 +6,7 @@ from crispy_forms_gds.layout import HTML, Layout, TabPanel, Tabs
 
 class TabsForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(TabsForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         headings = ["Case manager", "Cases opened", "Cases closed"]
         past_day = [

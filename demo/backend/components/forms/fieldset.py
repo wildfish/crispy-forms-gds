@@ -13,7 +13,7 @@ class FieldsetForm(forms.Form):
     postcode = forms.CharField(label="Post code")
 
     def __init__(self, *args, **kwargs):
-        super(FieldsetForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset(

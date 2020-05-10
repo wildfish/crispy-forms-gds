@@ -2,7 +2,7 @@ from django import forms
 from django.urls import reverse
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Layout, Submit
+from crispy_forms_gds.layout import HTML, Button, Layout
 
 
 class FileUploadForm(forms.Form):
@@ -16,9 +16,9 @@ class FileUploadForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(FileUploadForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout("file", Submit("submit", "Submit"))
+        self.helper.layout = Layout("file", Button("submit", "Submit"))
 
     def valid_layout(self):
         file = self.cleaned_data["file"]

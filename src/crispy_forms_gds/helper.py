@@ -40,13 +40,13 @@ class FormHelper(crispy_forms_helper.FormHelper):
         Let the FormHelper create a default layout for the form: ::
 
             def __init__(self, *args, **kwargs):
-                super(MyForm, self).__init__(*args, **kwargs)
+                super().__init__(*args, **kwargs)
                 self.helper = FormHelper(self)
 
         Create a custom Layout: ::
 
             def __init__(self, *args, **kwargs):
-                super(MyForm, self).__init__(*args, **kwargs)
+                super().__init__(*args, **kwargs)
                 self.helper = FormHelper()
                 self.helper.layout = Layout(
                    ...

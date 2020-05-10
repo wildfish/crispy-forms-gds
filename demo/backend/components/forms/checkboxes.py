@@ -2,7 +2,7 @@ from django import forms
 from django.forms import MultipleHiddenInput
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Field, Layout, Size, Submit
+from crispy_forms_gds.layout import HTML, Button, Field, Layout, Size
 
 
 class CheckboxesForm(forms.Form):
@@ -16,7 +16,7 @@ class CheckboxesForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(CheckboxesForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field.checkboxes(
@@ -25,7 +25,7 @@ class CheckboxesForm(forms.Form):
                 small=True,
                 hints={"phone": "Select this option only if you have a mobile phone"},
             ),
-            Submit("submit", "Submit"),
+            Button("submit", "Submit"),
         )
 
     def get_method(self):
@@ -39,5 +39,5 @@ class CheckboxesForm(forms.Form):
             "method",
             HTML.h2("You answered..."),
             HTML.table(None, [("Methods selected:", self.get_method())]),
-            Submit("continue", "Continue"),
+            Button("continue", "Continue"),
         )
