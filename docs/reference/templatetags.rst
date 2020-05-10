@@ -58,6 +58,11 @@ CSS classes and updating of aria attributes when a form field is rendered.
     ...
     {% crispy_gds_field field attrs %}
 
-This template tag is only used within the ``gds/field.html`` template and you
-almost certainly will not have to deal with it, even if you are laying out a
-form explicitly.
+
+.. autofunction:: crispy_forms_gds.templatetags.crispy_forms_gds.back_link
+
+.. autofunction:: crispy_forms_gds.templatetags.crispy_forms_gds.button_link
+
+.. autofunction:: crispy_forms_gds.templatetags.crispy_forms_gds.button_start
+
+.. autofunction:: crispy_forms_gds.templatetags.crispy_forms_gds.breadcrumbs

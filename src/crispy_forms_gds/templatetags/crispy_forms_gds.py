@@ -1,10 +1,111 @@
 from django import forms, template
 from django.conf import settings
+from django.utils.html import format_html
+from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.utils import TEMPLATE_PACK
 
 
 register = template.Library()
+
+
+@register.inclusion_tag("gds/layout/breadcrumbs.html")
+def breadcrumbs(crumbs):
+    """
+    Inclusion tag that renders the HTML needed to display Breadcrumbs component.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% breadcrumbs crumbs %}
+
+    Args:
+        crumbs: a list of 2-tuples. The tuple is made up of the link title followed
+            by the link URL.
+
+    """
+    return {"crumbs": crumbs}
+
+
+def error_summary(form):
+    """
+    Template tag that renders the list of errors from a form.
+    """
+    return {"form": form}
+
+
+@register.simple_tag
+def back_link(url, title=None):
+    """
+    Template tag that returns the HTML needed to display a URL as a Back link component.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% url "home" as home_url %}
+        {% back_link home_url %}
+
+    Args:
+        url (str): the URL for the link.
+        title (str, optional): the title if the default "Back" is not suitable.
+
+    """
+    if title is None:
+        title = _("Back")
+    return format_html('<a href="{}" class="govuk-back-link">{}</a>', url, title)
+
+
+@register.simple_tag
+def button_link(url, title):
+    """
+    Template tag that returns the HTML needed to display a link as a Button component.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% button_link url title %}
+
+    Args:
+        url (str): the URL for the link.
+        title (str): the title of the button.
+
+    """
+    return format_html(
+        '<a href="{}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">{}</a>',
+        url,
+        title,
+    )
+
+
+@register.simple_tag
+def button_start(url, title):
+    """
+    Template tag that returns the HTML needed to display a Start button.
+
+    Examples::
+
+        {% load crispy_forms_gds %}
+        ...
+        {% button_start url title %}
+
+    Args:
+        url (str): the URL for the link.
+        title (str): the title of the button.
+
+    """
+    html = """
+    <a href="{}" role="button" draggable="false" 
+       class="govuk-button govuk-button--start" data-module="govuk-button">
+        {}
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" 
+           width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>"""
+    return format_html(html, url, title)
 
 
 @register.inclusion_tag("gds/layout/error_summary.html")
@@ -309,7 +410,7 @@ class CrispyGDSFieldNode(template.Node):
 @register.tag(name="crispy_gds_field")
 def crispy_gds_field(parser, token):
     """
-    The templatetag used to render fields from the template pack.
+    The template tag used to render fields from the template pack.
 
     Examples: ::
 

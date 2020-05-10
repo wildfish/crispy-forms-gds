@@ -1,7 +1,11 @@
 {% extends "components/base.html" %}
-{% load i18n crispy_forms_tags %}
+{% load i18n crispy_forms_gds %}
 
 {% block content %}
+
+  {% url 'home' as back_url %}
+  {% back_link back_url %}
+
   <h1 class="govuk-heading-xl">
     {% trans "Components" %}
   </h1>
