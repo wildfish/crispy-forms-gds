@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Field, Hidden, Layout, Size, Submit
+from crispy_forms_gds.layout import HTML, Button, Field, Hidden, Layout
 
 
 class TextareaForm(forms.Form):
@@ -15,11 +15,11 @@ class TextareaForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(TextareaForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field.textarea("description", rows=3, max_words=100,),
-            Submit("submit", "Submit"),
+            Button("submit", "Submit"),
         )
 
     def valid_layout(self):
@@ -28,5 +28,5 @@ class TextareaForm(forms.Form):
             Hidden("description", value),
             HTML.h2("You answered..."),
             HTML.p(value),
-            Submit("continue", "Continue"),
+            Button("continue", "Continue"),
         )

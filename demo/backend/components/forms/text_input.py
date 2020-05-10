@@ -3,6 +3,7 @@ from django import forms
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import (
     HTML,
+    Button,
     Field,
     Fieldset,
     Fixed,
@@ -10,7 +11,6 @@ from crispy_forms_gds.layout import (
     Hidden,
     Layout,
     Size,
-    Submit,
 )
 
 
@@ -27,7 +27,7 @@ class TextInputForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(TextInputForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.label_size = Size.SMALL
         self.helper.layout = Layout(
@@ -36,7 +36,7 @@ class TextInputForm(forms.Form):
                 Field.text("email", field_width=Fluid.TWO_THIRDS),
                 Field.text("phone", field_width=Fixed.TEN),
             ),
-            Submit("submit", "Submit"),
+            Button("submit", "Submit"),
         )
 
     def valid_layout(self):
@@ -49,5 +49,5 @@ class TextInputForm(forms.Form):
             Hidden("phone", phone),
             HTML.h2("You answered..."),
             HTML.table(None, [("Name:", name), ("Email:", email), ("Phone:", phone)]),
-            Submit("continue", "Continue"),
+            Button("continue", "Continue"),
         )

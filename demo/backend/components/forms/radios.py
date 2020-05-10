@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Field, Hidden, Layout, Size, Submit
+from crispy_forms_gds.layout import HTML, Button, Field, Hidden, Layout, Size
 
 
 class RadiosForm(forms.Form):
@@ -25,7 +25,7 @@ class RadiosForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(RadiosForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field.radios("name", legend_size=Size.MEDIUM, legend_tag="h1", inline=True),
@@ -35,7 +35,7 @@ class RadiosForm(forms.Form):
                 small=True,
                 hints={"phone": "Select this option only if you have a mobile phone"},
             ),
-            Submit("submit", "Submit"),
+            Button("submit", "Submit"),
         )
 
     def get_choice(self, field):
@@ -56,5 +56,5 @@ class RadiosForm(forms.Form):
                     ("Contact method:", self.get_choice("method")),
                 ],
             ),
-            Submit("continue", "Continue"),
+            Button("continue", "Continue"),
         )

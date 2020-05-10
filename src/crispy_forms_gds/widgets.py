@@ -40,7 +40,7 @@ class DateInputWidget(forms.MultiWidget):
                 }
             ),
         ]
-        super(DateInputWidget, self).__init__(widgets, **kwargs)
+        super().__init__(widgets, **kwargs)
 
     def decompress(self, value):
         """

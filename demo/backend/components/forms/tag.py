@@ -7,7 +7,7 @@ from crispy_forms_gds.layout import HTML, Colour, Layout
 
 class TagForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(TagForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         headings = ["Name of user", "status"]
         statuses = [

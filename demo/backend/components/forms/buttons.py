@@ -8,15 +8,14 @@ from crispy_forms_gds.templatetags.crispy_forms_gds import button_link, button_s
 
 class ButtonsForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(ButtonsForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(Button.primary("add", "Add contact")),
             Div(Button.secondary("find", "Find address")),
             Div(Button.secondary("win", "Win lottery", disabled=True)),
             Div(Button.warning("delete", "Delete account")),
-            Div(HTML(button_link(reverse("home"), "Link"))),
-            Div(HTML(button_start(reverse("home"), "Start now"))),
+            Div(HTML(button_link(reverse("home"), "Go Home"))),
         )
 
     def get_button(self):

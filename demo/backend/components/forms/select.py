@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import HTML, Hidden, Layout, Submit
+from crispy_forms_gds.layout import HTML, Button, Hidden, Layout
 
 
 class SelectForm(forms.Form):
@@ -17,9 +17,9 @@ class SelectForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(SelectForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout("sort_by", Submit("submit", "Submit"),)
+        self.helper.layout = Layout("sort_by", Button("submit", "Submit"),)
 
     def get_choice(self, field):
         value = self.cleaned_data[field]
@@ -31,5 +31,5 @@ class SelectForm(forms.Form):
             Hidden("sort_by", value),
             HTML.h2("You answered..."),
             HTML.table(None, [("Sort by:", self.get_choice("sort_by"))]),
-            Submit("continue", "Continue"),
+            Button("continue", "Continue"),
         )
