@@ -28,6 +28,7 @@ encounter in a complex form.
     radios
     select
     skip_link
+    table
     tabs
     tag
     text

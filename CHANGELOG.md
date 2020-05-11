@@ -16,6 +16,8 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Added the fields and templates needed for the Date input component.
 - Added template tags for back links, start buttons and breadcrumbs.
 - Added a production-ready base template that can be used in sites.
+### Changed
+- Updated Table component to support a caption and CSS styling.
 
 ## [0.1.0] - 2020-04-28
 ### Added

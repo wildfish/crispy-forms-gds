@@ -105,6 +105,23 @@ class TextareaForm(BaseForm):
     )
 
 
+class TableForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        header = ["Case worker", "Number of cases closed"]
+        rows = [["David Francis", 3], ["Paul Farmer", 1]]
+        header_css = [
+            "govuk-!-width-one-half",
+            "govuk-!-width-one-half govuk-table__header--numeric",
+        ]
+        row_css = ["", "govuk-table__cell--numeric"]
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML.table("Caption", header, rows, header_css, row_css)
+        )
+
+
 class TabsForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
