@@ -179,34 +179,76 @@ class HTML(crispy_forms_layout.HTML):
         return HTML(snippet)
 
     @classmethod
-    def table(cls, headings, data):
+    def table(cls, caption, headers, rows, header_css=None, row_css=None):
         """
         .. _Table: https://design-system.service.gov.uk/components/table/
 
         Generate the layout for an `Table`_ component.
 
+        Eaxample: ::
+
+            caption = "Dates and amounts"
+            headers = ["Date", "Amount"]
+
+            header_css = [
+                "govuk-!width-one-half",
+                "govuk-table__header--numeric govuk-!width-one-half"
+            ]
+
+            rows = [
+                ["First six weeks (per week)", "£109.80"]
+                ["Next 33 weeks (per week)", "£109.80"]
+                [Total estimated pay", "£4,282.20"]
+            ]
+
+            row_css = ["". "govuk-table__cell--numeric"]
+
+            self.helper.layout = Layout(
+                HTML.table(caption, headers, rows, header_css, row_css)
+            )
+
+
         Args:
-            headings: the list of heading for the columns.
-            data: the list of contents for each row - a list of lists of strings.
+            caption (str, optional): a caption describing the table.
+
+            headers: the list of heading for the columns.
+
+            rows: a two dimensional list containing the data for each cell.
+
+            header_css (list): css classes that will be added to each column in the header.
+
+            row_css (list): css classes that will be added to each column in each row
 
         """
-        context = Context(dict(headings=headings, data=data))
+        if not header_css:
+            header_css = [""] * len(headers)
+
+        if not row_css:
+            row_css = [""] * len(headers)
+
+        headers = zip(headers, header_css)
+        rows = [zip(row, row_css) for row in rows]
+
+        context = Context(dict(caption=caption, headers=headers, rows=rows))
         template = """
             <table class="govuk-table">
-            {% if headings %}
+            {% if caption %}
+              <caption class="govuk-table__caption">{{ caption }}</caption>
+            {% endif %}
+            {% if headers %}
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                {% for item in headings %}
-                  <th scope="col" class="govuk-table__header">{{ item }}</th>
+                {% for col in headers %}
+                  <th scope="col" class="govuk-table__header{% if col.1 %} {{ col.1 }}{% endif %}">{{ col.0 }}</th>
                 {% endfor %}
               </tr>
             </thead>
             {% endif %}
             <tbody class="govuk-table__body">
-              {% for row in data %}
+              {% for row in rows %}
                 <tr class="govuk-table__row">
-                  {% for item in row %}
-                    <td class="govuk-table__cell">{{ item }}</td>
+                  {% for col in row %}
+                    <td class="govuk-table__cell{% if col.1 %} {{ col.1 }}{% endif %}">{{ col.0 }}</td>
                   {% endfor %}
                 </tr>
               {% endfor %}
