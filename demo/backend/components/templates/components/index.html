@@ -1,21 +1,25 @@
 {% extends "components/base.html" %}
 {% load i18n crispy_forms_gds %}
 
-{% block content %}
+{% block right %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-  {% url 'home' as back_url %}
-  {% back_link back_url %}
+      {% url 'home' as back_url %}
+      {% back_link back_url %}
 
-  <h1 class="govuk-heading-xl">
-    {% trans "Components" %}
-  </h1>
+      <h1 class="govuk-heading-xl">
+        {% trans "Components" %}
+      </h1>
 
-  <p class="govuk-body govuk-!-margin-bottom-5">
-    {% blocktrans %}
-    Here you will find examples showing how different types of field are displayed
-    using the GOV.UK Design System. Select a link from the sidebar to see each field
-    in more detail.
-    {% endblocktrans %}
-  </p>
+      <p class="govuk-body govuk-!-margin-bottom-5">
+        {% blocktrans %}
+        Here you will find examples showing how different types of field are displayed
+        using the GOV.UK Design System. Select a link from the sidebar to see each field
+        in more detail.
+        {% endblocktrans %}
+      </p>
 
+    </div>
+  </div>
 {% endblock %}

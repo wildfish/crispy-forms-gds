@@ -57,27 +57,3 @@ Return ``True`` if the field belongs to a Radios component, ``False`` otherwise.
 
     {% if field|is_radioselect %}
 
-
-lookup
-======
-Looks up a value from a dict. Because Django still does not have this.
-
-.. sourcecode:: html+django
-
-    {{ dict|lookup:key }}
-
-It's used when displaying the hint, if one is available for an item in
-a list of checkboxes or radio buttons.
-
-pop
-===
-Removes a value from a dict and displays it
-
-.. sourcecode:: html+django
-
-    {{ dict|pop:key }}
-
-This is used when displaying the label for the individual fields in a
-Date input component. The label was added as a widget attribute - it was
-the only way to smuggle it in - and it needs to be remove from so it does
-not get rendered as an attribute on the <input> element.
