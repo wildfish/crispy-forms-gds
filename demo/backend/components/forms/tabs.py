@@ -34,24 +34,18 @@ class TabsForm(forms.Form):
         self.helper.layout = Layout(
             Tabs(
                 TabPanel(
-                    "Past day",
-                    HTML.h1("Past day"),
-                    HTML.table(None, headings, past_day),
+                    "Past day", HTML.h1("Past day"), HTML.table(headings, past_day),
                 ),
                 TabPanel(
-                    "Past week",
-                    HTML.h1("Past week"),
-                    HTML.table(None, headings, past_week),
+                    "Past week", HTML.h1("Past week"), HTML.table(headings, past_week),
                 ),
                 TabPanel(
                     "Past month",
                     HTML.h1("Past month"),
-                    HTML.table(None, headings, past_month),
+                    HTML.table(headings, past_month),
                 ),
                 TabPanel(
-                    "Past year",
-                    HTML.h1("Past year"),
-                    HTML.table(None, headings, past_year),
+                    "Past year", HTML.h1("Past year"), HTML.table(headings, past_year),
                 ),
             )
         )

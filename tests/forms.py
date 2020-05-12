@@ -118,7 +118,9 @@ class TableForm(forms.Form):
 
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            HTML.table("Caption", header, rows, header_css, row_css)
+            HTML.table(
+                header, rows, caption="Caption", header_css=header_css, row_css=row_css
+            )
         )
 
 

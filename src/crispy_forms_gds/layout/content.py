@@ -179,7 +179,7 @@ class HTML(crispy_forms_layout.HTML):
         return HTML(snippet)
 
     @classmethod
-    def table(cls, caption, headers, rows, header_css=None, row_css=None):
+    def table(cls, headers, rows, caption=None, header_css=None, row_css=None):
         """
         .. _Table: https://design-system.service.gov.uk/components/table/
 
@@ -204,27 +204,30 @@ class HTML(crispy_forms_layout.HTML):
             row_css = ["". "govuk-table__cell--numeric"]
 
             self.helper.layout = Layout(
-                HTML.table(caption, headers, rows, header_css, row_css)
+                HTML.table(headers, rows, caption, header_css, row_css)
             )
 
 
         Args:
-            caption (str, optional): a caption describing the table.
-
             headers: the list of heading for the columns.
 
             rows: a two dimensional list containing the data for each cell.
+
+            caption (str, optional): a caption describing the table.
 
             header_css (list): css classes that will be added to each column in the header.
 
             row_css (list): css classes that will be added to each column in each row
 
         """
+        if headers is None:
+            headers = []
+
         if not header_css:
             header_css = [""] * len(headers)
 
-        if not row_css:
-            row_css = [""] * len(headers)
+        if not row_css and rows:
+            row_css = [""] * len(rows[0])
 
         headers = zip(headers, header_css)
         rows = [zip(row, row_css) for row in rows]

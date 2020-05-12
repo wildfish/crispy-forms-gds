@@ -45,12 +45,12 @@ of each panel and a parent ``Tabs`` which contains the list of panels. ::
                     TabPanel(
                         "Past day",
                         HTML.h1("Past day"),
-                        HTML.table(None, headings, past_day)
+                        HTML.table(headings, past_day)
                     ),
                     TabPanel(
                         "Past week",
                         HTML.h1("Past week"),
-                        HTML.table(None, headings, past_week)
+                        HTML.table(headings, past_week)
                     ),
                     TabPanel(
                         "Past month",
@@ -60,7 +60,7 @@ of each panel and a parent ``Tabs`` which contains the list of panels. ::
                     TabPanel(
                         "Past year",
                         HTML.h1("Past year"),
-                        HTML.table(None, headings, past_year)
+                        HTML.table(headings, past_year)
                     ),
                 )
             )
