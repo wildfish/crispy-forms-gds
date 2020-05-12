@@ -16,8 +16,12 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Added the fields and templates needed for the Date input component.
 - Added template tags for back links, start buttons and breadcrumbs.
 - Added a production-ready base template that can be used in sites.
+- Added a Choice class to make setting hints and dividers on checkboxes 
+  and radio buttons cleaner and easier.
 ### Changed
 - Updated Table component to support a caption and CSS styling.
+### Deleted
+- Removed the hints attribute on Field.checkboxes() and Field.radios()
 
 ## [0.1.0] - 2020-04-28
 ### Added

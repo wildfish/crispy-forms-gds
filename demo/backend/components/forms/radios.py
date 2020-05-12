@@ -1,5 +1,6 @@
 from django import forms
 
+from crispy_forms_gds.choices import Choice
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import HTML, Button, Field, Hidden, Layout, Size
 
@@ -14,8 +15,14 @@ class RadiosForm(forms.Form):
         error_messages={"required": "Enter whether your name has changed"},
     )
 
+    METHODS = (
+        Choice("email", "Email", hint="Do not use an email address from work"),
+        Choice("phone", "Phone", divider="Or"),
+        Choice("text", "Text message"),
+    )
+
     method = forms.ChoiceField(
-        choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message"),),
+        choices=METHODS,
         widget=forms.RadioSelect,
         label="How would you like to be contacted?",
         help_text="Select the options that is best for you.",
@@ -29,12 +36,7 @@ class RadiosForm(forms.Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field.radios("name", legend_size=Size.MEDIUM, legend_tag="h1", inline=True),
-            Field.radios(
-                "method",
-                legend_size=Size.MEDIUM,
-                small=True,
-                hints={"phone": "Select this option only if you have a mobile phone"},
-            ),
+            Field.radios("method", legend_size=Size.MEDIUM, small=True),
             Button("submit", "Submit"),
         )
 

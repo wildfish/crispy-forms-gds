@@ -13,10 +13,14 @@
       <div class="govuk-radios">
 
         <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="id_method_1" name="method" type="radio" value="email" checked>
+          <input class="govuk-radios__input" id="id_method_1" name="method" type="radio" value="email"
+                 aria-describedby="id_method_1_hint" checked>
           <label class="govuk-label govuk-radios__label" for="id_method_1">
             Email
           </label>
+          <span id="id_method_1_hint" class="govuk-hint govuk-radios__hint">
+            Do not give a work email address
+          </span>
         </div>
 
         <div class="govuk-radios__item">
@@ -25,7 +29,7 @@
             Phone
           </label>
         </div>
-
+        <div class="govuk-radios__divider">Or</div>
         <div class="govuk-radios__item">
           <input class="govuk-radios__input" id="id_method_3" name="method" type="radio" value="text">
           <label class="govuk-label govuk-radios__label" for="id_method_3">

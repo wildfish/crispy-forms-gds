@@ -24,7 +24,7 @@
           {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
             checked="checked"
           {% endif %}
-          {% if checkboxes_hints and choice.0 in checkboxes_hints.keys %}
+          {% if choice.hint %}
              aria-describedby="id_{{ field.html_name }}_{{ forloop.counter }}_hint"
           {% endif %}
         >
@@ -32,9 +32,9 @@
         <label class="govuk-label govuk-checkboxes__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
           {{ choice.1|unlocalize }}
         </label>
-        {% if checkboxes_hints and choice.0 in checkboxes_hints.keys %}
+        {% if choice.hint %}
           <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="govuk-hint govuk-checkboxes__hint">
-            {{ checkboxes_hints|dict_lookup:choice.0 }}
+            {{ choice.hint }}
           </span>
         {% endif %}
       </div>

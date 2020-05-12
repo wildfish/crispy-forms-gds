@@ -6,7 +6,7 @@ import os
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
-from tests.forms import RadiosForm
+from tests.forms import RadiosChoiceForm, RadiosForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
 
@@ -17,12 +17,7 @@ def test_initial_attributes():
     """Verify all the gds attributes are displayed."""
     form = RadiosForm(initial={"method": "email"})
     form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field.radios(
-            "method",
-            hints={"phone": "Select this option only if you have a mobile phone"},
-        )
-    )
+    form.helper.layout = Layout(Field.radios("method"))
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
 
 
@@ -31,6 +26,14 @@ def test_validation_error_attributes():
     form = RadiosForm(data={"method": ""})
     assert not form.is_valid()
     assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
+
+
+def test_choices():
+    """Verify hints and dividers are displayed."""
+    form = RadiosChoiceForm(initial={"method": "email"})
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field.radios("method"))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "choices.html")
 
 
 def test_small():

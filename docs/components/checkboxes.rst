@@ -8,14 +8,23 @@ the default widget, SelectMultiple replaced with a CheckboxSelectMultiple widget
 
     from django import forms
 
+    from crispy_forms_gds.choices import Choice
     from crispy_forms_gds.helper import FormHelper
     from crispy_forms_gds.layout import Field, Layout, Size, Submit
 
 
     class CheckboxesForm(forms.Form):
 
+        METHODS = (
+            Choice("email", "Email"),
+            Choice(
+                "phone", "Phone", hint="Select this option only if you have a mobile phone"
+            ),
+            Choice("text", "Text message"),
+        )
+
         method = forms.MultipleChoiceField(
-            choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message"),),
+            choices=METHODS,
             widget=forms.CheckboxSelectMultiple,
             label="How would you like to be contacted?",
             help_text="Select all options that are relevant to you.",
@@ -29,7 +38,6 @@ the default widget, SelectMultiple replaced with a CheckboxSelectMultiple widget
                 Field.checkboxes(
                     "multiple",
                     legend_size=Size.MEDIUM,
-                    hints={"phone": "Select this option only if you have a mobile phone"},
                 ),
                 Submit("submit", "Submit"),
             )
@@ -50,10 +58,8 @@ keyword argument to ``'h1'`` - leaving out the angle brackets. This avoids the d
 particularly for screen readers, of having a page title then the checkboxes' legend
 effectively saying the same thing.
 
-For each item in a set of checkboxes you can display an additional item of help
-text in the form of a hint. The ``hints`` keyword argument takes a dictionary where
-the keys are the respective checkbox value and the value is the hint to be displayed
-below the checkbox label. That allows you to display hints as needed.
+If you use the ``Choice`` class to create the list of choice for the field you
+can set a ``hint`` for each item as needed.
 
 --------
 Checkbox

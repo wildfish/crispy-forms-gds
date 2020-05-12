@@ -1,5 +1,6 @@
 from django import forms
 
+from crispy_forms_gds.choices import Choice
 from crispy_forms_gds.fields import DateInputField
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import (
@@ -39,6 +40,25 @@ class CheckboxesForm(BaseForm):
     )
 
 
+class CheckboxesChoiceForm(BaseForm):
+
+    METHODS = (
+        Choice("email", "Email"),
+        Choice(
+            "phone", "Phone", hint="Select this option only if you have a mobile phone",
+        ),
+        Choice("text", "Text message"),
+    )
+
+    method = forms.ChoiceField(
+        choices=METHODS,
+        widget=forms.CheckboxSelectMultiple,
+        label="How would you like to be contacted?",
+        help_text="Select all options that are relevant to you.",
+        error_messages={"required": "Enter the ways to contact you"},
+    )
+
+
 class DateInputForm(BaseForm):
 
     date = DateInputField(
@@ -63,6 +83,23 @@ class RadiosForm(BaseForm):
 
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
+        widget=forms.RadioSelect,
+        label="How would you like to be contacted?",
+        help_text="Select the most convenient way to contact you.",
+        error_messages={"required": "Enter the best way to contact you"},
+    )
+
+
+class RadiosChoiceForm(BaseForm):
+
+    METHODS = (
+        Choice("email", "Email", hint="Do not give a work email address"),
+        Choice("phone", "Phone", divider="Or"),
+        Choice("text", "Text message"),
+    )
+
+    method = forms.ChoiceField(
+        choices=METHODS,
         widget=forms.RadioSelect,
         label="How would you like to be contacted?",
         help_text="Select the most convenient way to contact you.",
