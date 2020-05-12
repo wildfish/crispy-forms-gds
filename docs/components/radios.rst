@@ -7,6 +7,7 @@ A `Radios`_ component is used when there is only one option allowed from a list.
 
     from django import forms
 
+    from crispy_forms_gds.choices import Choice
     from crispy_forms_gds.helper import FormHelper
     from crispy_forms_gds.layout import Field, Layout, Size, Submit
 
@@ -21,8 +22,14 @@ A `Radios`_ component is used when there is only one option allowed from a list.
             error_messages={"required": "Enter whether your name has changed"},
         )
 
+        METHODS = (
+            Choice("email", "Email", hint="Do not use an email address from work"),
+            Choice("phone", "Phone", divider="Or"),
+            Choice("text", "Text message"),
+        )
+
         method = forms.ChoiceField(
-            choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message"),),
+            choices=METHODS,
             widget=forms.RadioSelect,
             label="How would you like to be contacted?",
             help_text="Select the options that is best for you.",
@@ -40,7 +47,6 @@ A `Radios`_ component is used when there is only one option allowed from a list.
                     "method",
                     legend_size=Size.MEDIUM,
                     small=True,
-                    hints={"phone": "Select this option only if you have a mobile phone"},
                 ),
                 Submit("submit", "Submit"),
             )
@@ -61,7 +67,6 @@ keyword argument to ``'h1'`` - leaving out the angle brackets. This avoids the d
 particularly for screen readers, of having a page title then the radio buttons' legend
 effectively saying the same thing.
 
-For each radio button you can display an additional item of help text in the form of a
-hint. The ``hints`` keyword argument takes a dictionary where the keys are the
-respective radio button value and the value is the hint to be displayed
-below the radio button label. That allows you to display hints as needed.
+If you use the ``Choice`` class to create the list of choice for the field you
+can set a ``hint`` for each item as needed. You can also set ``divider`` that will
+display a separator <div> with a string after the radio button.
