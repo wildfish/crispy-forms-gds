@@ -29,7 +29,9 @@ to generate the HTML object that can be added to a form::
 
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            HTML.table(caption, headers, rows, header_css, row_css)
+            HTML.table(
+                headers, rows, caption=caption, header_css=header_css, row_css=row_css
+            )
         )
 
 The method is simple to use but rather basic. The caption and the header are
