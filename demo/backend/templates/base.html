@@ -35,10 +35,17 @@
     <div class="govuk-width-container">
       <ul class="demo-navigation__list">
         <li class="demo-navigation__list-item">
-          <a class="govuk-link govuk-link--no-visited-state" href="{% url "components:index" %}" data-topnav="Fields">
+          <a class="govuk-link govuk-link--no-visited-state" href="{% url "components:index" %}" data-topnav="Components">
             {% trans "Components" %}
           </a>
         </li>
+        {% if HAS_TUTORIAL_APP %}
+        <li class="demo-navigation__list-item">
+          <a class="govuk-link govuk-link--no-visited-state" href="{% url "tutorial" %}" data-topnav="Tutorial">
+            {% trans "Tutorial" %}
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

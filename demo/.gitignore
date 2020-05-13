@@ -21,3 +21,6 @@ media
 package-lock.json
 node_modules
 dist
+
+# Other
+backend/tutorial
