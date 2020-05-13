@@ -83,7 +83,7 @@ Now add a generic ``FormView`` to display the form::
 
 Add the template to display the form::
 
- # demo/backend/tutorial/templates/tutorial/index.html
+    # demo/backend/tutorial/templates/tutorial/index.html
     {% extends "base.html" %}
     {% load crispy_forms_tags crispy_forms_gds %}
 
@@ -120,7 +120,7 @@ Add the view to your urls.py::
     urlpatterns = [
         path(r"", RedirectView.as_view(url="components/"), name="home"),
         path(r"components/", include("backend.components.urls", namespace="components")),
-        path(r"tutorial", TutorialView.as_view()),
+        path(r"tutorial", TutorialView.as_view(), name="tutorial"),
     ]
 
 Finally, run the demo site::
