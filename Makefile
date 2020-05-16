@@ -108,7 +108,7 @@ clean: clean-dist clean-docs clean-frontend clean-tests clean-venv clean-version
 
 dist:
 	$(python) setup.py sdist bdist_wheel
-	$(twine) check
+	$(twine) check dist/*
 
 .PHONY: docs
 docs:
