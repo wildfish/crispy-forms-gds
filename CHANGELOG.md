@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2020-05-16
 ### Added 
 - Hints can now be added to checkboxes and radios.
 - Accordion sections can now display a summary of the contents.
