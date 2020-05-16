@@ -148,7 +148,6 @@ class AccordionSection(Div):
     """
 
     template = "%s/accordion-group.html"
-    css_class = ""
 
     def __init__(self, name, *fields, summary=None, **kwargs):
         super().__init__(*fields, **kwargs)
