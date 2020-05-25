@@ -34,6 +34,9 @@ config_file := setup.cfg
 version_file := src/crispy_forms_gds/__init__.py
 changelog_file = CHANGELOG.md
 docs_file := docs/conf.py
+package_file := demo/frontend/package.json
+
+version_files := $(config_file) $(version_file) $(changelog_file) $(docs_file) $(package_file)
 
 docs_version := $(shell echo $(VERSION) | cut -d '.' -f 1,2)
 docs_release := $(VERSION)
@@ -100,8 +103,8 @@ clean-venv:
 
 .PHONY: clean-version
 clean-version:
-	git restore --staged $(config_file) $(version_file) $(changelog_file) $(docs_file)
-	git restore $(config_file) $(version_file) $(changelog_file) $(docs_file)
+	git restore --staged $(version_files)
+	git restore $(version_files)
 
 .PHONY: clean
 clean: clean-dist clean-docs clean-frontend clean-tests clean-venv clean-version
@@ -156,6 +159,8 @@ version:
 	git add $(config_file)
 	sed -i "s/^__version__ = .*/__version__ = \"$(VERSION)\"/" $(version_file)
 	git add $(version_file)
+	sed -i "s/^  \"version\": .*/  \"version\": \"$(VERSION)\",/" $(package_file)
+	git add $(package_file)
 	awk -i inplace -v version=$(VERSION) -v date=`date +%Y-%m-%d` \
 		'NR==1,/^##.*/{sub(/^##.*/, "## ["version"] - "date)} 1' $(changelog_file)
 	git add $(changelog_file)
