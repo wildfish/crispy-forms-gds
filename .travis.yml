@@ -25,3 +25,13 @@ jobs:
     env: TOXENV=py38-django300
 after_success:
 - codecov
+deploy:
+  provider: pypi
+  user: wildfish-deployer
+  password:
+    secure: eqBko+pdQ8XsqsqKKIg2FEcHY/YcJX2ujVfVzgvIh6gxnwcxy53LzPSXK1cqvsSRAm001ZeLH/0lFzoBOwzSXJC0CnA6bUeJHF7+KD4g8uy9QWicmDv1t5DnyPuo3ZE5jdn9ggj8hIlNW8DEo+kTR0KmJjxjJglxJM3Zn7JCi9FiY8FYP9jXY95QsjVtT+L3sb6YZ1WR/QFNLGroqCl0TXXvTIxCdLKTgTRWNcWsI3H4YvPkpnFDIgTPJMGJk+NbTpwcGj8zCj6fWHwGCk2xq4n4F7Dkq7VJCo9l2FTHyQbPVg7No1oKNGJHHtVmXVNtxrc18wLLH70kYkuvzcaPie4EDRX1eoVEgIdNvV4UH1CkLQ5GINTppW/TWnlrw2QDqxw9ULslgtN8n3p1iWMn7ZciielUs3CNOYfbW0rAJmNw3T+NIZ4afIIh0tjlIUvn5j3x86/oR621UkmAlRLXglJE9LwRUjNzhHSVM/u1R1WfrrDU7M4JhJ0PK+XKk8zI0i750TjyMfSRLSwAZC7E7Cvq1L7Ag68lXqdO+SHBfaDg3eV2PNshz/twF9i4xR9HcYre3AIpy9QfHsjxOT343p+QEIfZD2PpnihUKFTPru3LKbxpJHbtGLRcSKzfaCy0RhL950AIS9JIQx8N7TwWX9aRVFyiVJB7apr2wf3STaE=
+  skip_existing: true
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: wildfish/crispy-forms-gds
