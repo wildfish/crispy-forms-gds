@@ -12,6 +12,9 @@ guidelines.
 .. image:: https://travis-ci.org/wildfish/crispy-forms-gds.svg?branch=master
     :target: https://travis-ci.org/wildfish/crispy-forms-gds
 
+.. image:: https://codecov.io/gh/wildfish/crispy-forms-gds/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/wildfish/crispy-forms-gds
+
 .. image:: https://badge.fury.io/py/crispy-forms-gds.svg
     :target: https://pypi.python.org/pypi/crispy-forms-gds/
 
