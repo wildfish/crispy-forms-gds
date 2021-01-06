@@ -23,6 +23,8 @@ guidelines.
 
 Requires Django 2.2 or later and django-crispy-forms 1.9 or later.
 
+This template pack supports govuk-frontend 3.5 or later.
+
 
 Quickstart
 ==========
