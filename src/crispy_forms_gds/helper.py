@@ -1,6 +1,8 @@
 from crispy_forms import helper as crispy_forms_helper
 from crispy_forms.utils import TEMPLATE_PACK
 
+from crispy_forms_gds.layout import Size
+
 
 class FormHelper(crispy_forms_helper.FormHelper):
     """
@@ -74,8 +76,8 @@ class FormHelper(crispy_forms_helper.FormHelper):
         form.use_required_attribute = False
 
         if self.label_size:
-            context["label_size"] = self.label_size
+            context["label_size"] = Size.for_label(self.label_size)
         if self.legend_size:
-            context["legend_size"] = self.legend_size
+            context["legend_size"] = Size.for_legend(self.legend_size)
 
         return super().render_layout(form, context, template_pack=template_pack)

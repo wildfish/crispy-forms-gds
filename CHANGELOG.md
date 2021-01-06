@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
+## [Latest]
+### Changed
+- FormHelper now correctly translates Sizes into css classes.
+
 ## [0.2.1] - 2020-05-25
 ### Changed
 - Simplified webpack configuration for demo site.
