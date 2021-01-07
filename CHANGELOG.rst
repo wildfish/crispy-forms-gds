@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+0.2.2 (2021-01-07)
+------------------
 * Changed FormHelper now correctly translates Sizes into css classes.
 
 0.2.1 (2020-05-25)
