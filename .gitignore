@@ -10,15 +10,16 @@ __pycache__/
 .*
 !.gitignore
 !.gitkeep
+!.editorconfig
+!.travis.yml
+!.readthedocs.yml
 
 # Development artefacts
 build
 dist
-htmlcov
+reports
 venv
 
 # Any local makefiles
 *.mk
 
-# Documentation artefacts
-_build
