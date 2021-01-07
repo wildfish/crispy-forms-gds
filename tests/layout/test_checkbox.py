@@ -9,7 +9,6 @@ from crispy_forms_gds.layout import Field, Layout
 from tests.forms import CheckboxForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
-
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "checkbox")
 
 

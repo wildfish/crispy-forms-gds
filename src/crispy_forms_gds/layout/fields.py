@@ -2,6 +2,7 @@ from django.utils.html import conditional_escape
 
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK
+
 from crispy_forms_gds.layout import Fixed, Fluid, Size
 
 
@@ -123,7 +124,7 @@ class Field(crispy_forms_layout.LayoutObject):
         legend_tag=None,
         small=False,
         inline=False,
-        **kwargs
+        **kwargs,
     ):
         """
         Create a field for displaying radio buttons.
@@ -235,7 +236,7 @@ class Field(crispy_forms_layout.LayoutObject):
         max_characters=None,
         max_words=None,
         threshold=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Create a field for displaying a Textarea.
@@ -252,14 +253,14 @@ class Field(crispy_forms_layout.LayoutObject):
             rows (int): the number of rows to display. If not specified then Django's
                 default of 10 will be used (the default used by most browsers is 2).
 
-            max_characters (int, optional): the maximum number of characters that should be entered.
-                Default is None.
+            max_characters (int, optional): the maximum number of characters that
+                should be entered. Default is None.
 
-            max_words (int, optional): the maximum number of words that should be entered.
-                Default is None.
+            max_words (int, optional): the maximum number of words that should be
+                entered. Default is None.
 
-            threshold (int, optional): the percentage of the count that has to be reached
-                before the limit is shown. Default is None.
+            threshold (int, optional): the percentage of the count that has to
+                be reached before the limit is shown. Default is None.
 
             **kwargs: Attributes to add to the <textarea> element when the field is
                 rendered.

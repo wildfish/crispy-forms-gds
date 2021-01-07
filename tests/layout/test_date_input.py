@@ -8,7 +8,6 @@ import os
 from tests.forms import DateInputForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
-
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "date_input")
 
 # IMPORTANT: The test results are totally dependent on the require_all_fields

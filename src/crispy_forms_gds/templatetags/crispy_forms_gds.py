@@ -5,7 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.utils import TEMPLATE_PACK
 
-
 register = template.Library()
 
 
@@ -26,13 +25,6 @@ def breadcrumbs(crumbs):
 
     """
     return {"crumbs": crumbs}
-
-
-def error_summary(form):
-    """
-    Template tag that renders the list of errors from a form.
-    """
-    return {"form": form}
 
 
 @register.simple_tag
@@ -74,7 +66,7 @@ def button_link(url, title):
 
     """
     return format_html(
-        '<a href="{}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">{}</a>',
+        '<a href="{}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">{}</a>',  # noqa
         url,
         title,
     )
@@ -97,14 +89,14 @@ def button_start(url, title):
 
     """
     html = """
-    <a href="{}" role="button" draggable="false" 
+    <a href="{}" role="button" draggable="false"
        class="govuk-button govuk-button--start" data-module="govuk-button">
         {}
-      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" 
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg"
            width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
         <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
       </svg>
-    </a>"""
+    </a>"""  # noqa
     return format_html(html, url, title)
 
 
@@ -246,7 +238,7 @@ class CrispyGDSFieldNode(template.Node):
         except template.VariableDoesNotExist:
             html5_required = False
 
-        # If template pack has been overridden in FormHelper we can pick it from context
+        # Pick up the template pack if it has been overridden in FormHelper
         template_pack = context.get("template_pack", TEMPLATE_PACK)
 
         # There are special django widgets that wrap actual widgets,
@@ -314,12 +306,12 @@ class CrispyGDSFieldNode(template.Node):
 
             if template_pack == "gds":
 
-                # The ability to override input_type was added to avoid having to create
-                # new widgets. However, as a result, the browser validates the field and
-                # displays a red border with no feedback to the user. That is at odds with
-                # with the way the Design System reports errors. However this is being left
-                # in for now until the "conflict" is better understood - it might be useful
-                # to somebody at some point.
+                # The ability to override input_type was added to avoid having to
+                # create new widgets. However, as a result, the browser validates
+                # the field and displays a red border with no feedback to the user.
+                # That is at odds with with the way the Design System reports errors.
+                # However this is being left in for now until the "conflict" is better
+                # understood - it might be useful to somebody at some point.
 
                 if hasattr(widget, "input_type") and "input_type" in widget.attrs:
                     widget.input_type = widget.attrs.pop("input_type")

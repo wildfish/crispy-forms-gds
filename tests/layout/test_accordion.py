@@ -8,7 +8,6 @@ from crispy_forms_gds.layout import HTML, Accordion, AccordionSection, Layout
 from tests.forms import AccordionForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
-
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "accordion")
 
 

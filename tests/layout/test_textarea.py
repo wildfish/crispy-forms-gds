@@ -11,7 +11,6 @@ from crispy_forms_gds.layout import Field, Layout, Size
 from tests.forms import TextareaForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
-
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "textarea")
 
 
@@ -82,7 +81,7 @@ def test_character_and_word_count():
 
 
 def test_threshold():
-    """Verify the info is not shown until after a certain number of words has been entered."""
+    """Verify info is shown after a certain number of words has been entered."""
     form = TextareaForm(initial={"description": "Field value"})
     form.helper = FormHelper()
     form.helper.layout = Layout(

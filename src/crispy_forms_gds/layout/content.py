@@ -2,6 +2,7 @@ from django.template import Context, Template
 from django.utils.safestring import mark_safe
 
 from crispy_forms import layout as crispy_forms_layout
+
 from crispy_forms_gds.layout.constants import Colour
 
 
@@ -215,9 +216,9 @@ class HTML(crispy_forms_layout.HTML):
 
             caption (str, optional): a caption describing the table.
 
-            header_css (list): css classes that will be added to each column in the header.
+            header_css (list): css classes that are added to each column in the header.
 
-            row_css (list): css classes that will be added to each column in each row
+            row_css (list): css classes that are added to each column in each row
 
         """
         if headers is None:
@@ -257,7 +258,7 @@ class HTML(crispy_forms_layout.HTML):
               {% endfor %}
             </tbody>
             </table>
-        """
+        """  # noqa
         return HTML(Template(template).render(context))
 
     @classmethod

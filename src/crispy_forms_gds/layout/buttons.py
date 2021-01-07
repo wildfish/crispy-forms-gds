@@ -22,7 +22,7 @@ class Button(BaseInput):
         Button.secondary('cancel', 'Cancel')
         Button.warning('delete', 'Delete account')
 
-    Buttons are disabled, in the usual way, by setting the disabled attribute to true: ::
+    Buttons are disabled by setting the disabled attribute to true: ::
 
         Button.primary('add', 'Add contact', disabled=True)
 
@@ -65,7 +65,7 @@ class Button(BaseInput):
             value,
             disabled=disabled,
             css_class="govuk-button--secondary",
-            **kwargs
+            **kwargs,
         )
 
     @classmethod

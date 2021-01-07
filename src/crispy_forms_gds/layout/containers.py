@@ -3,6 +3,7 @@ from django.utils.text import slugify
 
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK, flatatt, render_field
+
 from crispy_forms_gds.layout import Size
 
 
@@ -179,9 +180,9 @@ class Fieldset(crispy_forms_layout.LayoutObject):
     Examples::
 
         Fieldset('form_field_1', 'form_field_2')
-        Fieldset('form_field_1', 'form_field_2', legend="fieldset_title")
-        Fieldset('form_field_1', 'form_field_2', legend="fieldset_title", legend_tag="h1")
-        Fieldset('form_field_1', 'form_field_2', legend="fieldset_title", legend_size="xl")
+        Fieldset('form_field_1', 'form_field_2', legend="title")
+        Fieldset('form_field_1', 'form_field_2', legend="title", legend_tag="h1")
+        Fieldset('form_field_1', 'form_field_2', legend="title", legend_size="xl")
 
     Arguments:
         legend (str, optional): the title displayed in a <legend>.
@@ -206,7 +207,7 @@ class Fieldset(crispy_forms_layout.LayoutObject):
 
         **kwargs:  any additional attributes you want to add to the <fieldset>.
 
-   """
+    """
 
     css_class = "govuk-fieldset"
     template = "%s/layout/fieldset.html"

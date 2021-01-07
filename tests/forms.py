@@ -45,7 +45,9 @@ class CheckboxesChoiceForm(BaseForm):
     METHODS = (
         Choice("email", "Email"),
         Choice(
-            "phone", "Phone", hint="Select this option only if you have a mobile phone",
+            "phone",
+            "Phone",
+            hint="Select this option only if you have a mobile phone",
         ),
         Choice("text", "Text message"),
     )
@@ -196,7 +198,8 @@ class AccordionForm(forms.Form):
                     summary="A summary of the first section",
                 ),
                 AccordionSection(
-                    "Second section", HTML("<p>Second section contents.</p>"),
+                    "Second section",
+                    HTML("<p>Second section contents.</p>"),
                 ),
             )
         )

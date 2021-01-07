@@ -8,7 +8,6 @@ from django.test.html import parse_html
 
 from . import settings
 
-
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 
 

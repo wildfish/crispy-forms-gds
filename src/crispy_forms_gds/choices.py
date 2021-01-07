@@ -9,7 +9,7 @@ class Choice:
 
         METHODS = (
             Choice("email", "Email"),
-            Choice("phone", "Phone", hint="Select this option only if you have a mobile phone"),
+            Choice("phone", "Phone", hint="Select this only if you have a mobile phone"),  # noqa
             Choice("text", "Text message"),
         )
 

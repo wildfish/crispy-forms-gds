@@ -9,7 +9,6 @@ from crispy_forms_gds.layout import Field, Layout, Size
 from tests.forms import TextInputForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
-
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "text_input")
 
 

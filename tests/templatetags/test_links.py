@@ -14,7 +14,6 @@ from crispy_forms_gds.templatetags.crispy_forms_gds import (
 )
 from tests.utils import TEST_DIR, parse_contents, parse_template
 
-
 RESULT_DIR = os.path.join(TEST_DIR, "templatetags", "results")
 
 

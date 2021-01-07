@@ -5,10 +5,10 @@ Tests to verify tables are rendered correctly.
 import os
 
 import pytest
+
 from crispy_forms_gds.layout import HTML
 from tests.forms import TableForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
-
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "table")
 

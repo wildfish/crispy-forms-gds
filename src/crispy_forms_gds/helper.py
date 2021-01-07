@@ -6,11 +6,11 @@ from crispy_forms_gds.layout import Size
 
 class FormHelper(crispy_forms_helper.FormHelper):
     """
-    .. _FormHelper: https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html
+    .. _FormHelper: https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html  # noqa
 
     This class controls the form rendering behavior of the form passed to
     the ``{% crispy %}`` tag. It intended to be use exclusively with the 'gds'
-    template pack and extends the django-crispy-forms `FormHelper`_ class by
+    template pack and extends the django-crispy-forms FormHelper class by
     adding the following attributes to control how the form is rendered.
 
     Attributes:
