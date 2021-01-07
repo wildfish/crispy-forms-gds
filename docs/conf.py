@@ -15,11 +15,11 @@ import sys
 
 import django
 
-
 ROOT_DIR = os.path.dirname(os.path.abspath("."))
+sys.path.insert(0, os.path.abspath(os.path.join(ROOT_DIR, "docs")))
 sys.path.insert(0, os.path.abspath(os.path.join(ROOT_DIR, "src")))
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "docs.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
 django.setup()
 
 # -- Project information -----------------------------------------------------
