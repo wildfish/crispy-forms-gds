@@ -1,0 +1,18 @@
+
+-r tests.in
+-r docs.in
+
+# Install the app and dependencies for development. It is done this way
+# rather than using setup.py develop directly as that only makes Django
+# visible to the app and not generally.
+
+-e .
+
+# bumpversion is no longer maintained so we use bump2version until the
+# point where bump2version emerges as the official bumpversion, see
+# https://github.com/c4urself/bump2version/issues/86
+
+bump2version
+
+tox
+twine
