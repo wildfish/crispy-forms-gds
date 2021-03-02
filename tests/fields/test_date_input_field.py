@@ -27,6 +27,14 @@ def test_compress_optional_fields_empty():
     assert value is None
 
 
+def test_clean_optional_fields_empty():
+    """Verify clean returns None if the values are not required and not set."""
+    field = DateInputField(required=False)
+    field.require_all_fields = False
+    value = field.clean(["", "", ""])
+    assert value is None
+
+
 def test_cleaned_valid_value():
     """Verify the Date input field returns a date object."""
     date = datetime.date(year=2007, month=12, day=11)
