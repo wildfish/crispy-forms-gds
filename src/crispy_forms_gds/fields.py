@@ -162,6 +162,9 @@ class DateInputField(forms.MultiValueField):
         """
         day, month, year = data_list
         if day and month and year:
-            return date(day=int(day), month=int(month), year=int(year))
+            try:
+                return date(day=int(day), month=int(month), year=int(year))
+            except ValueError as e:
+                raise ValidationError(str(e)) from e
         else:
             return None
