@@ -4,25 +4,29 @@ language: python
 before_install:
 - pip install --upgrade pip wheel setuptools codecov
 install:
-- pip install -r requirements.txt
+- pip install -r requirements/dev.txt
 script:
 - tox
 jobs:
   include:
-  - python: '3.5'
-    env: TOXENV=py35-django220
   - python: '3.6'
-    env: TOXENV=py36-django220
+    env: TOXENV=py36-django22
   - python: '3.6'
-    env: TOXENV=py36-django300
+    env: TOXENV=py36-django31
+  - python: '3.6'
+    env: TOXENV=py36-django32
   - python: '3.7'
-    env: TOXENV=py37-django220
+    env: TOXENV=py37-django22
   - python: '3.7'
-    env: TOXENV=py37-django300
+    env: TOXENV=py37-django31
+  - python: '3.7'
+    env: TOXENV=py37-django32
   - python: '3.8'
-    env: TOXENV=py38-django220
+    env: TOXENV=py38-django22
   - python: '3.8'
-    env: TOXENV=py38-django300
+    env: TOXENV=py38-django31
+  - python: '3.8'
+    env: TOXENV=py38-django32
 after_success:
 - codecov
 deploy:

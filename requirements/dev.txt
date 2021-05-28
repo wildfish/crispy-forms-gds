@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements/dev.in
 #
--e file:///home/stuart/Development/crispy-forms-gds
+-e .
     # via -r requirements/dev.in
 -e git+https://github.com/wildfish/sphinx_wildfish_theme.git#egg=sphinx_wildfish_theme
     # via -r requirements/docs.in
