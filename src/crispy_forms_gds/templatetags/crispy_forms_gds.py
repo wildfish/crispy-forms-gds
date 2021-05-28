@@ -266,6 +266,7 @@ class CrispyGDSFieldNode(template.Node):
             "checkboxinput": "govuk-checkboxes__input",
             "select": "govuk-select",
             "textinput": "govuk-input",
+            "emailinput": "govuk-input",
             "textarea": "govuk-textarea",
             "clearablefileinput": "govuk-file-upload",
         }
