@@ -6,7 +6,7 @@
 # rather than using setup.py develop directly as that only makes Django
 # visible to the app and not generally.
 
--e .
+-e file:.
 
 # bumpversion is no longer maintained so we use bump2version until the
 # point where bump2version emerges as the official bumpversion, see
