@@ -1,18 +1,21 @@
-[tool.black]
-# Notes:
-#
-# line-length: this is just the default but it's included here so it's easy
-# to see that the value is synced with other code quality tools.
-#
-# target-version: the python version is set when the project is generated
-# so we might as well make use of it.
-#
-# exclude: the regex for excluding migrations is added in case you don't
-# want them reformatted.
-#
-# For all options see:
-#   https://black.readthedocs.io/en/stable/installation_and_usage.html
+[tool.poetry]
+name = "crispy-forms-gds"
+version = "0.2.2"
+description = "A GOV.UK Design System template pack for django-crispy-forms."
+authors = ["Wildfish <developers@wildfish.com>", "Department for International Trade <webops@digital.trade.gov.uk>"]
+license = "BSD 3-clause License"
+readme = "README.rst"
+homepage = "https://github.com/uktrade/crispy-forms-gds"
+repository = "https://github.com/uktrade/crispy-forms-gds"
+keywords = ["crispyforms", "gds", "django"]
 
-line-length = 88
-target-version = ['py38']
-# exclude = ".*/migrations/.*"
+[tool.poetry.dependencies]
+python = "^3.8"
+django-crispy-forms = ">=1.9.0"
+django = ">=2.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
