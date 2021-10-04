@@ -12,10 +12,6 @@ on:
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: multipython
-      
     runs-on: ubuntu-latest
 
     env:
