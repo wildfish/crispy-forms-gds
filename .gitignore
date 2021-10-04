@@ -8,6 +8,7 @@ __pycache__/
 
 # Ignore dot files except those required for the project
 .*
+!.github
 !.gitignore
 !.gitkeep
 !.editorconfig
