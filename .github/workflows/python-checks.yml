@@ -11,7 +11,39 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  lint:
+    # Lint
+    runs-on: ubuntu-latest
+
+    env:
+      # Choose a version of Python in which to set up the tox test environment.
+      python-version: 3.9
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ env.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install black flake8 isort
+
+    - name: Run lints
+      # TODO: also lint demo once once formatting issues have been fixed.
+      #  flake8 demo src tests
+      #  black --check demo src tests
+      #  isort --check demo src tests
+      run: |
+        flake8 src tests
+        black --check src tests
+        isort --check src tests
+
+  test:
+    # Run unit tests.
     runs-on: ubuntu-latest
 
     env:
