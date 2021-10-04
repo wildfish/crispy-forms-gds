@@ -3,20 +3,50 @@ name = "crispy-forms-gds"
 version = "0.2.2"
 description = "A GOV.UK Design System template pack for django-crispy-forms."
 authors = ["Wildfish <developers@wildfish.com>", "Department for International Trade <webops@digital.trade.gov.uk>"]
-license = "BSD 3-clause License"
+license = "BSD-3-Clause"
 readme = "README.rst"
 homepage = "https://github.com/uktrade/crispy-forms-gds"
 repository = "https://github.com/uktrade/crispy-forms-gds"
 keywords = ["crispyforms", "gds", "django"]
+packages = [{ include = 'crispy_forms_gds', from = 'src' }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 django-crispy-forms = ">=1.9.0"
 django = ">=2.2"
+coverage = {extras = ["toml"], version = "^5.5"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
+coverage = {extras = ["toml"], version = "^5.5"}
+pytest-cov = "^2.12.1"
+
+[tool.coverage.html]
+directory = "reports/coverage"
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["crispy_forms_gds"]
+data_file = ".coverage"
+omit = ["tests/*", "demo/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 30
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "def __str__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+]
 
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
