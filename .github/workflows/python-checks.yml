@@ -37,7 +37,7 @@ jobs:
       #  flake8 demo src tests
       #  black --check demo src tests
       #  isort --check demo src tests
-      run:
+      run: |
         flake8 src tests
         black --check src tests
         isort --check src tests
