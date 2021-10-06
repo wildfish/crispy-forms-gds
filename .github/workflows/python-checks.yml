@@ -18,6 +18,9 @@ jobs:
     env:
       # Choose a version of Python in which to set up the tox test environment.
       python-version: 3.9
+      linted-dirs: src tests
+      # TODO: also lint demo once once formatting issues have been fixed.
+      #linted-dirs: demo src tests
 
     steps:
     - uses: actions/checkout@v2
@@ -33,14 +36,10 @@ jobs:
         python -m pip install black flake8 isort
 
     - name: Run lints
-      # TODO: also lint demo once once formatting issues have been fixed.
-      #  flake8 demo src tests
-      #  black --check demo src tests
-      #  isort --check demo src tests
       run: |
-        flake8 src tests
-        black --check src tests
-        isort --check src tests
+        flake8 ${{ env.linted-dirs }}
+        black --check ${{ env.linted-dirs }}
+        isort --check ${{ env.linted-dirs }}
 
   test:
     # Run unit tests.
@@ -50,7 +49,8 @@ jobs:
       # Choose a version of Python in which to set up the tox test environment.
       python-version: 3.9
 
-    # No strategy is required to manage our version matrix of tests - tox manages this.
+    # No strategy is required to manage our Python x Django version matrix of
+    # tests - tox manages this.
     #strategy:
     #  matrix:
     #    python-version: [3.9]
