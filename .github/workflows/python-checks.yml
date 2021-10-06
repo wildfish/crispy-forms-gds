@@ -12,7 +12,8 @@ on:
 
 jobs:
   lint:
-    # Lint
+    name: Lint and format
+
     runs-on: ubuntu-latest
 
     env:
@@ -42,7 +43,8 @@ jobs:
         isort --check ${{ env.linted-dirs }}
 
   test:
-    # Run unit tests.
+    name: Unit tests
+
     runs-on: ubuntu-latest
 
     env:
