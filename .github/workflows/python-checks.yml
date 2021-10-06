@@ -2,7 +2,7 @@
 # The version matrix of Python and various libraries tested (Python vs Django, for instance)
 # is entirely managed by tox and so no strategy section is required within any test jobs.
 
-name: Version matrix of Python-Django tests using tox.
+name: Linting and testing
 
 on:
   push:
