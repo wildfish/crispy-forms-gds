@@ -9,9 +9,6 @@ guidelines.
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms/
 .. _GOV.UK Design System: https://design-system.service.gov.uk/
 
-.. image:: https://travis-ci.org/wildfish/crispy-forms-gds.svg?branch=master
-    :target: https://travis-ci.org/wildfish/crispy-forms-gds
-
 .. image:: https://codecov.io/gh/wildfish/crispy-forms-gds/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/wildfish/crispy-forms-gds
 
