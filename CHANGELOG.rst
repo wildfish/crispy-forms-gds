@@ -12,10 +12,11 @@ and by implication, [Semantic Versioning](http://semver.org/).
 Latest
 ------
 
-__next__
+0.2.3 (2021-12-13)
 ------------------
 * Django 4.0 support added.
 * Confirmed support for python 3.9/3.10
+* Fixed issues with DateInputField, thanks @ahernp & @NDevox.
 
 0.2.2 (2021-01-07)
 ------------------
