@@ -1,4 +1,4 @@
-name: Tests
+name: Unit tests
 
 # Test django-star-ratings on:
 #   all supported Django and Python versions
