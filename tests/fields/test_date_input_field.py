@@ -11,6 +11,17 @@ import pytest
 from crispy_forms_gds.fields import DateInputField
 
 
+def test_compress_invalid_fields():
+    """Verify compress raises an error on an invalid date."""
+    day = 30
+    month = 2
+    year = 2021
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.compress([day, month, year])
+    assert err.value.args[0] == "day is out of range for month"
+
+
 def test_compress_valid_fields():
     """Verify compress returns a date."""
     date = datetime.date(year=2007, month=12, day=11)

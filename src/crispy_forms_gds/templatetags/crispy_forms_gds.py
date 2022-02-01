@@ -163,7 +163,9 @@ def is_radios(field):
     Template filter that returns True if the field is a set of radio
     buttons field, False otherwise.
     """
-    return isinstance(field.field.widget, forms.RadioSelect)
+    if isinstance(field.field.widget, forms.RadioSelect):
+        return field.field.widget.input_type == "radio"
+    return False
 
 
 @register.filter
@@ -181,7 +183,9 @@ def is_checkboxes(field):
     Template filter that returns True if the field is set of checkboxes,
     False otherwise.
     """
-    return isinstance(field.field.widget, forms.CheckboxSelectMultiple)
+    if isinstance(field.field.widget, forms.CheckboxSelectMultiple):
+        return field.field.widget.input_type == "checkbox"
+    return False
 
 
 @register.filter
@@ -266,6 +270,7 @@ class CrispyGDSFieldNode(template.Node):
             "checkboxinput": "govuk-checkboxes__input",
             "select": "govuk-select",
             "textinput": "govuk-input",
+            "emailinput": "govuk-input",
             "textarea": "govuk-textarea",
             "clearablefileinput": "govuk-file-upload",
         }
