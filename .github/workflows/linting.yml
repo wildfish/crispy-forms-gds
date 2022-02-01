@@ -1,4 +1,4 @@
-name: Linting and testing
+name: Linting
 
 on:
   push:
