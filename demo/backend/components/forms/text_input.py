@@ -29,7 +29,7 @@ class TextInputForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.label_size = Size.for_label(Size.SMALL)
+        self.helper.label_size = Size.SMALL
         self.helper.layout = Layout(
             Fieldset(
                 Field.text("name"),

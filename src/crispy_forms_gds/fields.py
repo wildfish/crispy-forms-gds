@@ -105,7 +105,7 @@ class DateInputField(forms.MultiValueField):
                         self.error_messages["required"], code="required"
                     )
                 else:
-                    return self.compress([])
+                    return self.compress((None, None, None))
         else:
             raise ValidationError(self.error_messages["invalid"], code="invalid")
         for i, field in enumerate(self.fields):
@@ -162,6 +162,9 @@ class DateInputField(forms.MultiValueField):
         """
         day, month, year = data_list
         if day and month and year:
-            return date(day=int(day), month=int(month), year=int(year))
+            try:
+                return date(day=int(day), month=int(month), year=int(year))
+            except ValueError as e:
+                raise ValidationError(str(e)) from e
         else:
             return None
