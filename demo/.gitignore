@@ -18,7 +18,6 @@ __pycache__/
 media
 
 # Front end artefacts
-package-lock.json
 node_modules
 dist
 

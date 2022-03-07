@@ -25,13 +25,13 @@ const config = {
       cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
     }),
     // Copy GOV.UK assets into the dist path without modifying
-    new CopyPlugin(
-      [{
-          context: path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/assets'),
-          from: '**/*',
-          to: pathDistGov,
-       }],
-    ),
+    new CopyPlugin({
+        patterns: [{
+            context: path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/assets'),
+            from: '**/*',
+            to: pathDistGov,
+        }],
+    }),
   ],
 
   module: {
