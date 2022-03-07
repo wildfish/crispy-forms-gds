@@ -97,7 +97,7 @@ If you checkout the code from the repository, there is a Django site you can run
 the forms in action. You will need to `install nvm`_ first (to manage node versions),
 then build and run the demo with::
 
-    make serve
+    make runserver
 
 .. _install nvm: https://github.com/nvm-sh/nvm
 
