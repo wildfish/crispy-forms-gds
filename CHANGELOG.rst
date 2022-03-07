@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+0.2.4 (2022-03-07)
+------------------
 * Password fields are styled correctly.
 
 0.2.3 (2021-12-13)
