@@ -1,6 +1,5 @@
 import os
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BACKEND_DIR = os.path.join(BASE_DIR, "backend")
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
@@ -70,7 +69,7 @@ MEDIA_URL = "/media/"
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join(FRONTEND_DIR, "dist"),)
+STATICFILES_DIRS = (os.path.join(FRONTEND_DIR, "assets"),)
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("gds",)
 

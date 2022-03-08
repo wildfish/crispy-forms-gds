@@ -1,54 +1,33 @@
-const path = require('path');
-
+const Path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-
-const pathDist = `dist`;
-const pathDistGov = path.resolve(__dirname, pathDist, 'govuk');
-
 
 const config = {
 
   entry: {
-    'index': [`./src/index.js`, `./src/index.scss`],
+    'index': ['./src/index.js', './src/index.scss'],
   },
 
   output: {
-    path: path.resolve(__dirname, pathDist),
-    publicPath: `/${pathDist}/`,
+    path: Path.resolve(__dirname, 'assets'),
+    publicPath: '/assets/',
     filename: '[name].js'
   },
 
   plugins: [
-    // Remove built js and css from the dist folder before building
+    // Remove built js and css from the assets folder before building
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
-    }),
-    // Copy GOV.UK assets into the dist path without modifying
-    new CopyPlugin({
-        patterns: [{
-            context: path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/assets'),
-            from: '**/*',
-            to: pathDistGov,
-        }],
+      cleanOnceBeforeBuildPatterns: ['**/*'],
     }),
   ],
 
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/i,
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                includePaths: ['./node_modules'],
-              },
-            },
-          },
+          'sass-loader',
         ],
       },
     ],
