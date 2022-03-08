@@ -94,13 +94,32 @@ Demo
 ====
 
 If you checkout the code from the repository, there is a Django site you can run to see
-the forms in action. You will need to `install nvm`_ first (to manage node versions),
-then build and run the demo with::
+the forms in action::
 
-    make runserver
+    git clone git@github.com:wildfish/crispy-forms-gds.git
+    cd crispy-forms-gds
 
-.. _install nvm: https://github.com/nvm-sh/nvm
+First, create a virtual environment::
 
+    python3 -m venv venv
+    . venv/bin/activate
+    pip3 install wheel
+    pip3 install -r requirements/dev.txt
+
+Next, install all the dependencies and build the javascript and css assets::
+
+    cd demo/frontend
+    npm install
+    npm run dev
+
+Now, setup and run Django::
+
+    cd ..
+    python3 manage.py migrate
+    python3 manage.py runserver
+
+Open http://localhost:8000/ in your browser to see forms built with `Django Crispy Forms`_
+styled using the `GOV.UK Design System`_.
 
 Further reading
 ===============

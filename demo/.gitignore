@@ -10,7 +10,6 @@ __pycache__/
 .*
 !.gitignore
 !.gitkeep
-!.nvmrc
 
 # Development artefacts
 *.log
@@ -19,7 +18,7 @@ media
 
 # Front end artefacts
 node_modules
-dist
+assets
 
 # Other
 backend/tutorial
