@@ -38,6 +38,11 @@
           </span>
         {% endif %}
       </div>
+
+      {% if choice.divider %}
+        <div class="govuk-checkboxes__divider">{{ choice.divider }}</div>
+      {% endif %}
+
     {% endfor %}
   </div>
 
