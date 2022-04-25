@@ -40,7 +40,7 @@ dataclasses==0.6
     # via black
 distlib==0.3.4
     # via virtualenv
-django==3.2.12
+django==3.2.13
     # via crispy-forms-gds
 django-crispy-forms==1.13.0
     # via crispy-forms-gds
