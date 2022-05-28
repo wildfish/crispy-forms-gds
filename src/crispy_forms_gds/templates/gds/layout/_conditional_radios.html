@@ -1,0 +1,6 @@
+{% extends "gds/layout/radios.html" %}
+{% block radios %}
+  <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+    {{ choices|safe }}
+  </div>
+{% endblock %}

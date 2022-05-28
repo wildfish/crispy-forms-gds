@@ -70,3 +70,48 @@ effectively saying the same thing.
 If you use the ``Choice`` class to create the list of choice for the field you
 can set a ``hint`` for each item as needed. You can also set ``divider`` that will
 display a separator <div> with a string after the radio button.
+
+------------------
+Conditional radios
+------------------
+
+A `Conditional radios`_ component is used when there are fields and/or content that
+should be conditionally revealed once a particular answer has been selected. ::
+
+    from django import forms
+
+    from crispy_forms_gds.helper import FormHelper
+    from crispy_forms_gds.layout import ConditionalQuestion, ConditionalRadios
+
+
+    class ConditionalRadiosForm(forms.Form):
+        how_would_you_like_to_be_contacted = forms.ChoiceField(
+            choices=(
+                ("phone", "By phone"),
+                ("email", "By email"),
+                ("no_contact", "Don't contact me"),
+            ),
+        )
+        mobile_phone_number = forms.CharField()
+        home_phone_number = forms.CharField()
+        email_address = forms.EmailField()
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.helper = FormHelper()
+            self.helper.layout = Layout(
+                ConditionalRadios(
+                    "how_would_you_like_to_be_contacted",
+                    ConditionalQuestion(
+                        "By phone",
+                        "mobile_phone_number",
+                        "home_phone_number",
+                        HTML.p("Please enter either mobile or home")
+                    ),
+                    ConditionalQuestion(
+                        "By email",
+                        "email_address",
+                    ),
+                    "Don't contact me",
+                ),
+            )
