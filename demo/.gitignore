@@ -10,6 +10,7 @@ __pycache__/
 .*
 !.gitignore
 !.gitkeep
+!.nvmrc
 
 # Development artefacts
 *.log
