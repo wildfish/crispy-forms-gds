@@ -1,5 +1,4 @@
 
--r tests.in
 -r docs.in
 
 # Install the app and dependencies for development. It is done this way
@@ -15,4 +14,6 @@
 bump2version
 
 tox
+tox-pyenv
+
 twine
