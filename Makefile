@@ -34,7 +34,7 @@ nvm := sh ~/.nvm/nvm.sh
 
 commit_opts := --gpg-sign
 upload_opts := --skip-existing
-pytest_opts := --flake8 --black --isort
+pytest_opts :=
 
 .PHONY: help
 help:
