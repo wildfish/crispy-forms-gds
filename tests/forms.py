@@ -21,7 +21,6 @@ class BaseForm(forms.Form):
 
 
 class CheckboxForm(BaseForm):
-
     accept = forms.BooleanField(
         label="I accept the terms of service",
         help_text="Please read the terms of service.",
@@ -30,7 +29,6 @@ class CheckboxForm(BaseForm):
 
 
 class CheckboxesForm(BaseForm):
-
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
         widget=forms.CheckboxSelectMultiple,
@@ -41,7 +39,6 @@ class CheckboxesForm(BaseForm):
 
 
 class CheckboxesChoiceForm(BaseForm):
-
     METHODS = (
         Choice("email", "Email"),
         Choice(
@@ -63,7 +60,6 @@ class CheckboxesChoiceForm(BaseForm):
 
 
 class DateInputForm(BaseForm):
-
     date = DateInputField(
         label="When was your passport issued?",
         help_text="For example, 12 11 2007",
@@ -72,7 +68,6 @@ class DateInputForm(BaseForm):
 
 
 class FileUploadForm(BaseForm):
-
     file = forms.FileField(
         label="Upload a file",
         help_text="Select the CSV file to upload.",
@@ -83,7 +78,6 @@ class FileUploadForm(BaseForm):
 
 
 class RadiosForm(BaseForm):
-
     method = forms.ChoiceField(
         choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
         widget=forms.RadioSelect,
@@ -94,7 +88,6 @@ class RadiosForm(BaseForm):
 
 
 class RadiosChoiceForm(BaseForm):
-
     METHODS = (
         Choice("email", "Email", hint="Do not give a work email address"),
         Choice("phone", "Phone", divider="Or"),
@@ -111,7 +104,6 @@ class RadiosChoiceForm(BaseForm):
 
 
 class SelectForm(BaseForm):
-
     method = forms.ChoiceField(
         choices=(
             ("", "Choose"),
@@ -127,7 +119,6 @@ class SelectForm(BaseForm):
 
 
 class TextInputForm(BaseForm):
-
     name = forms.CharField(
         label="Name",
         help_text="Help text",
@@ -136,7 +127,6 @@ class TextInputForm(BaseForm):
 
 
 class TextareaForm(BaseForm):
-
     description = forms.CharField(
         label="Description",
         widget=forms.Textarea,
