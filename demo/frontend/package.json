@@ -10,16 +10,16 @@
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "govuk-frontend": "^4.0.1"
+    "govuk-frontend": "^4.8.0"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^9.1.0",
-    "css-loader": "^6.7.0",
-    "node-sass": "^7.0.1",
-    "sass-loader": "^12.6.0",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.76.0",
-    "webpack-cli": "^4.9.2"
+    "css-loader": "^6.10.0",
+    "dart-sass": "^1.25.0",
+    "sass": "^1.70.0",
+    "sass-loader": "^14.1.0",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
   }
 }
