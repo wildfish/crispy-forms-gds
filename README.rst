@@ -252,6 +252,7 @@ First, create a virtual environment::
 Next, install all the dependencies and build the javascript and css assets::
 
     cd demo/frontend
+    nvm use
     npm install
     npm run dev
 
