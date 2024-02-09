@@ -177,9 +177,14 @@ class TabsForm(forms.Form):
 
 
 class FieldsetForm(forms.Form):
+    # Django 3.2.20 added a default for max_length of 320 characters, see
+    # https://docs.djangoproject.com/en/5.0/ref/forms/fields/#emailfield
+    # However there was a regression in Django 4.0 and the max_length was
+    # omitted. It is added here to ensure the tests pass for all Django
+    # versions.
 
     name = forms.CharField(label="Name")
-    email = forms.EmailField(label="Email")
+    email = forms.EmailField(label="Email", max_length="320")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
