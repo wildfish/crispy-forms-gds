@@ -11,6 +11,10 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+* Django 2.2 is no longer supported
+* Updated environments tested to include Django 3.2 LTS, 4.0, 4.1, 4.2 LTS
+* Updated environments tested to include all django-crispy-forms 1.x releases
+* Updated packages used in demo
 
 0.2.4 (2022-03-07)
 ------------------
