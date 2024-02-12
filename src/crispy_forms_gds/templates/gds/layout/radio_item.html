@@ -1,0 +1,30 @@
+{% load l10n %}
+<div class="govuk-radios__item">
+  <input
+    type="radio"
+    name="{{ field.html_name }}"
+    class="govuk-radios__input"
+    id="id_{{ field.html_name }}_{{ position }}"
+    value="{{ choice.0|unlocalize }}"
+    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+      checked="checked"
+    {% endif %}
+    {% if choice.hint %}
+      aria-describedby="id_{{ field.html_name }}_{{ position }}_hint"
+    {% endif %}
+    {% block additional_input_attributes %}{% endblock %}
+  >
+
+  <label class="govuk-label govuk-radios__label" for="id_{{ field.html_name }}_{{ position }}">
+    {{ choice.1|unlocalize }}
+  </label>
+  {% if choice.hint %}
+    <span id="id_{{ field.html_name }}_{{ position }}_hint" class="govuk-hint govuk-radios__hint">
+      {{ choice.hint }}
+    </span>
+  {% endif %}
+  </div>
+{% if choice.divider %}
+  <div class="govuk-radios__divider">{{ choice.divider }}</div>
+{% endif %}
+{% block additional_content %}{% endblock %}

@@ -11,37 +11,12 @@
 
   {% include 'gds/layout/help_text_and_errors.html' %}
 
-  <div class="govuk-radios{% if radios_inline %}--inline{% endif %}{% if radios_small %} govuk-radios--small{% endif %}">
-    {% for choice in field.field.choices %}
-      <div class="govuk-radios__item">
-
-        <input
-          type="radio"
-          name="{{ field.html_name }}"
-          class="govuk-radios__input"
-          id="id_{{ field.html_name }}_{{ forloop.counter }}"
-          value="{{ choice.0|unlocalize }}"
-          {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
-            checked="checked"
-          {% endif %}
-          {% if choice.hint %}
-             aria-describedby="id_{{ field.html_name }}_{{ forloop.counter }}_hint"
-          {% endif %}
-        >
-
-        <label class="govuk-label govuk-radios__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
-          {{ choice.1|unlocalize }}
-        </label>
-        {% if choice.hint %}
-          <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="govuk-hint govuk-radios__hint">
-            {{ choice.hint }}
-          </span>
-        {% endif %}
-      </div>
-      {% if choice.divider %}
-        <div class="govuk-radios__divider">{{ choice.divider }}</div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  {% block radios %}
+    <div class="govuk-radios{% if radios_inline %}--inline{% endif %}{% if radios_small %} govuk-radios--small{% endif %}">
+      {% for choice in field.field.choices %}
+        {% include 'gds/layout/radio_item.html' with position=forloop.counter%}
+      {% endfor %}
+    </div>
+  {% endblock %}
 
 </fieldset>

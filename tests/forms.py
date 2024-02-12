@@ -7,6 +7,8 @@ from crispy_forms_gds.layout import (
     HTML,
     Accordion,
     AccordionSection,
+    ConditionalQuestion,
+    ConditionalRadios,
     Fieldset,
     Layout,
     TabPanel,
@@ -198,4 +200,37 @@ class AccordionForm(forms.Form):
                     HTML("<p>Second section contents.</p>"),
                 ),
             )
+        )
+
+
+class ConditionalRadiosForm(forms.Form):
+    how_would_you_like_to_be_contacted = forms.ChoiceField(
+        choices=(
+            ("phone", "By phone"),
+            ("email", "By email"),
+            ("no_contact", "Do not contact me"),
+        ),
+    )
+    mobile_phone_number = forms.CharField()
+    home_phone_number = forms.CharField()
+    email_address = forms.EmailField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            ConditionalRadios(
+                "how_would_you_like_to_be_contacted",
+                ConditionalQuestion(
+                    "By phone",
+                    "mobile_phone_number",
+                    "home_phone_number",
+                    HTML.p("Please enter either mobile or home"),
+                ),
+                ConditionalQuestion(
+                    "By email",
+                    "email_address",
+                ),
+                "Do not contact me",
+            ),
         )
