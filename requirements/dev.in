@@ -7,13 +7,19 @@
 
 -e .
 
+pip-tools
+
 # bumpversion is no longer maintained so we use bump2version until the
 # point where bump2version emerges as the official bumpversion, see
 # https://github.com/c4urself/bump2version/issues/86
 
 bump2version
 
+pytest
+pytest-django
+
 tox
 tox-pyenv
 
 twine
+wheel
