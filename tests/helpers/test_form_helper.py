@@ -2,8 +2,10 @@
 Tests to verify text fields are rendered correctly.
 
 """
+
 import os
 
+import django
 from django.test.html import parse_html
 
 from crispy_forms_gds.helper import FormHelper
@@ -28,7 +30,11 @@ def test_error_summary():
     form = TextInputForm(data={"name": ""})
     form.add_error(None, "Non-field error")
     page = render_template(template, form=form)
-    assert parse_html(page) == parse_contents(RESULT_DIR, "error_summary.html")
+    if django.VERSION[0] < 5:
+        template = "error_summary.html"
+    else:
+        template = "error_summary_aria_invalid.html"
+    assert parse_html(page) == parse_contents(RESULT_DIR, template)
 
 
 def test_default_label_size():

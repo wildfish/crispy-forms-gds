@@ -2,7 +2,10 @@
 Tests to verify textareas are rendered correctly.
 
 """
+
 import os
+
+import django
 
 import pytest
 
@@ -24,7 +27,11 @@ def test_validation_error_attributes():
     """Verify all the gds error attributes are displayed."""
     form = TextareaForm(data={"description": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
+    if django.VERSION[0] < 5:
+        template = "validation_errors.html"
+    else:
+        template = "validation_errors_aria_invalid.html"
+    assert parse_form(form) == parse_contents(RESULT_DIR, template)
 
 
 def test_show_label_as_heading():
@@ -63,7 +70,11 @@ def test_no_help_text_errors():
     """Verify all the gds error attributes are displayed if no help text is given."""
     form = TextareaForm(data={"description": ""})
     form.fields["description"].help_text = ""
-    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text_errors.html")
+    if django.VERSION[0] < 5:
+        template = "no_help_text_errors.html"
+    else:
+        template = "no_help_text_errors_aria_invalid.html"
+    assert parse_form(form) == parse_contents(RESULT_DIR, template)
 
 
 def test_character_count():

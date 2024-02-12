@@ -2,8 +2,11 @@
 Tests to verify date inputs are rendered correctly.
 
 """
+
 import datetime
 import os
+
+import django
 
 from tests.forms import DateInputForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
@@ -26,11 +29,19 @@ def test_field_error_attributes():
     """Verify the parent field level error messages are displayed correctly."""
     form = DateInputForm(data={"date_0": "", "date_1": "", "date_2": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "field_errors.html")
+    if django.VERSION[0] < 5:
+        template = "field_errors.html"
+    else:
+        template = "field_errors_aria_invalid.html"
+    assert parse_form(form) == parse_contents(RESULT_DIR, template)
 
 
 def test_subfield_error_attributes():
     """Verify the error messages for the individual fields are displayed correctly."""
     form = DateInputForm(data={"date_0": "a", "date_1": "11", "date_2": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "subfield_errors.html")
+    if django.VERSION[0] < 5:
+        template = "subfield_errors.html"
+    else:
+        template = "subfield_errors_aria_invalid.html"
+    assert parse_form(form) == parse_contents(RESULT_DIR, template)

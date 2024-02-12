@@ -2,7 +2,10 @@
 Tests to verify selects are rendered correctly.
 
 """
+
 import os
+
+import django
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
@@ -22,7 +25,11 @@ def test_validation_error_attributes():
     """Verify all the gds error attributes are displayed."""
     form = SelectForm(data={"method": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
+    if django.VERSION[0] < 5:
+        template = "validation_errors.html"
+    else:
+        template = "validation_errors_aria_invalid.html"
+    assert parse_form(form) == parse_contents(RESULT_DIR, template)
 
 
 def test_show_label_as_heading():
@@ -61,4 +68,8 @@ def test_no_help_text_errors():
     """Verify all the gds error attributes are displayed if no help text is given."""
     form = SelectForm(data={"method": ""})
     form.fields["method"].help_text = ""
-    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text_errors.html")
+    if django.VERSION[0] < 5:
+        template = "no_help_text_errors.html"
+    else:
+        template = "no_help_text_errors_aria_invalid.html"
+    assert parse_form(form) == parse_contents(RESULT_DIR, template)

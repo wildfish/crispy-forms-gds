@@ -1,0 +1,44 @@
+<form method="post">
+  <div class="govuk-form-group govuk-form-group--error" id="div_id_date">
+    <fieldset class="govuk-fieldset" aria-describedby="id_date_hint id_date_1_error">
+      <legend class="govuk-fieldset__legend">
+        When was your passport issued?
+      </legend>
+      <div id="id_date_hint" class="govuk-hint">
+        For example, 12 11 2007
+      </div>
+      <span id="id_date_1_error" class="govuk-error-message"> <span class="govuk-visually-hidden">Error:</span>
+        Enter the day, month and year
+      </span>
+      <div class="govuk-date-input" id="id_date">
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="id_date_0">
+              Day
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--error govuk-input--width-2"
+                   id="id_date_0" name="date_0" type="text" aria-invalid="true">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="id_date_1">
+              Month
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--error govuk-input--width-2"
+                   id="id_date_1" name="date_1" type="text" aria-invalid="true">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="id_date_2">
+              Year
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--error govuk-input--width-4"
+                   id="id_date_2" name="date_2" type="text" aria-invalid="true">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</form>

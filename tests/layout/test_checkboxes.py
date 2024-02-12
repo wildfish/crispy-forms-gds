@@ -2,7 +2,10 @@
 Tests to verify checkboxes are rendered correctly.
 
 """
+
 import os
+
+import django
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
