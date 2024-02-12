@@ -1,5 +1,6 @@
 from django.utils.html import conditional_escape
 
+import crispy_forms
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK
 
@@ -387,18 +388,38 @@ class Field(crispy_forms_layout.LayoutObject):
             {k.replace("_", "-"): conditional_escape(v) for k, v in kwargs.items()}
         )
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        template = self.get_template_name(template_pack)
-        return self.get_rendered_fields(
-            form,
-            form_style,
-            context,
-            template_pack,
-            template=template,
-            attrs=self.attrs,
-            extra_context=self.context,
-            **kwargs,
-        )
+
+def render_v1(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
+    template = self.get_template_name(template_pack)
+    return self.get_rendered_fields(
+        form,
+        form_style,
+        context,
+        template_pack,
+        template=template,
+        attrs=self.attrs,
+        extra_context=self.context,
+        **kwargs,
+    )
+
+
+def render_v2(self, form, context, template_pack=TEMPLATE_PACK, **kwargs):
+    template = self.get_template_name(template_pack)
+    return self.get_rendered_fields(
+        form,
+        context,
+        template_pack,
+        template=template,
+        attrs=self.attrs,
+        extra_context=self.context,
+        **kwargs,
+    )
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(Field, "render", render_v1)
+else:
+    setattr(Field, "render", render_v2)
 
 
 class Hidden(crispy_forms_layout.Hidden):

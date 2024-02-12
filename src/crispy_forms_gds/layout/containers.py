@@ -1,6 +1,7 @@
 from django.template.loader import render_to_string
 from django.utils.text import slugify
 
+import crispy_forms
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK, flatatt, render_field
 
@@ -94,17 +95,39 @@ class Accordion(Div):
         if not self.css_id:
             self.css_id = "accordion"
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        content = ""
-        for index, group in enumerate(self.fields, start=1):
-            context["index"] = index
-            context["parent"] = self.css_id
-            content += render_field(
-                group, form, form_style, context, template_pack=template_pack, **kwargs
-            )
-        template = self.get_template_name(template_pack)
-        context.update({"accordion": self, "content": content})
-        return render_to_string(template, context.flatten())
+
+def accordion_render_v1(
+    self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    content = ""
+    for index, group in enumerate(self.fields, start=1):
+        context["index"] = index
+        context["parent"] = self.css_id
+        content += render_field(
+            group, form, form_style, context, template_pack=template_pack, **kwargs
+        )
+    template = self.get_template_name(template_pack)
+    context.update({"accordion": self, "content": content})
+    return render_to_string(template, context.flatten())
+
+
+def accordion_render_v2(self, form, context, template_pack=TEMPLATE_PACK, **kwargs):
+    content = ""
+    for index, group in enumerate(self.fields, start=1):
+        context["index"] = index
+        context["parent"] = self.css_id
+        content += render_field(
+            group, form, context, template_pack=template_pack, **kwargs
+        )
+    template = self.get_template_name(template_pack)
+    context.update({"accordion": self, "content": content})
+    return render_to_string(template, context.flatten())
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(Accordion, "render", accordion_render_v1)
+else:
+    setattr(Accordion, "render", accordion_render_v2)
 
 
 class AccordionSection(Div):
@@ -163,10 +186,33 @@ class AccordionSection(Div):
         """
         return field_name in map(lambda pointer: pointer[1], self.get_field_names())
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        self.index = context.get("index", None)
-        self.parent = context.get("parent")
-        return super().render(form, form_style, context, template_pack)
+
+def accordion_section_render_v1(
+    self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    self.index = context.get("index", None)
+    self.parent = context.get("parent")
+    fields = self.get_rendered_fields(
+        form, form_style, context, template_pack, **kwargs
+    )
+    template = self.get_template_name(template_pack)
+    return render_to_string(template, {"div": self, "fields": fields})
+
+
+def accordion_section_render_v2(
+    self, form, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    self.index = context.get("index", None)
+    self.parent = context.get("parent")
+    fields = self.get_rendered_fields(form, context, template_pack, **kwargs)
+    template = self.get_template_name(template_pack)
+    return render_to_string(template, {"div": self, "fields": fields})
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(AccordionSection, "render", accordion_section_render_v1)
+else:
+    setattr(AccordionSection, "render", accordion_section_render_v2)
 
 
 class Fieldset(crispy_forms_layout.LayoutObject):
@@ -236,18 +282,37 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         self.template = kwargs.pop("template", self.template)
         self.flat_attrs = flatatt(kwargs)
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        fields = self.get_rendered_fields(
-            form, form_style, context, template_pack, **kwargs
-        )
-        context = {
-            "fieldset": self,
-            "fields": fields,
-            "form_style": form_style,
-        }
-        context.update(self.context)
-        template = self.get_template_name(template_pack)
-        return render_to_string(template, context)
+
+def fieldset_render_v1(
+    self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    fields = self.get_rendered_fields(
+        form, form_style, context, template_pack, **kwargs
+    )
+    context = {
+        "fieldset": self,
+        "fields": fields,
+    }
+    context.update(self.context)
+    template = self.get_template_name(template_pack)
+    return render_to_string(template, context)
+
+
+def fieldset_render_v2(self, form, context, template_pack=TEMPLATE_PACK, **kwargs):
+    fields = self.get_rendered_fields(form, context, template_pack, **kwargs)
+    context = {
+        "fieldset": self,
+        "fields": fields,
+    }
+    context.update(self.context)
+    template = self.get_template_name(template_pack)
+    return render_to_string(template, context)
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(Fieldset, "render", fieldset_render_v1)
+else:
+    setattr(Fieldset, "render", fieldset_render_v2)
 
 
 class Tabs(Div):
@@ -285,12 +350,29 @@ class Tabs(Div):
 
     template = "%s/layout/tabs.html"
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        content = self.get_rendered_fields(form, form_style, context, template_pack)
-        links = "".join(tab.render_link(template_pack) for tab in self.fields)
-        context.update({"tabs": self, "links": links, "content": content})
-        template = self.get_template_name(template_pack)
-        return render_to_string(template, context.flatten())
+
+def tabs_render_v1(
+    self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    content = self.get_rendered_fields(form, form_style, context, template_pack)
+    links = "".join(tab.render_link(template_pack) for tab in self.fields)
+    context.update({"tabs": self, "links": links, "content": content})
+    template = self.get_template_name(template_pack)
+    return render_to_string(template, context.flatten())
+
+
+def tabs_render_v2(self, form, context, template_pack=TEMPLATE_PACK, **kwargs):
+    content = self.get_rendered_fields(form, context, template_pack)
+    links = "".join(tab.render_link(template_pack) for tab in self.fields)
+    context.update({"tabs": self, "links": links, "content": content})
+    template = self.get_template_name(template_pack)
+    return render_to_string(template, context.flatten())
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(Tabs, "render", tabs_render_v1)
+else:
+    setattr(Tabs, "render", tabs_render_v2)
 
 
 class TabPanel(Div):

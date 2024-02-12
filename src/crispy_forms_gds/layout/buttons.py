@@ -1,3 +1,6 @@
+from django.utils.text import slugify
+
+import crispy_forms
 from crispy_forms.layout import BaseInput
 
 
@@ -79,7 +82,9 @@ class Button(BaseInput):
         if disabled:
             kwargs["disabled"] = "disabled"
             kwargs["aria-disabled"] = "true"
-
+        if not crispy_forms.__version__.startswith("1."):
+            if "css_id" not in kwargs:
+                kwargs["css_id"] = "id_%s" % slugify(name)
         super().__init__(name, value, data_module="govuk-button", **kwargs)
 
 
