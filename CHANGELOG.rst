@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+0.2.6 (2024-02-12)
+------------------
 * Updated to support django-crispy-forms 2.x
 * Updated environments tested to add Django 5.0
 
