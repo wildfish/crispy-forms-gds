@@ -213,7 +213,7 @@ class ConditionalRadiosForm(forms.Form):
     )
     mobile_phone_number = forms.CharField()
     home_phone_number = forms.CharField()
-    email_address = forms.EmailField()
+    email_address = forms.EmailField(max_length="320")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

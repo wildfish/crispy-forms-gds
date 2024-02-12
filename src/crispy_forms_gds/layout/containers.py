@@ -441,29 +441,74 @@ class ConditionalQuestion(crispy_forms_layout.TemplateNameMixin):
         *fields: a list of layout objects that are revealed on selection of the
             choice.
     """
+
     template = "%s/layout/conditional_question.html"
 
     def __init__(self, value, *fields):
         self.value = value
         self.fields = list(fields)
 
-    def render(self, bound_field, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        template = self.get_template_name(template_pack)
 
-        mapped_choices = {choice[1]: choice for choice in bound_field.field.choices}
-        value = self.value
-        choice = mapped_choices[value]
-        position = list(mapped_choices.keys()).index(self.value)
+def conditional_question_render_v1(
+    self, bound_field, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    template = self.get_template_name(template_pack)
 
-        conditional_content = ""
-        for field in self.fields:
-            conditional_content += render_field(field, form, form_style, context, template_pack=template_pack, **kwargs)
+    mapped_choices = {choice[1]: choice for choice in bound_field.field.choices}
+    value = self.value
+    choice = mapped_choices[value]
+    position = list(mapped_choices.keys()).index(self.value)
 
-        context.update(
-            {"choice": choice, "field": bound_field, "position": position, "conditional_content": conditional_content}
+    conditional_content = ""
+    for field in self.fields:
+        conditional_content += render_field(
+            field, form, form_style, context, template_pack=template_pack, **kwargs
         )
 
-        return render_to_string(template, context.flatten())
+    context.update(
+        {
+            "choice": choice,
+            "field": bound_field,
+            "position": position,
+            "conditional_content": conditional_content,
+        }
+    )
+
+    return render_to_string(template, context.flatten())
+
+
+def conditional_question_render_v2(
+    self, bound_field, form, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    template = self.get_template_name(template_pack)
+
+    mapped_choices = {choice[1]: choice for choice in bound_field.field.choices}
+    value = self.value
+    choice = mapped_choices[value]
+    position = list(mapped_choices.keys()).index(self.value)
+
+    conditional_content = ""
+    for field in self.fields:
+        conditional_content += render_field(
+            field, form, context, template_pack=template_pack, **kwargs
+        )
+
+    context.update(
+        {
+            "choice": choice,
+            "field": bound_field,
+            "position": position,
+            "conditional_content": conditional_content,
+        }
+    )
+
+    return render_to_string(template, context.flatten())
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(ConditionalQuestion, "render", conditional_question_render_v1)
+else:
+    setattr(ConditionalQuestion, "render", conditional_question_render_v2)
 
 
 class ConditionalRadios(crispy_forms_layout.TemplateNameMixin):
@@ -492,33 +537,107 @@ class ConditionalRadios(crispy_forms_layout.TemplateNameMixin):
         *fields: a list of either ConditionalQuestion objects or the label
             of a field without any conditional fields
     """
+
     template = "%s/layout/conditional_radios.html"
 
     def __init__(self, field, *choices):
         if not isinstance(field, str):
-            raise TypeError(f"{self.__class__.__name__} only accepts field as a string parameter")
+            raise TypeError(
+                f"{self.__class__.__name__} only accepts field as a string parameter"
+            )
 
         self.field = field
         self.choices = list(choices)
 
-    def render_choices(self, bound_field, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        to_render = []
-        for value in self.choices:
-            if not isinstance(value, (str, ConditionalQuestion)):
-                raise TypeError("Only accepts values of type str or ConditionalQuestions")
-            if isinstance(value, str):
-                value = ConditionalQuestion(value)
-            to_render.append(value)
 
-        return "".join([t.render(bound_field, form, form_style, context, template_pack, **kwargs) for t in to_render])
+def conditional_radios_render_choices_v1(
+    self,
+    bound_field,
+    form,
+    form_style,
+    context,
+    template_pack=TEMPLATE_PACK,
+    **kwargs,
+):
+    to_render = []
+    for value in self.choices:
+        if not isinstance(value, (str, ConditionalQuestion)):
+            raise TypeError("Only accepts values of type str or ConditionalQuestions")
+        if isinstance(value, str):
+            value = ConditionalQuestion(value)
+        to_render.append(value)
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        template = self.get_template_name(template_pack)
+    return "".join(
+        [
+            t.render(bound_field, form, form_style, context, template_pack, **kwargs)
+            for t in to_render
+        ]
+    )
 
-        bound_field = form[self.field]
 
-        context.update(
-            {"choices": self.render_choices(bound_field, form, form_style, context, template_pack, **kwargs)}
-        )
+def conditional_radios_render_choices_v2(
+    self,
+    bound_field,
+    form,
+    context,
+    template_pack=TEMPLATE_PACK,
+    **kwargs,
+):
+    to_render = []
+    for value in self.choices:
+        if not isinstance(value, (str, ConditionalQuestion)):
+            raise TypeError("Only accepts values of type str or ConditionalQuestions")
+        if isinstance(value, str):
+            value = ConditionalQuestion(value)
+        to_render.append(value)
 
-        return render_to_string(template, context.flatten())
+    return "".join(
+        [
+            t.render(bound_field, form, context, template_pack, **kwargs)
+            for t in to_render
+        ]
+    )
+
+
+def conditional_radios_render_v1(
+    self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    template = self.get_template_name(template_pack)
+
+    bound_field = form[self.field]
+
+    context.update(
+        {
+            "choices": self.render_choices(
+                bound_field, form, form_style, context, template_pack, **kwargs
+            )
+        }
+    )
+
+    return render_to_string(template, context.flatten())
+
+
+def conditional_radios_render_v2(
+    self, form, context, template_pack=TEMPLATE_PACK, **kwargs
+):
+    template = self.get_template_name(template_pack)
+
+    bound_field = form[self.field]
+
+    context.update(
+        {
+            "choices": self.render_choices(
+                bound_field, form, context, template_pack, **kwargs
+            )
+        }
+    )
+
+    return render_to_string(template, context.flatten())
+
+
+if crispy_forms.__version__.startswith("1."):
+    setattr(ConditionalRadios, "render_choices", conditional_radios_render_choices_v1)
+    setattr(ConditionalRadios, "render", conditional_radios_render_v1)
+else:
+    setattr(ConditionalRadios, "render_choices", conditional_radios_render_choices_v2)
+    setattr(ConditionalRadios, "render", conditional_radios_render_v2)
