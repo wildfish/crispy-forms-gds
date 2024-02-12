@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+* Add `Conditional Radio buttons`_
+
+.. _Conditional Radio buttons: https://design-system.service.gov.uk/components/radios/#conditionally-revealing-a-related-question
 
 0.2.6 (2024-02-12)
 ------------------
