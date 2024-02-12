@@ -38,7 +38,7 @@ setup(
     python_requires=">=3.6",
     install_requires=[
         "Django>=3.2",
-        "django-crispy-forms>=1.9,<2.0",
+        "django-crispy-forms>=1.9",
     ],
     license="License :: OSI Approved :: BSD License",
     classifiers=[
