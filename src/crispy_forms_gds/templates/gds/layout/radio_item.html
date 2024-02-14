@@ -6,7 +6,7 @@
     class="govuk-radios__input"
     id="id_{{ field.html_name }}_{{ position }}"
     value="{{ choice.0|unlocalize }}"
-    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+    {% if choice.0|stringformat:"s" == field.value|stringformat:"s" %}
       checked="checked"
     {% endif %}
     {% if choice.hint %}
