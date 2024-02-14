@@ -2,11 +2,12 @@
 Tests to verify radio buttons are rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
-from tests.forms import RadiosChoiceForm, RadiosForm
+from tests.forms import RadiosChoiceForm, RadiosForm, RadiosInitialForm
 from tests.utils import TEST_DIR, parse_contents, parse_form
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "radios")
@@ -18,6 +19,20 @@ def test_initial_attributes():
     form.helper = FormHelper()
     form.helper.layout = Layout(Field.radios("method"))
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
+
+
+def test_overlapping_options():
+    """Verify that if an selected string option is a substring of another it is not checked.
+
+    Added to confirm, https://github.com/wildfish/crispy-forms-gds/issues/82
+    where an option is selected if the initial value matches any part of the
+    option value, i.e. an initial value of 'phone' matches an option with the
+    value 'mobile_phone', so both boxes are checked.
+    """
+    form = RadiosInitialForm(initial={"method": "mobile_phone"})
+    form.helper = FormHelper()
+    form.helper.layout = Layout(Field.radios("method"))
+    assert parse_form(form) == parse_contents(RESULT_DIR, "initial_overlapping.html")
 
 
 def test_validation_error_attributes():

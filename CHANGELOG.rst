@@ -11,6 +11,10 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+* Fix `Option overlap`_ in radios and checkboxes, where, if one option is
+  a substring of another, then both are selected/checked.
+
+.. _Option overlap: https://github.com/wildfish/crispy-forms-gds/issues/82
 
 0.3.0 (2024-02-12)
 ------------------

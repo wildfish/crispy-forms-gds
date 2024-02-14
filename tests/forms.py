@@ -40,6 +40,16 @@ class CheckboxesForm(BaseForm):
     )
 
 
+class CheckboxesInitialForm(BaseForm):
+    method = forms.ChoiceField(
+        choices=(("mobile_phone", "Mobile Phone"), ("phone", "Phone")),
+        widget=forms.CheckboxSelectMultiple,
+        label="How would you like to be contacted?",
+        help_text="Select all options that are relevant to you.",
+        error_messages={"required": "Enter the ways to contact you"},
+    )
+
+
 class CheckboxesChoiceForm(BaseForm):
     METHODS = (
         Choice("email", "Email"),
@@ -86,6 +96,16 @@ class RadiosForm(BaseForm):
         label="How would you like to be contacted?",
         help_text="Select the most convenient way to contact you.",
         error_messages={"required": "Enter the best way to contact you"},
+    )
+
+
+class RadiosInitialForm(BaseForm):
+    method = forms.ChoiceField(
+        choices=(("mobile_phone", "Mobile Phone"), ("phone", "Phone")),
+        widget=forms.RadioSelect,
+        label="How would you like to be contacted?",
+        help_text="Select all options that are relevant to you.",
+        error_messages={"required": "Enter the ways to contact you"},
     )
 
 
