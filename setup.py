@@ -19,7 +19,7 @@ def read(filename):
 
 setup(
     name="crispy-forms-gds",
-    version="0.3.0",
+    version="0.3.1",
     description="Django application to add 'django-crispy-forms' layout objects for the GOV.UK Design System.",
     long_description=read("README.rst"),
     long_description_content_type="text/x-rst",

@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+0.3.1 (2024-02-14)
+------------------
 * Fix `Option overlap`_ in radios and checkboxes, where, if one option is
   a substring of another, then both are selected/checked.
 
