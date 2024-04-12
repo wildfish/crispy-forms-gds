@@ -18,7 +18,11 @@ class TextareaForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Field.textarea("description", rows=3, max_words=100,),
+            Field.textarea(
+                "description",
+                rows=3,
+                max_words=100,
+            ),
             Button("submit", "Submit"),
         )
 

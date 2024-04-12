@@ -2,6 +2,7 @@
 Tests to verify textareas are rendered correctly.
 
 """
+
 import os
 
 import pytest

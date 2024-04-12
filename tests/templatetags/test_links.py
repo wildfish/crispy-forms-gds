@@ -2,6 +2,7 @@
 Tests to verify template tags for generating links are working.
 
 """
+
 import os
 
 from django.test.html import parse_html

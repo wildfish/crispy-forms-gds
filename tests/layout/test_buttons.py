@@ -2,6 +2,7 @@
 Tests to verify buttons are rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.layout import Button

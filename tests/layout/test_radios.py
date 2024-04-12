@@ -2,6 +2,7 @@
 Tests to verify radio buttons are rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.helper import FormHelper

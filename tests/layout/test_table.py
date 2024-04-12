@@ -2,6 +2,7 @@
 Tests to verify tables are rendered correctly.
 
 """
+
 import os
 
 import pytest

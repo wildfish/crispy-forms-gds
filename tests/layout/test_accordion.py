@@ -2,6 +2,7 @@
 Tests to verify accordions are rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.layout import HTML, Accordion, AccordionSection, Layout

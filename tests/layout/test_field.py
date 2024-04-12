@@ -2,6 +2,7 @@
 Tests to verify that Field objects are configured correctly.
 
 """
+
 import pytest
 
 from crispy_forms_gds.layout import Field, Fixed, Fluid, Size

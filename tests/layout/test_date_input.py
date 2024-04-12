@@ -2,6 +2,7 @@
 Tests to verify date inputs are rendered correctly.
 
 """
+
 import datetime
 import os
 

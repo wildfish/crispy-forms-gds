@@ -2,6 +2,7 @@
 Tests to verify text fields are rendered correctly.
 
 """
+
 import os
 
 from django.test.html import parse_html

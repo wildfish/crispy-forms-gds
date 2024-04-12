@@ -19,7 +19,10 @@ class SelectForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout("sort_by", Button("submit", "Submit"),)
+        self.helper.layout = Layout(
+            "sort_by",
+            Button("submit", "Submit"),
+        )
 
     def get_choice(self, field):
         value = self.cleaned_data[field]

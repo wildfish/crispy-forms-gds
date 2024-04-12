@@ -2,7 +2,6 @@ from django.urls import path
 
 from .views import ComponentView, IndexView
 
-
 app_name = "components"
 
 urlpatterns = [
