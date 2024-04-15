@@ -2,6 +2,7 @@
 Tests to verify a single (boolean) checkbox is rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.helper import FormHelper

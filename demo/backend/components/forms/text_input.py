@@ -17,13 +17,18 @@ from crispy_forms_gds.layout import (
 class TextInputForm(forms.Form):
 
     name = forms.CharField(
-        label="Your name", help_text="Enter your name as it appears on your passport.",
+        label="Your name",
+        help_text="Enter your name as it appears on your passport.",
     )
 
-    email = forms.CharField(label="Email", help_text="Enter your email address.",)
+    email = forms.CharField(
+        label="Email",
+        help_text="Enter your email address.",
+    )
 
     phone = forms.CharField(
-        label="Phone", help_text="Enter your home or mobile telephone number.",
+        label="Phone",
+        help_text="Enter your home or mobile telephone number.",
     )
 
     def __init__(self, *args, **kwargs):

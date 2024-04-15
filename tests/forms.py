@@ -178,7 +178,7 @@ class TabsForm(forms.Form):
 class FieldsetForm(forms.Form):
 
     name = forms.CharField(label="Name")
-    email = forms.EmailField(label="Email")
+    email = forms.EmailField(label="Email", max_length="320")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

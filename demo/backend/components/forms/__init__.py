@@ -15,7 +15,6 @@ from .text_input import TextInputForm
 from .textarea import TextareaForm
 from .warning import WarningForm
 
-
 __all__ = [
     "AccordionForm",
     "ButtonsForm",
