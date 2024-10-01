@@ -8,7 +8,7 @@
 #    make patch build upload
 
 # You can set these variable on the command line.
-PYTHON = python3.8
+PYTHON = python3.9
 
 # Where everything lives
 site_python := /usr/bin/env $(PYTHON)
