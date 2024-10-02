@@ -12,7 +12,7 @@
 # point where bump2version emerges as the official bumpversion, see
 # https://github.com/c4urself/bump2version/issues/86
 
-bump2version
+bump2version==1.0.1
 
-tox
-twine
+tox==3.24.4
+twine==3.7.1
