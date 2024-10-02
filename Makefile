@@ -103,7 +103,7 @@ clean: clean-build clean-tests clean-coverage clean-docs
 build: clean-build
 	$(python) setup.py sdist bdist_wheel
 
-.PHOMY: checks
+.PHONY: checks
 checks:
 	flake8 $(app_dir)
 	black --check $(app_dir)
@@ -159,7 +159,7 @@ patch:
 .PHONY: runserver
 runserver:
 	$(django) migrate
-	$(django) runserver
+	$(django) runserver 8080
 
 .PHONY: test
 test:
