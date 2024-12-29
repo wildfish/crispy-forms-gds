@@ -20,6 +20,3 @@ dist
 reports
 src/sphinx-wildfish-theme
 venv
-
-# Any local makefiles
-*.mk
