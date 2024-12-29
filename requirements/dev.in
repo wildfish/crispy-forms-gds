@@ -19,7 +19,6 @@ pytest
 pytest-django
 
 tox
-tox-pyenv
 
 twine
 wheel
