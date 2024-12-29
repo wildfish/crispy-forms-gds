@@ -112,12 +112,9 @@ testpaths = [
 legacy_tox_ini = """
 [tox]
 requires =
-    tox>=4.23.2
-    tox-uv>=1.13.1
+    tox>=4.12.1
+    tox-uv>=1.1.1
 envlist =
-	python3.10-django32-crispy10
-	python3.10-django32-crispy20
-	python3.12-django42-crispy10
 	python3.12-django42-crispy20
 	python3.12-django42-crispy21
 
@@ -125,9 +122,7 @@ envlist =
 commands = pytest {posargs}
 deps =
     pytest
-    django32: Django>=3.2,<4.0
 	django42: Django>=4.2,<4.3
-	crispy10: django-crispy-forms>=1.09,<2.0
 	crispy20: django-crispy-forms>=2.0,<2.1
 	crispy21: django-crispy-forms>=2.1,<2.2
 setenv =
