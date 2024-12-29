@@ -17,18 +17,18 @@ root_dir = $(realpath .)
 app_dir = $(root_dir)/src/crispy_forms_gds
 frontend_dir = $(root_dir)/demo/frontend
 
-python := $(root_dir)/venv/bin/python3
-pip := $(root_dir)/venv/bin/pip3
-pip-compile := $(root_dir)/venv/bin/pip-compile
-pip-sync := $(root_dir)/venv/bin/pip-sync
+python := $(root_dir)/.venv/bin/python3
+pip := $(root_dir)/.venv/bin/pip3
+pip-compile := $(root_dir)/.venv/bin/pip-compile
+pip-sync := $(root_dir)/.venv/bin/pip-sync
 django := $(python) $(root_dir)/demo/manage.py
-checker := $(root_dir)/venv/bin/flake8
-black := $(root_dir)/venv/bin/black
-isort := $(root_dir)/venv/bin/isort
-pytest := $(root_dir)/venv/bin/pytest
-coverage := $(root_dir)/venv/bin/coverage
-bumpversion := $(root_dir)/venv/bin/bump2version
-twine := $(root_dir)/venv/bin/twine
+checker := $(root_dir)/.venv/bin/flake8
+black := $(root_dir)/.venv/bin/black
+isort := $(root_dir)/.venv/bin/isort
+pytest := $(root_dir)/.venv/bin/pytest
+coverage := $(root_dir)/.venv/bin/coverage
+bumpversion := $(root_dir)/.venv/bin/bump2version
+twine := $(root_dir)/.venv/bin/twine
 nvm := sh ~/.nvm/nvm.sh
 
 
@@ -175,7 +175,7 @@ upload:
 	$(twine) upload $(upload_opts) dist/*
 
 venv:
-	$(site_python) -m venv venv
+	$(site_python) -m venv .venv
 
 # include any local makefiles
 -include *.mk
