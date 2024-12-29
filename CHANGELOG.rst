@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+* Added version compatibility matrix to README
+* Removed Django 5.0 from test environments
+* Removed tox-pyenv - it's not compatible with tox 4
 
 0.3.1 (2024-02-14)
 ------------------
