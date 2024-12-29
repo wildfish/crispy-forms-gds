@@ -18,10 +18,16 @@ guidelines.
 .. image:: https://img.shields.io/pypi/pyversions/crispy-forms-gds.svg
     :target: https://pypi.python.org/pypi/crispy-forms-gds/
 
-Requires Django 3.2 or later and django-crispy-forms 1.9 or later.
 
-This template pack supports govuk-frontend 3.5 or later.
-
+Compatibility
+=============
++------------------+--------------------------+---------------------+------------------+
+| crispy-forms-gds | Government Design System | django-crispy-forms | django           |
++------------------+--------------------------+---------------------+------------------+
+| 0.x              | 3.5                      | 1.x - 2.2           | 3.2 LTS, 4.2 LTS |
++------------------+--------------------------+---------------------+------------------+
+| 1.x              | 3.5                      | 2.0 - 2.2           | 4.2 LTS          |
++------------------+--------------------------+---------------------+------------------+
 
 Quickstart
 ==========
