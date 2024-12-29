@@ -1,11 +1,13 @@
+---
 version: 2
-python:
-  version: 3.8
-  install:
-    - requirements: requirements/docs.txt
-    - method: pip
-      path: .
-sphinx:
-  builder: html
-  configuration: docs/conf.py
 
+build:
+  os: ubuntu-20.04
+  tools:
+    python: '3.8'
+  commands:
+    - asdf plugin add uv
+    - asdf install uv latest
+    - asdf global uv latest
+    - uv sync --extra docs --frozen
+    - uv run -m sphinx -T -b html -d docs/_build/doctrees -D language=en docs $READTHEDOCS_OUTPUT/html
