@@ -8,15 +8,9 @@ __pycache__/
 
 # Ignore dot files except those required for the project
 .*
+!.editorconfig
+!.envrc
 !.github
 !.gitignore
 !.gitkeep
-!.editorconfig
 !.readthedocs.yml
-
-# Development artefacts
-build
-dist
-reports
-src/sphinx-wildfish-theme
-venv
