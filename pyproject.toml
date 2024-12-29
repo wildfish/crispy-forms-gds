@@ -45,7 +45,7 @@ dev-dependencies = [
     "bump-my-version>=0.29.0",
     "isort>=5.13.2",
     "pytest>=8.3.4",
-    "sphinx==7.2.6",
+    "sphinx>=8.1.3",
     "tox-uv>=1.1.0",
     "tox==4.12.1",
     "twine==4.0.2",
