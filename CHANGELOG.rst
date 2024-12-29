@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+0.3.2 (2024-12-29)
+------------------
 * Added version compatibility matrix to README
 * Moved virtualenv directory to .venv
 * Removed Django 5.0 from test environments
