@@ -1,5 +1,0 @@
-doc8
-sphinx
-sphinx-rtd-theme
-sphinx-autobuild
--e git+https://github.com/wildfish/sphinx_wildfish_theme.git#egg=sphinx_wildfish_theme

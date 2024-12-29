@@ -1,18 +1,133 @@
-[tool.black]
-# Notes:
-#
-# line-length: this is just the default but it's included here so it's easy
-# to see that the value is synced with other code quality tools.
-#
-# target-version: the python version is set when the project is generated
-# so we might as well make use of it.
-#
-# exclude: the regex for excluding migrations is added in case you don't
-# want them reformatted.
-#
-# For all options see:
-#   https://black.readthedocs.io/en/stable/installation_and_usage.html
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools >= 61.0"]
 
-line-length = 88
-target-version = ['py38']
-# exclude = ".*/migrations/.*"
+[project]
+name = "crispy-forms-gds"
+version = "0.3.2"
+description = "Django application to add 'django-crispy-forms' layout objects for the GOV.UK Design System."
+keywords = ["Django, django-crispy-forms, gov.uk, design system"]
+license = { file = "LICENCE.txt" }
+authors = [
+  {name = "Wildfish", email = "developers@wildfish.com"},
+]
+readme = "README.rst"
+requires-python = ">=3.8"
+dependencies = [
+    "Django>=3.2,<5.0",
+    "django-crispy-forms>=1.9.0,<2.0",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4.2",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.setuptools]
+license-files = []
+
+[tool.uv]
+dev-dependencies = [
+    "bump2version==1.0.1",
+    "pytest==8.0.0",
+    "sphinx==7.2.6",
+    "tox==4.12.1",
+    "twine==4.0.2",
+]
+
+[tool.bumpversion]
+current_version = "0.3.2"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+ignore_missing_version = false
+tag = true
+sign_tags = true
+tag_name = "v{new_version}"
+tag_message = "New version: {current_version} → {new_version}"
+allow_dirty = false
+commit = true
+commit_args = "--no-verify"
+message = "New version: {current_version} → {new_version}"
+pre_commit_hooks = ["uv sync --upgrade", "git add uv.lock"]
+
+[[tool.bumpversion.files]]
+filename = "src/crispy_forms_gds/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "docs/conf.py"
+search = 'release = "{current_version}"'
+replace = 'release = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.rst"
+search = """
+Latest
+------"""
+replace = """
+Latest
+------
+
+{new_version} ({now:%%Y-%%m-%%d})
+------------------"""
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[tool.coverage.run]
+branch = true
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "."
+]
+testpaths = [
+    "tests"
+]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+requires =
+    tox>=4.23.2
+    tox-uv>=1.13.1
+envlist =
+	python3.10-django32-crispy10
+	python3.10-django32-crispy20
+	python3.12-django42-crispy10
+	python3.12-django42-crispy20
+	python3.12-django42-crispy21
+
+[testenv]
+commands = pytest {posargs}
+deps =
+    pytest
+    django32: Django>=3.2,<4.0
+	django42: Django>=4.2,<4.3
+	crispy10: django-crispy-forms>=1.09,<2.0
+	crispy20: django-crispy-forms>=2.0,<2.1
+	crispy21: django-crispy-forms>=2.1,<2.2
+setenv =
+    PYTHONPATH = src
+"""
