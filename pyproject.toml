@@ -46,6 +46,7 @@ dev-dependencies = [
     "isort>=5.13.2",
     "pytest==8.0.0",
     "sphinx==7.2.6",
+    "tox-uv>=1.1.0",
     "tox==4.12.1",
     "twine==4.0.2",
 ]
