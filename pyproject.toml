@@ -44,6 +44,7 @@ license-files = []
 dev-dependencies = [
     "bump-my-version>=0.29.0",
     "isort>=5.13.2",
+    "pre-commit>=4.0.1",
     "pytest>=8.3.4",
     "ruff>=0.8.4",
     "sphinx>=8.1.3",
