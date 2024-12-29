@@ -42,6 +42,7 @@ license-files = []
 
 [tool.uv]
 dev-dependencies = [
+    "bump-my-version>=0.29.0",
     "pytest==8.0.0",
     "sphinx==7.2.6",
     "tox==4.12.1",
