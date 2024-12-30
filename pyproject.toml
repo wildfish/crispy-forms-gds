@@ -118,6 +118,8 @@ requires =
 envlist =
 	python3.12-django42-crispy20
 	python3.12-django42-crispy21
+	python3.12-django42-crispy22
+	python3.12-django42-crispy23
 
 [testenv]
 commands = pytest {posargs}
@@ -126,6 +128,8 @@ deps =
 	django42: Django>=4.2,<4.3
 	crispy20: django-crispy-forms>=2.0,<2.1
 	crispy21: django-crispy-forms>=2.1,<2.2
+	crispy22: django-crispy-forms>=2.2,<2.3
+	crispy23: django-crispy-forms>=2.3,<2.4
 setenv =
     PYTHONPATH = src
 """
