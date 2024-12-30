@@ -11,6 +11,8 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+* Added support for Django 5.0, 5.1
+* Dropped support for Django 4.2 LTS
 
 1.0.0 (2024-12-30)
 ------------------
