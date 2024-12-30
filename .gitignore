@@ -19,5 +19,8 @@ __pycache__/
 
 # Ignore demo files except the site stylesheet
 db.sqlite3
-demo/assets/
-!demo/assets/stylesheets/demo.css
+/assets/fonts/
+/assets/images/
+/assets/javascripts/
+/assets/stylesheets/
+/assets/manifest.json

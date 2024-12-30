@@ -267,16 +267,18 @@ Install all the dependencies:
 
     uv sync
 
-Next, copy and install the precompiled govuk-frontend files:
+Next, copy and install the precompiled govuk-frontend files in the ``assets``
+directory in the project root:
 
 1. Download the pre-compiled files provided at bottom of each `GOV.UK Frontend
 release note`_.
 2. Unzip the zip file.
-3. Copy the files in ``assets/fonts`` to ``demo/assets/fonts``.
-4. Copy the files in ``assets/images`` to ``demo/assets/images``.
-5. Copy the .css and .css.map files to ``demo/assets/stylesheets``.
-6. Copy the .js and .js.map files to ``demo/assets/javascripts``.
-7. Edit ``demo/settings.py`` to set ``GDS_VERSION`` to the version you downloaded.
+3. Copy the files in ``assets/fonts`` to ``assets/fonts``.
+4. Copy the files in ``assets/images`` to ``assets/images``.
+5. Copy the file, assets/manifest.json to ``assets``.
+6. Copy the .css and .css.map files to ``assets/stylesheets``.
+7. Copy the .js and .js.map files to ``assets/javascripts``.
+8. Edit ``demo/settings.py`` to set ``GDS_VERSION`` to the version you downloaded.
 
 Now, setup and run Django:
 

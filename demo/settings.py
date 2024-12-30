@@ -73,7 +73,10 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-STATICFILES_DIRS = (os.path.join(DEMO_DIR, "assets"),)
+STATICFILES_DIRS = (
+    os.path.join(ROOT_DIR, "assets"),
+    os.path.join(DEMO_DIR, "static"),
+)
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("gds",)
 
