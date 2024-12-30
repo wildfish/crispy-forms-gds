@@ -290,13 +290,17 @@ styled using the `GOV.UK Design System`_.
 
 .. _GOV.UK Frontend release note: https://github.com/alphagov/govuk-frontend/releases/latest
 
-Resources
-=========
+Project Information
+===================
 
-* Read the documentation on `Read the docs`_
-* Download the `PyPi package`_
-* Learn more about `Django Crispy Forms`_
+* Documentation: https://ebird-checklists.readthedocs.io/en/latest/
+* Issues: https://github.com/wildfish/crispy-forms-gds/issues
+* Repository: https://github.com/wildfish/crispy-forms-gds/
 
-.. _Read the docs: http://crispy-forms-gds.readthedocs.io/
-.. _PyPi package: http://pypi.python.org/pypi/crispy-forms-gds
-.. _Django Crispy Forms: https://django-crispy-forms.readthedocs.io/en/latest/
+The app is tested with Python 3.10+, and version 1.x officially supports Django
+4.2 LTS, and `Django Crispy Forms`_ 2.x. The app simply generates HTML, so it
+can probably be used with earlier versions of Django and Django Crispy Forms.
+
+Crispy Forms GDS is released under the terms of the `MIT`_ license.
+
+.. _MIT: https://opensource.org/licenses/MIT

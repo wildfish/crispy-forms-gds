@@ -17,9 +17,11 @@ Latest
 * Dropped support for python 3.8, minimum version is now 3.10
 * Dropped the base template, use the `Page Template`_ instead
 * Changed demo site to use `pre-compiled`_ govuk-frontend assets
+* Changed the licence to the `MIT`_ license
 
 .. _Page Template: https://design-system.service.gov.uk/styles/page-template/
 .. _pre-compiled: https://frontend.design-system.service.gov.uk/install-using-precompiled-files/
+.. _MIT: https://opensource.org/licenses/MIT
 
 0.3.2 (2024-12-29)
 ------------------
