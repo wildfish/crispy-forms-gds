@@ -115,16 +115,21 @@ requires =
     tox>=4.12.1
     tox-uv>=1.1.1
 envlist =
-	python3.12-django42-crispy20
-	python3.12-django42-crispy21
-	python3.12-django42-crispy22
-	python3.12-django42-crispy23
+	python3.12-django50-crispy20
+	python3.12-django50-crispy21
+	python3.12-django50-crispy22
+	python3.12-django50-crispy23
+	python3.12-django51-crispy20
+	python3.12-django51-crispy21
+	python3.12-django51-crispy22
+	python3.12-django51-crispy23
 
 [testenv]
 commands = pytest {posargs}
 deps =
     pytest
-	django42: Django>=4.2,<4.3
+	django50: Django>=5.0,<5.1
+	django51: Django>=5.1,<5.2
 	crispy20: django-crispy-forms>=2.0,<2.1
 	crispy21: django-crispy-forms>=2.1,<2.2
 	crispy22: django-crispy-forms>=2.2,<2.3
