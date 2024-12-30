@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+1.0.0 (2024-12-30)
+------------------
 * Updated project to use uv
 * Dropped support for Django 3.2 LTS
 * Dropped support for django-crispy-forms 1.x
