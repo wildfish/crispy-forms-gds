@@ -241,35 +241,54 @@ extra effort on your part::
 
 Demo
 ====
-
 If you checkout the code from the repository, there is a Django site you can run to see
-the forms in action::
+the forms in action:
+
+.. code-block:: console
 
     git clone git@github.com:wildfish/crispy-forms-gds.git
     cd crispy-forms-gds
 
-First, create a virtual environment::
+First, create a virtual environment:
 
-    python3 -m venv venv
-    . venv/bin/activate
-    pip3 install wheel
-    pip3 install -r requirements/dev.txt
+.. code-block:: console
 
-Next, install all the dependencies and build the javascript and css assets::
+    uv venv
 
-    cd demo/frontend
-    nvm use
-    npm install
-    npm run dev
+Activate it:
 
-Now, setup and run Django::
+.. code-block:: console
 
-    cd ..
-    python3 manage.py migrate
-    python3 manage.py runserver
+    source .venv/bin/activate
+
+Install all the dependencies:
+
+.. code-block:: console
+
+    uv sync
+
+Next, copy and install the precompiled govuk-frontend files:
+
+1. Download the pre-compiled files provided at bottom of each `GOV.UK Frontend
+release note`_.
+2. Unzip the zip file.
+3. Copy the files in ``assets/fonts`` to ``demo/assets/fonts``.
+4. Copy the files in ``assets/images`` to ``demo/assets/images``.
+5. Copy the .css and .css.map files to ``demo/assets/stylesheets``.
+6. Copy the .js and .js.map files to ``demo/assets/javascripts``.
+7. Edit ``demo/settings.py`` to set ``GDS_VERSION`` to the version you downloaded.
+
+Now, setup and run Django:
+
+.. code-block:: console
+
+    python manage.py migrate
+    python manage.py runserver
 
 Open http://localhost:8000/ in your browser to see forms built with `Django Crispy Forms`_
 styled using the `GOV.UK Design System`_.
+
+.. _GOV.UK Frontend release note: https://github.com/alphagov/govuk-frontend/releases/latest
 
 Resources
 =========

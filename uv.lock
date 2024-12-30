@@ -170,7 +170,7 @@ name = "click"
 version = "8.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b9/2e/0090cbf739cee7d23781ad4b89a9894a41538e4fcf4c31dcdd705b78eb8b/click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a", size = 226593 }
 wheels = [
@@ -209,8 +209,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django", specifier = ">=3.2,<5.0" },
-    { name = "django-crispy-forms", specifier = ">=1.9.0,<2.0" },
+    { name = "django", specifier = ">=4.2,<5.0" },
+    { name = "django-crispy-forms", specifier = ">=2.0,<2.3" },
 ]
 
 [package.metadata.requires-dev]
@@ -250,11 +250,14 @@ wheels = [
 
 [[package]]
 name = "django-crispy-forms"
-version = "1.14.0"
+version = "2.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/60/96/56854b9f0b437454cef5dd5e9977017a81c23e235eceb6f7ea9c7848d06d/django-crispy-forms-1.14.0.tar.gz", hash = "sha256:35887b8851a931374dd697207a8f56c57a9c5cb9dbf0b9fa54314da5666cea5b", size = 71229 }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/63/2d/0d638da73374b017ee5f7dc0cbf7b8294af03430010eed2c4e258521d8c0/django_crispy_forms-2.2.tar.gz", hash = "sha256:92cb7b7786fb82646bad739343fd17a99a04b0b736a09e34f3b91f26cbca7e4a", size = 278788 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/34/f5240bcecb9c0d87fc339edf66f87d2ca5580e995ca966a93fdfb5ba7a66/django_crispy_forms-1.14.0-py3-none-any.whl", hash = "sha256:bc4d2037f6de602d39c0bc452ac3029d1f5d65e88458872cc4dbc01c3a400604", size = 133307 },
+    { url = "https://files.pythonhosted.org/packages/2b/9d/0e79deacd16c917eb99652342c70378476b8fc0d85e13edbd4301af05887/django_crispy_forms-2.2-py3-none-any.whl", hash = "sha256:a681cffd5af270b3082bda02cf8f81bdb5717ed66d2265e87e3df2f4ccf46277", size = 31410 },
 ]
 
 [[package]]

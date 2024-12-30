@@ -13,5 +13,11 @@ __pycache__/
 !.github
 !.gitignore
 !.gitkeep
+!.nvmrc
 !.pre-commit-config.yaml
 !.readthedocs.yml
+
+# Ignore demo files except the site stylesheet
+db.sqlite3
+demo/assets/
+!demo/assets/stylesheets/demo.css
