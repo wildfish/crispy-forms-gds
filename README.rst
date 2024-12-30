@@ -28,6 +28,12 @@ Compatibility
 +------------------+--------------------------+---------------------+------------------+
 | 1.x              | 5.0 - 5.2                | 2.0 - 2.3           | 4.2 LTS          |
 +------------------+--------------------------+---------------------+------------------+
+| 2.x              | 5.0 - 5.2                | 2.0 - 2.3           | 5.0, 5.1         |
++------------------+--------------------------+---------------------+------------------+
+
+Both Version 1.x and 2.x are still in development.
+
+The Government Design System versions will be updated as each release is tested.
 
 Quickstart
 ==========
@@ -300,8 +306,9 @@ Project Information
 * Repository: https://github.com/wildfish/crispy-forms-gds/
 
 The app is tested with Python 3.10+, and version 1.x officially supports Django
-4.2 LTS, and `Django Crispy Forms`_ 2.x. The app simply generates HTML, so it
-can probably be used with earlier versions of Django and Django Crispy Forms.
+4.2 LTS, and `Django Crispy Forms`_ 2.x. Version 2.x supports Django 5.0, 5.1,
+and Django Crispy Forms 2.x. The app simply generates HTML, so it can probably
+be used with earlier versions of Django and Django Crispy Forms.
 
 Crispy Forms GDS is released under the terms of the `MIT`_ license.
 
