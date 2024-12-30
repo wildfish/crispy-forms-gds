@@ -66,7 +66,7 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(ROOT_DIR, "media")
 MEDIA_URL = "/media/"
 
-STATIC_URL = "/static/"
+STATIC_URL = "/assets/"
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
