@@ -17,10 +17,13 @@ __pycache__/
 !.pre-commit-config.yaml
 !.readthedocs.yml
 
-# Ignore demo files except the site stylesheet
+# Ignore the database used in the demo
 db.sqlite3
+
+# Ignore the gds asset files
 /assets/fonts/
 /assets/images/
 /assets/javascripts/
 /assets/stylesheets/
 /assets/manifest.json
+/assets/VERSION.txt
