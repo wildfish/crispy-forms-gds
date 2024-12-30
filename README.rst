@@ -2,11 +2,11 @@
 Crispy Forms GDS
 ================
 
-A `GOV.UK Design System`_ template pack for `django-crispy-forms`_, for simple and
+A `GOV.UK Design System`_ template pack for `Django Crispy Forms`_, for simple and
 powerful form generation which is compliant with GDS usability and accessibility
 guidelines.
 
-.. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms/
+.. _Django Crispy Forms: https://github.com/maraujop/django-crispy-forms/
 .. _GOV.UK Design System: https://design-system.service.gov.uk/
 
 .. image:: https://codecov.io/gh/wildfish/crispy-forms-gds/branch/master/graph/badge.svg
