@@ -86,7 +86,7 @@ replace = """
 Latest
 ------
 
-{new_version} ({now:%%Y-%%m-%%d})
+{new_version} ({now:%Y-%m-%d})
 ------------------"""
 
 [[tool.bumpversion.files]]
