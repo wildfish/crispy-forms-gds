@@ -43,7 +43,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "demo.context_processors.gds_version",
+                "demo.context_processors.frontend_version",
             ],
         },
     },
@@ -83,5 +83,3 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ("gds",)
 CRISPY_TEMPLATE_PACK = "gds"
 
 CRISPY_FAIL_SILENTLY = False
-
-GDS_VERSION = "5.0.0"

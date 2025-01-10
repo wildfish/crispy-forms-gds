@@ -30,12 +30,12 @@ Installation
         )
         CRISPY_TEMPLATE_PACK = "gds"
 
+#. Also in your settings.py, set the version of the govuk frontend you are using::
+
+        CRISPY_GDS_FRONTEND_VERSION = "5.0.0"
 
 #.  Install the GDS assets using their `Getting started guide`_  and `production
     installation instructions`_.
 
-    Our demo site has a `webpack config`_ file which you might find useful.
-
     .. _Getting started guide: https://design-system.service.gov.uk/get-started/
     .. _production installation instructions: https://design-system.service.gov.uk/get-started/production/
-    .. _webpack config: https://github.com/wildfish/crispy-forms-gds/blob/master/demo/frontend/webpack.config.js

@@ -46,7 +46,8 @@ Install using pip::
 
     pip install crispy-forms-gds
 
-Add to installed apps, with settings to tell django-crispy-forms to use this theme::
+Add to installed apps, with settings to tell django-crispy-forms to use this theme,
+along with the version number of the govuk frontend you are using::
 
     INSTALLED_APPS = [
       ...
@@ -55,7 +56,7 @@ Add to installed apps, with settings to tell django-crispy-forms to use this the
     ]
     CRISPY_ALLOWED_TEMPLATE_PACKS = ["gds"]
     CRISPY_TEMPLATE_PACK = "gds"
-
+    CRISPY_GDS_FRONTEND_VERSION = "5.0.0"
 
 Build a regular crispy form using layout objects from ``crispy_forms_gds``::
 
