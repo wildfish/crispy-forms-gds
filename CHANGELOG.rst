@@ -12,6 +12,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 Latest
 ------
 * Added setting for govuk frontend version to allow conditional HTML generation
+* Changed Warning Text component to hide the "Warning" prefix to the message
 
 2.0.0 (2024-12-30)
 ------------------
