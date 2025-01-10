@@ -1,7 +1,6 @@
+from crispy_forms import layout as crispy_forms_layout
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-
-from crispy_forms import layout as crispy_forms_layout
 
 from crispy_forms_gds.layout.constants import Colour
 
@@ -298,11 +297,9 @@ class HTML(crispy_forms_layout.HTML):
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
-                <span class="govuk-visually-hidden>Warning</span>
+                <span class="govuk-visually-hidden">Warning</span>
                 %s
               </strong>
             </div>
-        """ % (
-            mark_safe(content),
-        )
+        """ % (mark_safe(content),)
         return HTML(snippet)
