@@ -1,7 +1,13 @@
 import os
 
+import environ  # type: ignore
+
 DEMO_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(DEMO_DIR)
+
+env = environ.Env()
+
+environ.Env.read_env(os.path.join(ROOT_DIR, ".env"))
 
 DEBUG = True
 SECRET_KEY = "secret"
@@ -83,3 +89,5 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ("gds",)
 CRISPY_TEMPLATE_PACK = "gds"
 
 CRISPY_FAIL_SILENTLY = False
+
+CRISPY_GDS_FRONTEND_VERSION = env.str("CRISPY_GDS_FRONTEND_VERSION")

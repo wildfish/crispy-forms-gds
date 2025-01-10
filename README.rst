@@ -287,6 +287,13 @@ release note`_.
 7. Copy the .js and .js.map files to ``assets/javascripts``.
 8. Edit ``demo/settings.py`` to set ``GDS_VERSION`` to the version you downloaded.
 
+Create a copy of the .env.example file and edit it to set the version number of
+the govuk-frontend you downloaded:
+
+.. code-block:: console
+
+    cp .env.example .env
+
 Now, setup and run Django:
 
 .. code-block:: console

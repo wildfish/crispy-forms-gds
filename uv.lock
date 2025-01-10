@@ -198,6 +198,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "bump-my-version" },
+    { name = "django-environ" },
     { name = "isort" },
     { name = "pre-commit" },
     { name = "pytest" },
@@ -216,6 +217,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "bump-my-version", specifier = ">=0.29.0" },
+    { name = "django-environ", specifier = ">=0.11.2" },
     { name = "isort", specifier = ">=5.13.2" },
     { name = "pre-commit", specifier = ">=4.0.1" },
     { name = "pytest", specifier = ">=8.3.4" },
@@ -258,6 +260,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/63/2d/0d638da73374b017ee5f7dc0cbf7b8294af03430010eed2c4e258521d8c0/django_crispy_forms-2.2.tar.gz", hash = "sha256:92cb7b7786fb82646bad739343fd17a99a04b0b736a09e34f3b91f26cbca7e4a", size = 278788 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2b/9d/0e79deacd16c917eb99652342c70378476b8fc0d85e13edbd4301af05887/django_crispy_forms-2.2-py3-none-any.whl", hash = "sha256:a681cffd5af270b3082bda02cf8f81bdb5717ed66d2265e87e3df2f4ccf46277", size = 31410 },
+]
+
+[[package]]
+name = "django-environ"
+version = "0.11.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/0b/f2c024529ee4bbf8b95176eebeb86c6e695192a9ce0e91059cb83a33c1d3/django-environ-0.11.2.tar.gz", hash = "sha256:f32a87aa0899894c27d4e1776fa6b477e8164ed7f6b3e410a62a6d72caaf64be", size = 54326 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c4/f1/468b49cccba3b42dda571063a14c668bb0b53a1d5712426d18e36663bd53/django_environ-0.11.2-py2.py3-none-any.whl", hash = "sha256:0ff95ab4344bfeff693836aa978e6840abef2e2f1145adff7735892711590c05", size = 19141 },
 ]
 
 [[package]]

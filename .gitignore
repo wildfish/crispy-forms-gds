@@ -9,6 +9,7 @@ __pycache__/
 # Ignore dot files except those required for the project
 .*
 !.editorconfig
+!.env.example
 !.envrc
 !.github
 !.gitignore
