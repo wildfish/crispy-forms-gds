@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CrispyFormdGDSConfig(AppConfig):
+class CrispyFormsGDSConfig(AppConfig):
     name = "crispy_forms_gds"
