@@ -1,7 +1,7 @@
 {% extends 'gds/layout/radio_item.html' %}
 
 {% block additional_input_attributes %}
-  data-aria-controls="conditional_{{ field.html_name }}_{{ position }}"
+  aria-controls="conditional_{{ field.html_name }}_{{ position }}"
 {% endblock %}
 
 {% block additional_content %}
