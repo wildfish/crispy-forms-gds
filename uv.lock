@@ -211,7 +211,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=5.0" },
-    { name = "django-crispy-forms", specifier = ">=2.0,<2.3" },
+    { name = "django-crispy-forms", specifier = ">=2.0,<2.4" },
 ]
 
 [package.metadata.requires-dev]
@@ -252,14 +252,14 @@ wheels = [
 
 [[package]]
 name = "django-crispy-forms"
-version = "2.2"
+version = "2.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/63/2d/0d638da73374b017ee5f7dc0cbf7b8294af03430010eed2c4e258521d8c0/django_crispy_forms-2.2.tar.gz", hash = "sha256:92cb7b7786fb82646bad739343fd17a99a04b0b736a09e34f3b91f26cbca7e4a", size = 278788 }
+sdist = { url = "https://files.pythonhosted.org/packages/04/f6/5bce7ae3512171c7c0ca3de31689e2a1ced8b030f156fcf13d2870e5468e/django_crispy_forms-2.3.tar.gz", hash = "sha256:2db17ae08527201be1273f0df789e5f92819e23dd28fec69cffba7f3762e1a38", size = 278849 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/9d/0e79deacd16c917eb99652342c70378476b8fc0d85e13edbd4301af05887/django_crispy_forms-2.2-py3-none-any.whl", hash = "sha256:a681cffd5af270b3082bda02cf8f81bdb5717ed66d2265e87e3df2f4ccf46277", size = 31410 },
+    { url = "https://files.pythonhosted.org/packages/4c/3b/5dc3faf8739d1ce7a73cedaff508b4af8f6aa1684120ded6185ca0c92734/django_crispy_forms-2.3-py3-none-any.whl", hash = "sha256:efc4c31e5202bbec6af70d383a35e12fc80ea769d464fb0e7fe21768bb138a20", size = 31411 },
 ]
 
 [[package]]

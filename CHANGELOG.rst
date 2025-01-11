@@ -14,6 +14,7 @@ Latest
 * Added setting for govuk frontend version to allow conditional HTML generation
 * Changed Warning Text component to hide the "Warning" prefix to the message
 * Fixed conditional radio buttons to reveal hidden fields when an option is selected
+* Fixed project dependencies so django-crispy-forms 2.3 can be installed
 
 2.0.0 (2024-12-30)
 ------------------
