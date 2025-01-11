@@ -35,6 +35,11 @@ Both Version 1.x and 2.x are still in development.
 
 The Government Design System versions will be updated as each release is tested.
 
+There are components which have not yet been implemented. Check the `issues`_ for
+details.
+
+.. _issues: https://github.com/wildfish/crispy-forms-gds/issues
+
 Quickstart
 ==========
 
