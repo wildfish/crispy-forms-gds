@@ -11,6 +11,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+2.0.1 (2025-01-11)
+------------------
 * Added setting for govuk frontend version to allow conditional HTML generation
 * Changed Warning Text component to hide the "Warning" prefix to the message
 * Fixed conditional radio buttons to reveal hidden fields when an option is selected
