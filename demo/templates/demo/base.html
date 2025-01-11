@@ -20,21 +20,23 @@
   <link rel="stylesheet" href="{% static "css/demo.css" %}">
 </head>
 
-<body class="govuk-template__body ">
+<body class="govuk-template__body js-enabled govuk-frontend-supported">
   <script>
     document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
   </script>
 
+  <a id="top"></a>
+
   {% block skip_link %}
-    <a href="#main-content" class="govuk-skip-link">{% trans 'Skip to main content' %}</a>
+    <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link" data-govuk-skip-link-init="">Skip to main content</a>
   {% endblock %}
 
   {% block header %}
     <header class="govuk-header" role="banner" data-module="govuk-header">
-      <div class="govuk-header__container">
+      <div class="govuk-header govuk-header__container">
         <div class="govuk-width-container">
-          <a href="{% url 'home' %}" class="govuk-header__link govuk-header__link--service-name">
-            Crispy Forms GDS
+          <a href="{% url 'home' %}" class="govuk-header__link govuk-header__link--service-name" style="display: inline-block; margin-bottom: 1rem">
+            <span class="govuk-header__product-name">Crispy Forms GDS</span>
           </a>
         </div>
       </div>
