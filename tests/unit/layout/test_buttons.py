@@ -2,10 +2,11 @@
 Tests to verify buttons are rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.layout import Button
-from tests.utils import TEST_DIR, parse_contents, parse_template
+from tests.unit.utils import TEST_DIR, parse_contents, parse_template
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "buttons")
 TEMPLATE = '{% include "gds/layout/button.html" %}'

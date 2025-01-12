@@ -8,7 +8,7 @@ INSTALLED_APPS = (
     "crispy_forms_gds",
 )
 
-ROOT_URLCONF = "tests.urls"
+ROOT_URLCONF = "tests.unit.urls"
 
 TEMPLATES = [
     {

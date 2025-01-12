@@ -10,8 +10,13 @@ from django.test.html import parse_html
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout, Size
-from tests.forms import CheckboxesForm, TextInputForm
-from tests.utils import TEST_DIR, parse_contents, parse_form, render_template
+from tests.unit.forms import CheckboxesForm, TextInputForm
+from tests.unit.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+    render_template,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "helpers", "results")
 

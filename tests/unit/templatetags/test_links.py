@@ -2,6 +2,7 @@
 Tests to verify template tags for generating links are working.
 
 """
+
 import os
 
 from django.test.html import parse_html
@@ -12,7 +13,7 @@ from crispy_forms_gds.templatetags.crispy_forms_gds import (
     button_link,
     button_start,
 )
-from tests.utils import TEST_DIR, parse_contents, parse_template
+from tests.unit.utils import TEST_DIR, parse_contents, parse_template
 
 RESULT_DIR = os.path.join(TEST_DIR, "templatetags", "results")
 

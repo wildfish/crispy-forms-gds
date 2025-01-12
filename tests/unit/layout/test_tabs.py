@@ -2,12 +2,13 @@
 Tests to verify tabs are rendered correctly.
 
 """
+
 import os
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Layout, TabPanel, Tabs
-from tests.forms import TabsForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.unit.forms import TabsForm
+from tests.unit.utils import TEST_DIR, parse_contents, parse_form
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "tabs")
 

@@ -1,7 +1,7 @@
 import os
 
-from tests.forms import ConditionalRadiosForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.unit.forms import ConditionalRadiosForm
+from tests.unit.utils import TEST_DIR, parse_contents, parse_form
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "conditional_radios")
 

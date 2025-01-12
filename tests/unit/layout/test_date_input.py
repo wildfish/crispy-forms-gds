@@ -8,8 +8,8 @@ import os
 
 import django
 
-from tests.forms import DateInputForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.unit.forms import DateInputForm
+from tests.unit.utils import TEST_DIR, parse_contents, parse_form
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "date_input")
 

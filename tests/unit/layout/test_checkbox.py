@@ -9,8 +9,8 @@ import django
 
 from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout
-from tests.forms import CheckboxForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.unit.forms import CheckboxForm
+from tests.unit.utils import TEST_DIR, parse_contents, parse_form
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "checkbox")
 
