@@ -21,22 +21,25 @@ guidelines.
 
 Compatibility
 =============
-+------------------+--------------------------+---------------------+------------------+
-| crispy-forms-gds | Government Design System | django-crispy-forms | django           |
-+------------------+--------------------------+---------------------+------------------+
-| 0.x              | 3.5                      | 1.x - 2.2           | 3.2 LTS, 4.2 LTS |
-+------------------+--------------------------+---------------------+------------------+
-| 1.x              | 5.0 - 5.2                | 2.0 - 2.3           | 4.2 LTS          |
-+------------------+--------------------------+---------------------+------------------+
-| 2.x              | 5.0 - 5.8                | 2.0 - 2.3           | 5.0, 5.1         |
-+------------------+--------------------------+---------------------+------------------+
++-------------------+--------------------------+---------------------+------------------+
+| crispy-forms-gds  | Government Design System | django-crispy-forms | django           |
++-------------------+--------------------------+---------------------+------------------+
+| 1.x (maintenance) | 5.0 - 5.2                | 2.0 - 2.3           | 4.2 LTS          |
++-------------------+--------------------------+---------------------+------------------+
+| 2.x (current)     | 5.0 - 5.8                | 2.0 - 2.3           | 5.0, 5.1         |
++-------------------+--------------------------+---------------------+------------------+
 
-Both Version 1.x and 2.x are still in development.
+Crispy-forms-gds has a rich set of components for building pages, but not everything
+from the Government Design System is implemented. Version 1.x will still be updated to
+add the missing components while Django 4.2 LTS is still supported - until April 2026.
+Only reported bugs will be fixed after this date. Version 2.x is the current release,
+and releases will be made as the set of components supported expands.
 
 The Government Design System versions will be updated as each release is tested.
 
-There are components which have not yet been implemented. Check the `issues`_ for
-details.
+For information the components which have not yet been implemented. Check the
+`issues`_ for the current status. If you have a pressing need for a particular
+component, then, please, open an issue.
 
 .. _issues: https://github.com/wildfish/crispy-forms-gds/issues
 
