@@ -317,9 +317,10 @@ styled using the `GOV.UK Design System`_.
 Project Information
 ===================
 
-Crispy Forms GDS is a community tool of the GOV.UK Design System. The Design System
-team is not responsible for it and cannot support you with using it. Contact
-Wildfish Ltd. directly if you need help or you want to request a feature.
+Crispy Forms GDS is a community supported tool of the GOV.UK Design System. The
+Design System team is not responsible for it and cannot support you with using it.
+Contact Wildfish Ltd. directly if you need help or you want to request a feature.
+The easiest way to do this is to open an issue at our GitHub repository.
 
 * Documentation: https://ebird-checklists.readthedocs.io/en/latest/
 * Issues: https://github.com/wildfish/crispy-forms-gds/issues
